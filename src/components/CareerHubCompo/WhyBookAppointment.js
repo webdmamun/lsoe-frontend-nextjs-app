@@ -14,7 +14,7 @@ const WhyBookAppointment = () => {
           className="w-full h-full object-cover opacity-10"
         >
           <source
-            src="https://res.cloudinary.com/lsoe/video/upload/v1754140372/videos/8_g17ctr.mp4"
+            src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/8_g17ctr.mp4"
             type="video/mp4"
           />
         </video>

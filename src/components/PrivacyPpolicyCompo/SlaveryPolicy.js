@@ -6,14 +6,14 @@ const SlaveryPolicy = () => {
       <div className="flex items-center justify-center py-5 bg-gray-200">
         <div className="container">
           <div className="bg-white rounded-lg shadow-lg p-5">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
               Modern Slavery Policy
             </h1>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               1. Introduction
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               At <strong>London School of Excellence Ltd.</strong>, we are
               committed to preventing{" "}
               <strong>modern slavery and human trafficking</strong> in all
@@ -22,9 +22,9 @@ const SlaveryPolicy = () => {
               modern slavery has no place within our business activities.
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">2. Scope</h2>
-            <p class="mt-2">This policy applies to:</p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">2. Scope</h2>
+            <p className="mt-2">This policy applies to:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>
                 All <strong>employees</strong> of London School of Excellence
                 Ltd.
@@ -35,15 +35,15 @@ const SlaveryPolicy = () => {
               </li>
             </ul>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               3. Policy Statement
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               We are dedicated to ensuring that modern slavery and human
               trafficking do not occur within our business. To achieve this, we
               will:
             </p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>
                 <strong>Comply</strong> with all applicable laws and regulations
                 related to modern slavery.
@@ -70,10 +70,10 @@ const SlaveryPolicy = () => {
               </li>
             </ul>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               4. Reporting Modern Slavery Concerns
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               We encourage anyone who suspects modern slavery or human
               trafficking within our operations or supply chains to report their
               concerns through our <strong>whistleblowing channel</strong>. All
@@ -81,21 +81,21 @@ const SlaveryPolicy = () => {
               action will be taken to address any concerns raised.
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               5. Commitment to Continuous Improvement
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               London School of Excellence Ltd. remains dedicated to
               strengthening its policies and procedures to combat modern
               slavery. We will regularly review and assess our practices to
               ensure compliance and effectiveness in tackling this issue.
             </p>
 
-            <p class="mt-6 font-semibold">
+            <p className="mt-6 font-semibold">
               For any concerns or further information, please contact us at{" "}
               <a
                 href="mailto:info@londonschoolofexcellence.com"
-                class="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline"
               >
                 info@londonschoolofexcellence.com
               </a>

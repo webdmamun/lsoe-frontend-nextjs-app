@@ -6,14 +6,14 @@ const PrivacyPolicyDetails = () => {
       <div className="flex items-center justify-center py-5 bg-gray-200">
         <div className="container">
           <div className="bg-white rounded-lg shadow-lg p-5">
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">
               Privacy Policy
             </h1>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               1. Introduction
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               At <strong>London School of Excellence (LSOE) Pvt. Ltd.</strong>,
               we value your privacy and are committed to protecting your
               personal data. This Privacy Policy outlines how we collect, use,
@@ -22,14 +22,14 @@ const PrivacyPolicyDetails = () => {
               <strong>Data Protection Act 2018</strong>.
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               2. Information We Collect
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               We collect personal data when you register, contact us, or use our
               services. This may include:
             </p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>
                 <strong>Name</strong>
               </li>
@@ -44,22 +44,22 @@ const PrivacyPolicyDetails = () => {
               </li>
             </ul>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               3. How We Use Your Data
             </h2>
-            <p class="mt-2">Your information is used to:</p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <p className="mt-2">Your information is used to:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>Provide and improve our services</li>
               <li>Communicate with you regarding your account or inquiries</li>
               <li>Process payments and meet legal obligations</li>
               <li>Send marketing communications (only if you have opted in)</li>
             </ul>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               4. Data Retention
             </h2>
-            <p class="mt-2">We retain personal data for specific periods:</p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <p className="mt-2">We retain personal data for specific periods:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>
                 <strong>Student records:</strong> Up to <strong>3 years</strong>{" "}
                 after the last interaction
@@ -80,26 +80,26 @@ const PrivacyPolicyDetails = () => {
                 after employment ends
               </li>
             </ul>
-            <p class="mt-2">
+            <p className="mt-2">
               After these periods, data is securely deleted or anonymized.
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               5. Data Security & Sharing
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               We implement strict security measures to protect your personal
               data. We do not share your information with third parties unless
               required by law or necessary for service operations.
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               6. Your Rights
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               Under <strong>UK GDPR</strong>, you have the right to:
             </p>
-            <ul class="list-disc list-inside mt-2 space-y-1">
+            <ul className="list-disc list-inside mt-2 space-y-1">
               <li>
                 <strong>Access, correct, or delete</strong> your personal data
               </li>
@@ -110,33 +110,33 @@ const PrivacyPolicyDetails = () => {
                 <strong>Request data restriction or portability</strong>
               </li>
             </ul>
-            <p class="mt-2">
+            <p className="mt-2">
               To exercise these rights, please contact us at{" "}
               <a
                 href="mailto:info.office@londonschoolofexcellence.com"
-                class="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline"
               >
                 info.office@londonschoolofexcellence.com
               </a>
               .
             </p>
 
-            <h2 class="text-2xl font-semibold text-gray-700 mt-6">
+            <h2 className="text-2xl font-semibold text-gray-700 mt-6">
               7. Updates & Contact
             </h2>
-            <p class="mt-2">
+            <p className="mt-2">
               We may update this Privacy Policy periodically. For any questions
               or concerns, reach out to us at{" "}
               <a
                 href="mailto:info.office@londonschoolofexcellence.com"
-                class="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline"
               >
                 info.office@londonschoolofexcellence.com
               </a>
               .
             </p>
 
-            <p class="mt-6 font-semibold">
+            <p className="mt-6 font-semibold">
               By using our website, you agree to this Privacy Policy.
             </p>
 

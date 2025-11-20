@@ -12,7 +12,7 @@ const BookAppointmentHero = () => {
         className="absolute inset-0 w-full h-full object-cover object-top z-0"
       >
         <source
-          src="https://res.cloudinary.com/lsoe/video/upload/v1754318581/videos/free_consultaton_eiayw3.mp4"
+          src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/free_consultaton_eiayw3.mp4"
           type="video/mp4"
         />
       </video>

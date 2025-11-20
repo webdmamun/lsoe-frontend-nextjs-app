@@ -62,7 +62,7 @@ const ContactForm = () => {
           {/* Office Image */}
           <div className="rounded-xl overflow-hidden shadow-md">
             <img
-              src="https://res.cloudinary.com/lsoe/image/upload/v1713980714/images/zfxc3vwrwizanvobcrwz.jpg"
+              src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/office%20image.jpg"
               alt="Office"
               className="w-full h-full object-cover"
             />

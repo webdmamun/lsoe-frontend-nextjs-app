@@ -5,32 +5,32 @@ const StudyDestinations = () => {
     {
       name: "United Kingdom",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851917/images/United_Kingdom_rgqqjn.jpg", // Replace with actual
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/United_Kingdom_rgqqjn.jpg", // Replace with actual
     },
     {
       name: "United States",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851918/images/United_States_c5lzwj.jpg",
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/United_States_c5lzwj.jpg",
     },
     {
       name: "Canada",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851917/images/Canada_jpinbr.jpg",
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Canada_jpinbr.jpg",
     },
     {
       name: "Australia",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851917/images/Australia_fjeayl.jpg",
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Australia_fjeayl.jpg",
     },
     {
       name: "New Zealand",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851916/images/New_Zealand_tr2byw.jpg",
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/New_Zealand_tr2byw.jpg",
     },
     {
       name: "Ireland",
       image:
-        "https://res.cloudinary.com/lsoe/image/upload/v1752851917/images/Ireland_ms5l4d.jpg",
+        "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Ireland_ms5l4d.jpg",
     },
   ];
   return (

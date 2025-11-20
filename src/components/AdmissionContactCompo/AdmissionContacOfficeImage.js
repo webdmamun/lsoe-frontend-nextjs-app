@@ -7,7 +7,7 @@ const AdmissionContacOfficeImage = () => {
       <div className="max-w-screen-xl px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-gray-100 text-gray-900 rounded-lg shadow-lg">
         <div className="flex flex-col justify-between">
           <img
-            src="https://res.cloudinary.com/lsoe/image/upload/v1713980714/images/zfxc3vwrwizanvobcrwz.jpg"
+            src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/office%20image.jpg"
             className="max-w-lg w-[100%] rounded shadow-xl"
             alt=""
           />

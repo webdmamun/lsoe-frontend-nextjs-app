@@ -13,7 +13,7 @@ const CareerHubCompoBanner = () => {
         className="absolute top-0 inset-0 w-full h-full object-cover z-0"
       >
         <source
-          src="https://res.cloudinary.com/lsoe/video/upload/v1753438495/videos/video_3_yj5hqm.mp4"
+          src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_3_yj5hqm.mp4"
           type="video/mp4"
         />
       </video>
