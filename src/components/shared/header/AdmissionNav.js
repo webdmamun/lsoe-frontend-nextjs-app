@@ -69,14 +69,7 @@ const AdmissionNav = () => {
         </Link>
       </li>
 
-      <li>
-        <Link 
-          className="btn btn-sm bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-none shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold px-6"
-          href="/refer-and-earn"
-        >
-          Refer & Earn
-        </Link>
-      </li>
+
     </>
   );
   return (
@@ -110,7 +103,7 @@ const AdmissionNav = () => {
           <Link href="/" className="flex items-center">
             <ReactSVG 
               src="https://res.cloudinary.com/lsoe/image/upload/v1751887108/images/LSOE_Logo_White_SVG_sc2qmw.svg" 
-              className="w-40 lg:w-48"
+              className="w-48 lg:w-56"
             />
           </Link>
         </div>
