@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactSVG } from "react-svg";
-import applynowbtnstyle from "../../ApplyNowLeadCompo/ApplynowLead.module.css";
+import applynowbtnstyle from "../styles/ApplyNowButton.module.css";
 
 const AdmissionNav = () => {
   const pathname = usePathname();
