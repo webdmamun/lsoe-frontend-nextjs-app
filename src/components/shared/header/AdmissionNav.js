@@ -19,81 +19,75 @@ const AdmissionNav = () => {
     <>
       <li>
         <Link
-          className="font-medium justify-between"
+          className={`font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-pink-50 ${
+            pathname === "/about-us" 
+              ? "bg-pink-500 text-white font-bold hover:bg-pink-600" 
+              : "text-gray-700 hover:text-pink-600"
+          }`}
           href="/about-us"
-          style={pathname === "/about-us" ? activeStyle : undefined}
         >
-          About US
+          About Us
         </Link>
       </li>
 
-      <div className="divider lg:divider-horizontal"></div>
       <li>
         <Link
-          className="font-medium justify-between"
+          className={`font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-pink-50 ${
+            pathname === "/contact-us" 
+              ? "bg-pink-500 text-white font-bold hover:bg-pink-600" 
+              : "text-gray-700 hover:text-pink-600"
+          }`}
           href="/contact-us"
-          style={pathname === "/contact-us" ? activeStyle : undefined}
         >
-          Contact US
+          Contact Us
         </Link>
       </li>
-      <div className="divider lg:divider-horizontal"></div>
-      {/* <li>
-        <Link
-          className="font-medium justify-between"
-          href="/university-admission"
-          style={pathname === "/university-admission" ? activeStyle : undefined}
-        >
-          Admission HUB
-        </Link>
-      </li> */}
-      {/* <div className="divider lg:divider-horizontal"></div>
-      <li>
-        <Link className="font-medium justify-between  " href="/employment">
-          Employment HUB
-        </Link>
-      </li> */}
 
-      <div className="divider lg:divider-horizontal"></div>
       <li>
         <Link
-          className="font-medium justify-between"
+          className={`font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-pink-50 ${
+            pathname === "/career-hub" 
+              ? "bg-pink-500 text-white font-bold hover:bg-pink-600" 
+              : "text-gray-700 hover:text-pink-600"
+          }`}
           href="/career-hub"
-          style={pathname === "/career-hub" ? activeStyle : undefined}
         >
-          Career HUB
+          Career Hub
         </Link>
       </li>
 
-      <div className="divider lg:divider-horizontal"></div>
       <li>
         <Link
-          className="font-medium justify-between"
+          className={`font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:bg-pink-50 ${
+            pathname === "/partner-with-us" 
+              ? "bg-pink-500 text-white font-bold hover:bg-pink-600" 
+              : "text-gray-700 hover:text-pink-600"
+          }`}
           href="/partner-with-us"
-          style={pathname === "/partner-with-us" ? activeStyle : undefined}
         >
           Partner With Us
         </Link>
       </li>
 
-      <div className="divider lg:divider-horizontal"></div>
-
       <li>
-        <Link className={applynowbtnstyle.applynowleadbtn} href="/apply-now">
-          Apply Now
+        <Link 
+          className="btn btn-sm bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-none shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold px-6"
+          href="/refer-and-earn"
+        >
+          Refer & Earn
         </Link>
       </li>
     </>
   );
   return (
-    <header className="sticky top-0 z-50">
-      <div className="navbar bg-base-100 drop-shadow-md">
+    <header className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="navbar bg-white px-4 lg:px-8 max-w-7xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -108,20 +102,34 @@ const AdmissionNav = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow-lg bg-white rounded-lg w-64 border border-gray-100"
             >
               {menuItems}
             </ul>
           </div>
-          <Link href="/" className="w-[16rem] lg:ml-12">
-            <ReactSVG src="https://res.cloudinary.com/lsoe/image/upload/v1751887108/images/LSOE_Logo_White_SVG_sc2qmw.svg" />
+          <Link href="/" className="flex items-center">
+            <ReactSVG 
+              src="https://res.cloudinary.com/lsoe/image/upload/v1751887108/images/LSOE_Logo_White_SVG_sc2qmw.svg" 
+              className="w-40 lg:w-48"
+            />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">{menuItems}</ul>
+          <ul className="menu menu-horizontal gap-1">{menuItems}</ul>
         </div>
         <div className="navbar-end">
-          <Link href="/book-appointment" className="btn btn-secondary">
+          <Link 
+            href="/book-appointment" 
+            className="btn btn-sm lg:btn-md bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white border-none shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold"
+          >
+            <svg 
+              className="w-4 h-4 mr-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
             Book Appointment
           </Link>
         </div>
