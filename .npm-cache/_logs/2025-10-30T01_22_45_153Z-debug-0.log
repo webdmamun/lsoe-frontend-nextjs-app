@@ -1,0 +1,114 @@
+0 verbose cli /opt/homebrew/Cellar/node/22.2.0/bin/node /opt/homebrew/bin/npm
+1 info using npm@10.8.3
+2 info using node@v22.2.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/mamun/Development/LSOE/WebProject/lsoe-nextjs/.npmrc
+5 silly config load:file:/Users/mamun/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install" "--no-audit" "--no-fund"
+9 verbose logfile logs-max:10 dir:/Users/mamun/Development/LSOE/WebProject/lsoe-nextjs/.npm-cache/_logs/2025-10-30T01_22_45_153Z-
+10 verbose logfile /Users/mamun/Development/LSOE/WebProject/lsoe-nextjs/.npm-cache/_logs/2025-10-30T01_22_45_153Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest @types/react@*
+15 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/npm 233ms
+17 http fetch GET 200 https://registry.npmjs.org/@types%2freact 157ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/@types%2freact set size:undefined disposed:false
+19 silly placeDep ROOT @types/react@19.2.2 OK for: @types/react-transition-group@4.4.12 want: *
+20 silly fetch manifest typescript@>=4.8.4 <6.0.0
+21 silly packumentCache full:https://registry.npmjs.org/typescript cache-miss
+22 http fetch GET 200 https://registry.npmjs.org/typescript 233ms (cache miss)
+23 silly packumentCache full:https://registry.npmjs.org/typescript set size:undefined disposed:false
+24 silly placeDep ROOT typescript@5.9.3 OK for: @typescript-eslint/eslint-plugin@8.46.2 want: >=4.8.4 <6.0.0
+25 silly fetch manifest picomatch@^3 || ^4
+26 silly packumentCache full:https://registry.npmjs.org/picomatch cache-miss
+27 http fetch GET 200 https://registry.npmjs.org/picomatch 42ms (cache miss)
+28 silly packumentCache full:https://registry.npmjs.org/picomatch set size:undefined disposed:false
+29 silly placeDep ROOT picomatch@4.0.3 REPLACE for: fdir@6.5.0 want: ^3 || ^4
+30 silly fetch manifest picomatch@^2.0.4
+31 silly packumentCache full:https://registry.npmjs.org/picomatch cache-miss
+32 http fetch GET 200 https://registry.npmjs.org/picomatch 8ms (cache hit)
+33 silly packumentCache full:https://registry.npmjs.org/picomatch set size:118818 disposed:false
+34 silly placeDep node_modules/anymatch picomatch@2.3.1 OK for: anymatch@3.1.3 want: ^2.0.4
+35 silly fetch manifest picomatch@^2.3.1
+36 silly packumentCache full:https://registry.npmjs.org/picomatch cache-hit
+37 silly placeDep node_modules/micromatch picomatch@2.3.1 OK for: micromatch@4.0.8 want: ^2.3.1
+38 silly fetch manifest yaml@^2.4.2
+39 silly packumentCache full:https://registry.npmjs.org/yaml cache-miss
+40 http fetch GET 200 https://registry.npmjs.org/yaml 37ms (cache miss)
+41 silly packumentCache full:https://registry.npmjs.org/yaml set size:undefined disposed:false
+42 silly placeDep ROOT yaml@2.8.1 REPLACE for: postcss-load-config@6.0.1 want: ^2.4.2
+43 silly fetch manifest yaml@^1.10.0
+44 silly packumentCache full:https://registry.npmjs.org/yaml cache-miss
+45 http fetch GET 200 https://registry.npmjs.org/yaml 2ms (cache hit)
+46 silly packumentCache full:https://registry.npmjs.org/yaml set size:361238 disposed:false
+47 silly placeDep node_modules/cosmiconfig yaml@1.10.2 OK for: cosmiconfig@7.1.0 want: ^1.10.0
+48 silly fetch manifest react@^16.9.0 || ^17 || ^18
+49 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+50 http fetch GET 200 https://registry.npmjs.org/react 145ms (cache miss)
+51 silly packumentCache full:https://registry.npmjs.org/react set size:undefined disposed:false
+52 silly fetch manifest react-dom@^16.9.0 || ^17 || ^18
+53 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
+54 http fetch GET 200 https://registry.npmjs.org/react-dom 149ms (cache miss)
+55 silly packumentCache full:https://registry.npmjs.org/react-dom set size:undefined disposed:false
+56 verbose stack Error: could not resolve
+56 verbose stack     at PlaceDep.failPeerConflict (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/place-dep.js:503:25)
+56 verbose stack     at new PlaceDep (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/place-dep.js:157:21)
+56 verbose stack     at #buildDepStep (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:917:18)
+56 verbose stack     at async Arborist.buildIdealTree (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:181:7)
+56 verbose stack     at async Promise.all (index 1)
+56 verbose stack     at async Arborist.reify (/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:131:5)
+56 verbose stack     at async Install.exec (/opt/homebrew/lib/node_modules/npm/lib/commands/install.js:150:5)
+56 verbose stack     at async Npm.exec (/opt/homebrew/lib/node_modules/npm/lib/npm.js:207:9)
+56 verbose stack     at async module.exports (/opt/homebrew/lib/node_modules/npm/lib/cli/entry.js:74:5)
+57 error code ERESOLVE
+58 error ERESOLVE could not resolve
+59 error
+60 error While resolving: react-datepicker@4.25.0
+60 error Found: react@19.2.0
+60 error node_modules/react
+60 error   react@"^19.2.0" from the root project
+60 error   peer react@">=16.8.0" from @emotion/react@11.14.0
+60 error   node_modules/@emotion/react
+60 error     @emotion/react@"^11.8.1" from react-select@5.10.2
+60 error     node_modules/react-select
+60 error       react-select@"^5.5.2" from the root project
+60 error   19 more (@emotion/use-insertion-effect-with-fallbacks, ...)
+60 error
+60 error Could not resolve dependency:
+60 error peer react@"^16.9.0 || ^17 || ^18" from react-datepicker@4.25.0
+60 error node_modules/react-datepicker
+60 error   react-datepicker@"^4.10.0" from the root project
+60 error
+60 error Conflicting peer dependency: react@18.3.1
+60 error node_modules/react
+60 error   peer react@"^16.9.0 || ^17 || ^18" from react-datepicker@4.25.0
+60 error   node_modules/react-datepicker
+60 error     react-datepicker@"^4.10.0" from the root project
+60 error
+60 error Fix the upstream dependency conflict, or retry
+60 error this command with --force or --legacy-peer-deps
+60 error to accept an incorrect (and potentially broken) dependency resolution.
+61 error
+61 error
+61 error For a full report see:
+61 error /Users/mamun/Development/LSOE/WebProject/lsoe-nextjs/.npm-cache/_logs/2025-10-30T01_22_45_153Z-eresolve-report.txt
+62 silly unfinished npm timer reify 1761787365400
+63 silly unfinished npm timer reify:loadTrees 1761787365427
+64 silly unfinished npm timer idealTree:buildDeps 1761787365513
+65 silly unfinished npm timer idealTree:node_modules/react-datepicker 1761787366127
+66 verbose cwd /Users/mamun/Development/LSOE/WebProject/lsoe-nextjs
+67 verbose os Darwin 25.0.0
+68 verbose node v22.2.0
+69 verbose npm  v10.8.3
+70 notice
+70 notice New major version of npm available! 10.8.3 -> 11.6.2
+70 notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+70 notice To update run: npm install -g npm@11.6.2
+70 notice  { force: true, [Symbol(proc-log.meta)]: true }
+71 verbose exit 1
+72 verbose code 1
+73 error A complete log of this run can be found in: /Users/mamun/Development/LSOE/WebProject/lsoe-nextjs/.npm-cache/_logs/2025-10-30T01_22_45_153Z-debug-0.log
