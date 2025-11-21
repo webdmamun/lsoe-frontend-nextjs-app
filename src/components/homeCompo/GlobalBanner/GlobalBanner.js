@@ -153,7 +153,7 @@ const GlobalBanner = () => {
           <div>
             <Link
               href="/apply-now"
-              className="inline-block bg-gradient-to-r from-pink-600 to-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300 uppercase mt-4"
+              className="inline-block bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300 uppercase mt-4"
             >
               Free Consultation
             </Link>

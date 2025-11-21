@@ -7,6 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          primary: '#012759',
+          secondary: '#26b2e6',
+          accent: '#54a147',
+        },
+      },
       animation: {
         fadeIn: "fadeIn 1.2s ease-out forwards",
       },
@@ -22,12 +29,12 @@ module.exports = {
     themes: [
       {
         lsoetheme: {
-          primary: "#0FCFEC",
-          "primary-content": "#919191",
-          secondary: "#E91E63",
-          "secondary-content": "#DDDDDD",
-          accent: "#50B446",
-          "accent-content": "#DDDDDD",
+          primary: "#012759",
+          "primary-content": "#ffffff",
+          secondary: "#26b2e6",
+          "secondary-content": "#ffffff",
+          accent: "#54a147",
+          "accent-content": "#ffffff",
           neutral: "#ffffff",
           "base-100": "#ffffff",
         },

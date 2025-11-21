@@ -43,7 +43,7 @@ const AdmissionFooter = () => {
     { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/london-school-of-excellence/", color: "hover:text-blue-700" },
     { icon: FaTwitter, href: "https://twitter.com/LsoeLtd", color: "hover:text-sky-400" },
     { icon: FaYoutube, href: "https://www.youtube.com/@lsoeteam", color: "hover:text-red-600" },
-    { icon: FaTiktok, href: "https://www.tiktok.com/@lsoe_team", color: "hover:text-pink-500" },
+    { icon: FaTiktok, href: "https://www.tiktok.com/@lsoe_team", color: "hover:text-brand-secondary" },
   ];
 
   const quickLinks = [
@@ -58,8 +58,8 @@ const AdmissionFooter = () => {
   return (
     <footer className="relative bg-slate-900 text-white overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-secondary/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-12 relative z-10">
@@ -102,14 +102,14 @@ const AdmissionFooter = () => {
           <motion.div variants={itemVariants} className="space-y-6">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Quick Links
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-pink-500 rounded-full" />
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-brand-secondary rounded-full" />
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="group flex items-center text-slate-400 hover:text-pink-400 transition-colors duration-300"
+                    className="group flex items-center text-slate-400 hover:text-brand-secondary transition-colors duration-300"
                   >
                     <ArrowRight className="w-4 h-4 mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
@@ -127,16 +127,16 @@ const AdmissionFooter = () => {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 group">
-                <div className="mt-1 p-2 bg-slate-800 rounded-lg group-hover:bg-pink-500/20 group-hover:text-pink-500 transition-colors duration-300">
-                  <MapPin className="w-5 h-5 text-slate-400 group-hover:text-pink-500 transition-colors" />
+                <div className="mt-1 p-2 bg-slate-800 rounded-lg group-hover:bg-brand-secondary/20 group-hover:text-brand-secondary transition-colors duration-300">
+                  <MapPin className="w-5 h-5 text-slate-400 group-hover:text-brand-secondary transition-colors" />
                 </div>
                 <span className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
                   5 Station Parade, Hornchurch, Elm Park, London, RM12 5AB, UK
                 </span>
               </li>
               <li className="flex items-center space-x-3 group">
-                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-pink-500/20 group-hover:text-pink-500 transition-colors duration-300">
-                  <Phone className="w-5 h-5 text-slate-400 group-hover:text-pink-500 transition-colors" />
+                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-brand-secondary/20 group-hover:text-brand-secondary transition-colors duration-300">
+                  <Phone className="w-5 h-5 text-slate-400 group-hover:text-brand-secondary transition-colors" />
                 </div>
                 <div className="flex flex-col">
                   <a href="tel:+447901024151" className="text-slate-400 hover:text-white text-sm transition-colors">+44 (0)1708784763</a>
@@ -144,16 +144,16 @@ const AdmissionFooter = () => {
                 </div>
               </li>
               <li className="flex items-center space-x-3 group">
-                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-pink-500/20 group-hover:text-pink-500 transition-colors duration-300">
-                  <Phone className="w-5 h-5 text-slate-400 group-hover:text-pink-500 transition-colors" />
+                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-brand-secondary/20 group-hover:text-brand-secondary transition-colors duration-300">
+                  <Phone className="w-5 h-5 text-slate-400 group-hover:text-brand-secondary transition-colors" />
                 </div>
                 <a href="tel:+2347049748665" className="text-slate-400 hover:text-white text-sm transition-colors">
                   +234 704 974 8665 (Intl)
                 </a>
               </li>
               <li className="flex items-center space-x-3 group">
-                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-pink-500/20 group-hover:text-pink-500 transition-colors duration-300">
-                  <Mail className="w-5 h-5 text-slate-400 group-hover:text-pink-500 transition-colors" />
+                <div className="p-2 bg-slate-800 rounded-lg group-hover:bg-brand-secondary/20 group-hover:text-brand-secondary transition-colors duration-300">
+                  <Mail className="w-5 h-5 text-slate-400 group-hover:text-brand-secondary transition-colors" />
                 </div>
                 <a href="mailto:info.office@londonschoolofexcellence.com" className="text-slate-400 hover:text-white text-sm break-all transition-colors">
                   info.office@londonschoolofexcellence.com
@@ -206,9 +206,9 @@ const AdmissionFooter = () => {
             © {new Date().getFullYear()} London School of Excellence. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-slate-500">
-            <Link href="/privacy-policy" className="hover:text-pink-400 transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-pink-400 transition-colors">Terms</Link>
-            <Link href="/sitemap" className="hover:text-pink-400 transition-colors">Sitemap</Link>
+            <Link href="/privacy-policy" className="hover:text-brand-secondary transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-brand-secondary transition-colors">Terms</Link>
+            <Link href="/sitemap" className="hover:text-brand-secondary transition-colors">Sitemap</Link>
           </div>
         </motion.div>
       </div>

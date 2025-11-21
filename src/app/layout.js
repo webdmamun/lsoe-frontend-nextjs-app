@@ -12,6 +12,11 @@ export const metadata = {
   description: 'Your Gateway to UK Education and Employment - University Admissions, Student Services, and Career Opportunities',
   keywords: 'UK education, university admission, student visa, employment, career hub, LSOE',
   authors: [{ name: 'LSOE Team' }],
+  icons: {
+    icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
+    shortcut: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
+    apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
+  },
   openGraph: {
     title: 'LSOE - London Source of Education',
     description: 'Your Gateway to UK Education and Employment',

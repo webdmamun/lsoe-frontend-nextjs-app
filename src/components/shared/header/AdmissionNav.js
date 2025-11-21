@@ -64,42 +64,48 @@ const AdmissionNav = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-8">
               <nav className="flex items-center gap-6">
-                {navLinks.map((link) => (
+                {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
                   <Link
                     key={link.name}
                     href={link.href}
                     className="relative group py-2"
                   >
-                    <span className={`text-sm font-medium transition-colors duration-300 ${
-                      pathname === link.href 
-                        ? "text-pink-600 font-bold" 
-                        : "text-gray-600 group-hover:text-pink-500"
+                    <span className={`text-sm font-medium transition-colors ${
+                      isActive ? "text-brand-primary font-bold" : "text-gray-700 group-hover:text-brand-secondary"
                     }`}>
                       {link.name}
                     </span>
-                    <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-pink-500 transform origin-left transition-transform duration-300 ${
-                      pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    }`} />
+                    {isActive && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-brand-primary to-brand-secondary"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
                   </Link>
-                ))}
+                );
+              })}
               </nav>
 
               <Link
                 href="/book-appointment"
-                className="group relative px-6 py-2.5 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full font-semibold shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+                className="group relative px-6 py-2.5 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-full font-semibold shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   Book Appointment
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-pink-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden relative z-50 p-2 text-gray-600 hover:text-pink-600 transition-colors"
+              className="lg:hidden relative z-50 p-2 text-gray-600 hover:text-brand-primary transition-colors"
             >
               {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
             </button>
@@ -130,12 +136,12 @@ const AdmissionNav = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`flex items-center justify-between p-4 rounded-xl text-lg font-medium transition-colors ${
                       pathname === link.href
-                        ? "bg-pink-50 text-pink-600"
-                        : "text-gray-600 hover:bg-gray-50"
+                        ? "bg-brand-primary/10 text-brand-primary"
+                        : "text-gray-700 hover:bg-gray-50"
                     }`}
                   >
                     {link.name}
-                    <ChevronRight className={`w-5 h-5 ${pathname === link.href ? "text-pink-600" : "text-gray-400"}`} />
+                    <ChevronRight className={`w-5 h-5 ${pathname === link.href ? "text-brand-primary" : "text-gray-400"}`} />
                   </Link>
                 </motion.div>
               ))}
@@ -149,7 +155,7 @@ const AdmissionNav = () => {
                 <Link
                   href="/book-appointment"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-xl font-bold shadow-lg active:scale-95 transition-transform"
+                  className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-xl font-bold shadow-lg active:scale-95 transition-transform"
                 >
                   <Calendar className="w-5 h-5" />
                   Book Appointment
