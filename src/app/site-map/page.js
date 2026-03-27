@@ -4,8 +4,8 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 export const metadata = {
-  title: "Sitemap - LSOE",
-  description: "A complete overview of all pages and sections on the LSOE portal.",
+  title: "Sitemap | London School of Excellence",
+  description: "A complete overview of all pages and sections on the London School of Excellence portal.",
 };
 
 const sitemapData = [

@@ -211,7 +211,7 @@ const AdmissionFooter = () => {
             <Link href="/privacy-policy" className="hover:text-brand-secondary transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-brand-secondary transition-colors">Terms</Link>
             <Link href="/cookie-policy" className="hover:text-brand-secondary transition-colors">Cookies</Link>
-            <Link href="/sitemap" className="hover:text-brand-secondary transition-colors">Sitemap</Link>
+            <Link href="/site-map" className="hover:text-brand-secondary transition-colors">Sitemap</Link>
           </div>
         </motion.div>
       </div>

@@ -3,9 +3,9 @@ import ReferEarnForm from '@/components/PartnerWithUs/ReferEarnForm';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'Refer & Earn | LSOE - London Source of Education',
-  description: 'Refer a friend to LSOE and earn rewards! Help someone achieve their study abroad dreams and get rewarded for successful referrals.',
-  keywords: 'refer and earn, referral program, student referral, LSOE rewards, earn money referring students',
+  title: 'Refer & Earn | London School of Excellence',
+  description: 'Recommend students to the London School of Excellence and earn rewards. Help peers achieve their study abroad goals through our referral program.',
+  keywords: 'refer and earn, LSOE rewards, student referral, study abroad rewards, education referral network',
 };
 
 export default function ReferAndEarnPage() {

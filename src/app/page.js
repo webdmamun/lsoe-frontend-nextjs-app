@@ -13,9 +13,9 @@ import NewsletterSignup from '@/components/homeCompo/newsletterSignup/Newsletter
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'LSOE - London Source of Excellence | Your Gateway to UK Education Worldwide',
-  description: 'London Source of Excellence provides comprehensive university admission services for international students worldwide. Expert guidance for students from Nigeria, Bangladesh, India, Pakistan, and 15+ countries. Free consultancy, visa advice, and accommodation assistance.',
-  keywords: 'UK education, international students, university admission, student visa, LSOE, London education, Nigeria students UK, Bangladesh students UK, India students UK, study abroad, UK universities',
+  title: 'LSOE - London School of Excellence | Your Gateway to UK Education & Career Worldwide',
+  description: 'London School of Excellence provides world-class university admission services for international students. Expert guidance for students from Nigeria, Bangladesh, India, Pakistan, and 15+ countries. Free consultancy, visa advice, and accommodation assistance.',
+  keywords: 'UK education, international students, school of excellence, London School of Excellence, university admission, student visa, study abroad, UK universities, LSOE admissions',
 };
 
 export default function HomePage() {

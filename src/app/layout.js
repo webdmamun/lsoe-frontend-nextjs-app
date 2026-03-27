@@ -10,26 +10,37 @@ import WhatsAppButton from '@/components/common/WhatsAppButton';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'LSOE - London Source of Education',
-  description: 'Your Gateway to UK Education and Employment - University Admissions, Student Services, and Career Opportunities',
-  keywords: 'UK education, university admission, student visa, employment, career hub, LSOE',
-  authors: [{ name: 'LSOE Team' }],
+  metadataBase: new URL('https://www.londonschoolofexcellence.com'),
+  title: 'LSOE - London School of Excellence',
+  description: 'A leading UK education hub providing expert university admissions, student visa advice, and career consultancy. Join 10,000+ students on their journey to excellence.',
+  keywords: 'UK education, university admission, student visa, career hub, London School of Excellence, LSOE, study in London, UK degrees',
+  authors: [{ name: 'LSOE Admissions Team' }],
   icons: {
     icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
     shortcut: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
     apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
   },
   openGraph: {
-    title: 'LSOE - London Source of Education',
-    description: 'Your Gateway to UK Education and Employment',
-    type: 'website',
+    title: 'LSOE - London School of Excellence',
+    description: 'Your Gateway to UK Education and Employment Worldwide.',
+    url: 'https://www.londonschoolofexcellence.com',
+    siteName: 'London School of Excellence',
+    images: [
+      {
+        url: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png',
+        width: 1200,
+        height: 630,
+        alt: 'London School of Excellence logo',
+      },
+    ],
     locale: 'en_GB',
-    siteName: 'LSOE',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LSOE - London Source of Education',
-    description: 'Your Gateway to UK Education and Employment',
+    title: 'LSOE - London School of Excellence',
+    description: 'Your Gateway to UK Education and Employment Worldwide.',
+    images: ['https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png'],
   },
 };
 

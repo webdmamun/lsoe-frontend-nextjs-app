@@ -6,8 +6,8 @@ import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 import AdmissionNav from '@/components/shared/header/AdmissionNav';
 
 export const metadata = {
-  title: 'Contact Us - LSOE',
-  description: 'Get in touch with London Source of Education. Contact us for university admissions, student services, and educational guidance.',
+  title: 'Contact Us | London School of Excellence',
+  description: 'Get in touch with London School of Excellence. Our experts are ready to assist with UK university admissions, visa support, and student services.',
 };
 
 export default function ContactUsPage() {

@@ -9,8 +9,8 @@ import PartnerWithUs from '@/components/AdmissionAboutCompo/PartnerWithUs';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'About Us - LSOE',
-  description: 'Learn about London Source of Education - Your gateway to UK education and employment opportunities.',
+  title: 'About Us | London School of Excellence',
+  description: 'Learn about London School of Excellence - A premium UK education provider offering expert university admissions and global career opportunities.',
 };
 
 export default function AboutUsPage() {
