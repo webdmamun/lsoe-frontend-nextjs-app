@@ -1,299 +1,70 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from "react";
-import emailjs from "@emailjs/browser";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import React from "react";
+import { ShieldCheck, CheckCircle2 } from "lucide-react";
+import ApplyNowForm from "@/components/ApplyNowCompo/ApplyNowForm";
 
-const LSOEEnquiryForm = () => {
-  const form = useRef();
-  const [success, setSuccess] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init("fT45pkLA3fHPOXkH5");
-  }, []);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Log form data for debugging
-    const formData = new FormData(form.current);
-    console.log("Form data being sent:");
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
-    emailjs
-      .sendForm(
-        "service_gmdixqb",
-        "template_07iz6z6",
-        form.current,
-        "fT45pkLA3fHPOXkH5"
-      )
-      .then((response) => {
-        console.log("Email sent successfully!", response);
-        setSuccess(true);
-        form.current.reset();
-        setPhone("");
-        setTimeout(() => setSuccess(false), 5000);
-        setIsSubmitting(false);
-      })
-      .catch((err) => {
-        console.error("Email send failed:", err);
-        console.error("Error type:", typeof err);
-        console.error("Error keys:", Object.keys(err));
-        console.error("Error details:", {
-          text: err.text,
-          status: err.status,
-          message: err.message,
-          name: err.name
-        });
-        
-        let errorMessage = "Unknown error occurred";
-        if (err.text) errorMessage = err.text;
-        else if (err.message) errorMessage = err.message;
-        else if (err.status) errorMessage = `Error status: ${err.status}`;
-        
-        alert("Failed to send enquiry. Please try again.\n\nError: " + errorMessage);
-        setIsSubmitting(false);
-      });
-  };
-
+export default function LSOEEnquiryForm() {
   return (
-    <section className="bg-[#e9f9fd] py-16 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        {/* Form Area */}
-        <div className="w-full lg:w-1/2">
-          <h2 className="text-3xl font-extrabold text-gray-800 mb-2">
-            LSOE can help you
-          </h2>
-          <div className="w-10 h-1 bg-pink-600 mb-4 rounded"></div>
-          <p className="text-gray-600 mb-6">
-            Enter your details and one of our expert counsellors will reach out
-            to you with course, country, university – and scholarship info!
-          </p>
+    <section className="bg-white py-24 px-4 sm:px-6 relative overflow-hidden">
+      {/* Background Ornaments */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-pink-50/30 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-          <form ref={form} onSubmit={sendEmail} className="grid gap-4">
-            <div className="flex gap-4">
-              <input
-                name="first_name"
-                required
-                placeholder="First name*"
-                className="input input-bordered w-full"
-              />
-              <input
-                name="last_name"
-                required
-                placeholder="Last name*"
-                className="input input-bordered w-full"
-              />
-            </div>
-
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="Email address*"
-              className="input input-bordered w-full"
-            />
-
-            <div>
-              <PhoneInput
-                country={"bd"}
-                value={phone}
-                onChange={setPhone}
-                inputProps={{
-                  name: "phone",
-                  required: true,
-                }}
-                inputClass="!w-full !h-[3rem] !pl-[50px] !border !border-gray-300 !rounded-md"
-                buttonClass="!border !border-gray-300 !rounded-l-md"
-                containerClass="!w-full"
-              />
-            </div>
-
-            <div className="flex gap-4">
-              <select
-                name="study_destination"
-                required
-                className="select select-bordered w-full"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Preferred Study Destination*
-                </option>
-                <option>United Kingdom</option>
-                <option>Australia</option>
-                <option>Canada</option>
-                <option>USA</option>
-                <option>New Zealand</option>
-                <option>Ireland</option>
-              </select>
-              <select
-                name="start_time"
-                required
-                className="select select-bordered w-full"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  When would you like to start?*
-                </option>
-                <option>January 2025</option>
-                <option>September 2025</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div className="flex gap-4">
-              <select
-                name="counselling_mode"
-                className="select select-bordered w-full"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Preferred mode of counselling*
-                </option>
-                <option>Online</option>
-                <option>In-person</option>
-              </select>
-              <select name="funding" className="select select-bordered w-full" defaultValue="">
-                <option value="" disabled>
-                  How would you fund your education?*
-                </option>
-                <option>Self-Funded</option>
-                <option>Scholarship</option>
-                <option>Loan</option>
-              </select>
-            </div>
-
-            <div className="flex gap-4">
-              <select
-                name="study_level"
-                className="select select-bordered w-full"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Preferred Study Level*
-                </option>
-                <option>Bachelor</option>
-                <option>Master</option>
-                <option>Diploma</option>
-              </select>
-              <select name="office" className="select select-bordered w-full" defaultValue="">
-                <option value="" disabled>
-                  Nearest LSOE Office*
-                </option>
-                <option>Dhaka</option>
-                <option>London</option>
-                <option>Online Only</option>
-              </select>
-            </div>
-
-            <div className="form-control space-y-3 mt-4">
-              <label className="flex items-start gap-x-3">
-                <input
-                  type="checkbox"
-                  required
-                  className="checkbox checkbox-primary mt-1"
-                />
-                <span className="text-sm text-gray-700">
-                  I agree to the LSOE{" "}
-                  <a
-                    href="/terms"
-                    target="_blank"
-                    className="text-blue-600 font-semibold underline"
-                  >
-                    Terms
-                  </a>{" "}
-                  and{" "}
-                  <a
-                    href="/privacy"
-                    target="_blank"
-                    className="text-blue-600 font-semibold underline"
-                  >
-                    Privacy Policy
-                  </a>
-                </span>
-              </label>
-
-              <label className="flex items-start gap-x-3">
-                <input type="checkbox" className="checkbox mt-1" />
-                <span className="text-sm text-gray-700">
-                  Please contact me by phone, email or SMS to assist with my
-                  enquiry
-                </span>
-              </label>
-
-              <label className="flex items-start gap-x-3">
-                <input type="checkbox" className="checkbox mt-1" />
-                <span className="text-sm text-gray-700">
-                  I would like to receive updates and offers from LSOE
-                </span>
-              </label>
-            </div>
-
-            <button 
-              type="submit"
-              disabled={isSubmitting}
-              className="btn btn-primary w-fit px-6 rounded-full text-white font-bold bg-pink-600 hover:bg-pink-700 disabled:bg-gray-400"
-            >
-              {isSubmitting ? "Sending..." : "Enquire now"}
-            </button>
-            {success && (
-              <p className="text-green-600 font-semibold pt-2">
-                ✅ Thanks! Your message was sent successfully.
-              </p>
-            )}
-          </form>
-        </div>
-
-        {/* Animated Icon Composition */}
-        <div className="w-full lg:w-1/2 flex justify-center">
-          <div className="relative w-full max-w-sm aspect-square flex items-center justify-center">
+      <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+        
+        {/* Animated Visual Composition (Left side) */}
+        <div className="w-full lg:w-[45%] lg:order-1 order-2 mt-8 lg:mt-0">
+          <div className="relative w-full max-w-sm mx-auto">
             {/* Background Blobs */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div className="absolute top-0 left-0 w-40 h-40 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-8 left-20 w-40 h-40 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 bg-brand-secondary/20 rounded-full mix-blend-multiply blur-2xl animate-blob" />
+            <div className="absolute top-10 left-0 w-48 h-48 bg-brand-primary/20 rounded-full mix-blend-multiply blur-2xl animate-blob animation-delay-2000" />
+            <div className="absolute -bottom-10 left-10 w-48 h-48 bg-purple-200 rounded-full mix-blend-multiply blur-2xl animate-blob animation-delay-4000" />
 
-            {/* Main Card */}
-            <div className="relative z-10 bg-white p-8 rounded-2xl shadow-xl transform transition hover:scale-105 duration-300 border border-gray-100">
-              <div className="flex flex-col items-center gap-4">
-                <div className="p-4 bg-pink-50 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-pink-600">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
+            {/* Main Interactive Card */}
+            <div className="relative z-10 bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white transition-transform hover:-translate-y-2 duration-500">
+              <div className="flex flex-col items-center gap-6">
+                <div className="p-5 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-[1.5rem] text-white shadow-lg">
+                  <ShieldCheck className="w-10 h-10" />
                 </div>
                 <div className="text-center">
-                  <p className="font-bold text-gray-800">Expert Support</p>
-                  <p className="text-sm text-gray-500">We're here to help</p>
+                  <h3 className="text-2xl font-black text-gray-900 tracking-tight">Expert Support</h3>
+                  <p className="text-gray-500 font-medium mt-2 leading-relaxed">
+                    Our dedicated counsellors are ready to securely process your enquiry and map your study future.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Floating Elements */}
-            <div className="absolute top-1/4 -right-4 bg-white p-3 rounded-lg shadow-lg animate-bounce">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
+            {/* Floating Checkmark Items */}
+            <div className="absolute top-1/4 -right-12 hidden md:flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-lg border border-gray-100 animate-bounce cursor-default">
+              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                <CheckCircle2 className="w-5 h-5 text-green-600" />
+              </div>
+              <span className="font-bold text-gray-800 text-sm">Response in 24h</span>
             </div>
-            <div className="absolute bottom-1/4 -left-4 bg-white p-3 rounded-lg shadow-lg animate-bounce delay-700">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-500">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
+          </div>
+        </div>
+
+        {/* Premium Form (Right side) - Now using the full ApplyNow component */}
+        <div className="w-full lg:w-[55%] lg:order-2 order-1">
+          <div className="bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-8 sm:p-12 relative overflow-hidden">
+            {/* Top edge gradient accent line */}
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-primary to-brand-secondary" />
+
+            <div className="mb-8">
+              <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+                Let LSOE Help You
+              </h2>
+              <p className="text-gray-500 font-medium text-lg">
+                Complete your application below for premium guidance on courses, universities, and exclusive scholarships!
+              </p>
             </div>
+
+            <ApplyNowForm isStandalone={true} />
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default LSOEEnquiryForm;
+}

@@ -1,5 +1,5 @@
 import AdmissionNav from '@/components/shared/header/AdmissionNav';
-import PrivacyPolicyBanner from '@/components/PrivacyPpolicyCompo/PrivacyPolicyBanner';
+
 import PrivacyPolicyDetails from '@/components/PrivacyPpolicyCompo/PrivacyPolicyDetails';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <AdmissionNav />
-      <PrivacyPolicyBanner />
+
       <PrivacyPolicyDetails />
       <AdmissionFooter />
     </>

@@ -68,7 +68,7 @@ const AccommodationWUA = () => {
             world's most renowned teaching hospitals.
           </p>
 
-          <Link href="/student-accommodation">
+          <Link href="/secure-accommodation">
             <button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition">
               Accommodation
             </button>

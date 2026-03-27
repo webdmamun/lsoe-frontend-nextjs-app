@@ -1,21 +1,22 @@
 // Application Constants
 
 // Site Information
-export const SITE_NAME = "London Source of Education";
+export const SITE_NAME = "London School of Excellence";
 export const SITE_ACRONYM = "LSOE";
 export const SITE_TAGLINE = "Your Gateway to UK Education and Employment";
 
 // Contact Information
-export const CONTACT_EMAIL = "info@lsoe.com";
+export const CONTACT_EMAIL = "info.office@londonschoolofexcellence.com";
 export const CONTACT_PHONE = "+44 (0) 20 1234 5678";
 
 // Social Media Links
 export const SOCIAL_LINKS = {
-  facebook: "https://facebook.com/lsoe",
-  twitter: "https://twitter.com/lsoe",
-  linkedin: "https://linkedin.com/company/lsoe",
-  instagram: "https://instagram.com/lsoe",
-  youtube: "https://youtube.com/lsoe",
+  facebook: "https://www.facebook.com/londonschoolofexcellence/",
+  twitter: "https://twitter.com/LsoeLtd",
+  linkedin: "https://www.linkedin.com/company/london-school-of-excellence/",
+  instagram: "https://www.instagram.com/lsoe.ltd/",
+  youtube: "https://www.youtube.com/@lsoeteam",
+  tiktok: "https://www.tiktok.com/@londonschoolofexcellence",
 };
 
 // Navigation Menu Items
@@ -38,7 +39,7 @@ export const MAIN_MENU = {
     submenu: [
       { title: "Find a Job", path: "/find-a-job" },
       { title: "Find Talent", path: "/find-a-talent" },
-      { title: "Career Hub", path: "/career-hub" },
+
       { title: "Become a Teacher", path: "/became-a-teacher" },
       { title: "Recruitment Process", path: "/recruitment-process" },
     ],

@@ -1,5 +1,5 @@
 import AdmissionNav from '@/components/shared/header/AdmissionNav';
-import ModernSlaveryPolicyBanner from '@/components/ModernSlaveryPolicyCompo.js/ModernSlaveryPolicyBanner';
+
 import SlaveryPolicy from '@/components/PrivacyPpolicyCompo/SlaveryPolicy';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
@@ -12,7 +12,7 @@ export default function ModernSlaveryPolicyPage() {
   return (
     <>
       <AdmissionNav />
-      <ModernSlaveryPolicyBanner />
+
       <SlaveryPolicy />
       <AdmissionFooter />
     </>

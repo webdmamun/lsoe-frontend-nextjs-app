@@ -12,7 +12,7 @@ export const metadata = {
 export default function PartnerWithUsPage() {
   return (
     <div className="bg-base-100">
-      <AdmissionNav />
+      <AdmissionNav isDark={true} />
       <PartnerWithUs />
       <PartnerForm />
       <AdmissionFooter />

@@ -15,7 +15,7 @@ import {
   ArrowRight,
   CheckCircle2
 } from "lucide-react";
-import { FaTiktok, FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa"; // Using react-icons for brands for better accuracy
+import { FaTiktok, FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa"; // Using react-icons for brands for better accuracy
 
 const AdmissionFooter = () => {
   const containerVariants = {
@@ -39,17 +39,19 @@ const AdmissionFooter = () => {
   };
 
   const socialLinks = [
-    { icon: FaFacebookF, href: "https://www.facebook.com/Londonschoolofexcellence/", color: "hover:text-blue-500" },
+    { icon: FaFacebookF, href: "https://www.facebook.com/londonschoolofexcellence/", color: "hover:text-blue-500" },
     { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/london-school-of-excellence/", color: "hover:text-blue-700" },
+    { icon: FaInstagram, href: "https://www.instagram.com/lsoe.ltd/", color: "hover:text-pink-500" },
     { icon: FaTwitter, href: "https://twitter.com/LsoeLtd", color: "hover:text-sky-400" },
     { icon: FaYoutube, href: "https://www.youtube.com/@lsoeteam", color: "hover:text-red-600" },
-    { icon: FaTiktok, href: "https://www.tiktok.com/@lsoe_team", color: "hover:text-brand-secondary" },
+    { icon: FaTiktok, href: "https://www.tiktok.com/@londonschoolofexcellence", color: "hover:text-brand-secondary" },
   ];
 
   const quickLinks = [
     { name: "About Us", href: "/about-us" },
     { name: "Contact Us", href: "/contact-us" },
     { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Cookie Policy", href: "/cookie-policy" },
     { name: "Modern Slavery Policy", href: "/modern-slavery-policy" },
     { name: "AQF Guideline", href: "/aqf-guide" },
     { name: "Partner With Us", href: "/partner-with-us" },
@@ -205,9 +207,10 @@ const AdmissionFooter = () => {
           <p className="text-slate-500 text-sm text-center md:text-left">
             © {new Date().getFullYear()} London School of Excellence. All rights reserved.
           </p>
-          <div className="flex items-center gap-6 text-sm text-slate-500">
+          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 sm:gap-6 text-sm text-slate-500">
             <Link href="/privacy-policy" className="hover:text-brand-secondary transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-brand-secondary transition-colors">Terms</Link>
+            <Link href="/cookie-policy" className="hover:text-brand-secondary transition-colors">Cookies</Link>
             <Link href="/sitemap" className="hover:text-brand-secondary transition-colors">Sitemap</Link>
           </div>
         </motion.div>

@@ -25,11 +25,11 @@ const AssessmentWUA = () => {
           </p>
           <p className="text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
             LSOE’s team of visa experts will advise you on getting your visa,
-            finding accommodation, and making a smooth transition to your
+            <Link href="/secure-accommodation">finding accommodation</Link>, and making a smooth transition to your
             destination country.
           </p>
 
-          <Link href="/apply-now-for-assessment">
+          <Link href="/apply-now">
             <button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition uppercase">
               Apply For Assessment
             </button>

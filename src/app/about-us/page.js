@@ -2,7 +2,6 @@ import AdmissionNav from '@/components/shared/header/AdmissionNav';
 import AboutBanner from '@/components/AdmissionAboutCompo/AboutBanner';
 import AdmAboutDeails from '@/components/AdmissionAboutCompo/AdmAboutDetails';
 import MissionVision from '@/components/AdmissionAboutCompo/MissionVision';
-import OurGoal from '@/components/AdmissionAboutCompo/OurGoal';
 import WhyRenowned from '@/components/AdmissionAboutCompo/WhyRenowned';
 import OurPartners from '@/components/AdmissionAboutCompo/OurPartners';
 import AboutGallary from '@/components/AdmissionAboutCompo/AboutGallary';
@@ -17,11 +16,10 @@ export const metadata = {
 export default function AboutUsPage() {
   return (
     <>
-      <AdmissionNav />
+      <AdmissionNav isDark={true} />
       <AboutBanner />
       <AdmAboutDeails />
       <MissionVision />
-      <OurGoal />
       <WhyRenowned />
       <OurPartners />
       <AboutGallary />

@@ -11,10 +11,13 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@react-google-maps/api": "^2.18.1",
+    "@supabase/supabase-js": "^2.100.1",
     "@tanstack/react-query": "^4.19.1",
+    "dotenv": "^17.3.1",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.536.0",
     "next": "16.0.7",
+    "pg": "^8.20.0",
     "react": "^19.2.0",
     "react-calendly": "^4.1.1",
     "react-countup": "^6.3.1",

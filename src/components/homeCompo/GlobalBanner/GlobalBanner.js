@@ -123,7 +123,7 @@ const GlobalBanner = () => {
 
       <div className="absolute inset-0 z-10 bg-gradient-to-br from-white via-white/80 to-transparent"></div>
 
-      <div className="relative z-20 w-full mx-auto px-6 sm:px-10 lg:px-24 py-20 sm:py-32 md:py-40 flex items-center min-h-[28rem]">
+      <div className="relative z-20 w-full mx-auto px-6 sm:px-10 lg:px-24 pt-32 sm:pt-40 md:pt-48 pb-20 sm:pb-32 flex items-center min-h-[32rem]">
         <div className="w-full lg:w-2/3 text-left space-y-6 text-gray-900">
           <p className="text-sm sm:text-base font-medium border-l-4 border-red-500 pl-3 text-gray-700">
             As official delegate of a top-ranking UK university, we can help you
@@ -138,7 +138,7 @@ const GlobalBanner = () => {
           <div className="flex flex-wrap gap-8 font-semibold text-base text-gray-800">
             {[
               { stat: "10,000+", label: "Student’s Career" },
-              { stat: "10+", label: "Recruitment Awards" },
+              { stat: "13+", label: "Recruitment Awards" },
               { stat: "140+", label: "University Partners" },
             ].map((item, i) => (
               <div key={i}>

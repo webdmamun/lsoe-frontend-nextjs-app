@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function ReferAndEarnPage() {
   return (
-    <div className="bg-base-100">
-      <AdmissionNav />
+    <div className="bg-slate-50 min-h-screen">
+      <AdmissionNav isDark={true} />
       <ReferEarnForm />
       <AdmissionFooter />
     </div>

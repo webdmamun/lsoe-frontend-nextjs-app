@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
+import { Autoplay, FreeMode } from "swiper";
 
 import "swiper/css";
+import "swiper/css/free-mode";
 
 const partnerLogos = [
   "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/partners-logo/10_plcwhha.jpg",
@@ -35,54 +36,120 @@ const partnerLogos = [
 ];
 
 const OurPartners = () => {
-  const [isClient, setIsClient] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setMounted(true);
   }, []);
 
-  return (
-    <section className="bg-white py-16 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-4">
-          Our Global Partners
-        </h2>
-        <p className="text-sky-600 font-medium mb-10">
-          Collaborating with renowned universities and institutions worldwide
-        </p>
+  const row1 = partnerLogos.slice(0, 18);
+  const row2 = partnerLogos.slice(18);
 
-        {isClient && (
-          <Swiper
-            modules={[Autoplay]}
-            autoplay={{ delay: 0, disableOnInteraction: false }}
-            loop={true}
-            speed={3500}
-            grabCursor={true}
-            slidesPerView={2}
-            breakpoints={{
-              640: { slidesPerView: 3 },
-              768: { slidesPerView: 5 },
-              1024: { slidesPerView: 7 },
-              1280: { slidesPerView: 8 },
-            }}
-            className="w-full"
-          >
-            {partnerLogos.map((logo, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex items-center justify-center h-20 px-4">
-                  <img
-                    src={logo}
-                    alt={`Partner ${index + 1}`}
-                    className="h-full object-contain grayscale hover:grayscale-0 transition duration-300 ease-in-out"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+  const swiperOptions = (reverse = false) => ({
+    modules: [Autoplay, FreeMode],
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: false,
+      reverseDirection: reverse
+    },
+    loop: true,
+    speed: 6000,
+    freeMode: true,
+    grabCursor: false,
+    slidesPerView: 2,
+    breakpoints: {
+      640: { slidesPerView: 3 },
+      768: { slidesPerView: 4 },
+      1024: { slidesPerView: 5 },
+      1280: { slidesPerView: 6 },
+    },
+    className: "w-full flex-marquee"
+  });
+
+  if (!mounted) return (
+    <div className="bg-white py-24 h-[400px] flex items-center justify-center">
+       <div className="w-12 h-12 border-4 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin" />
+    </div>
+  );
+
+  return (
+    <section className="bg-white py-24 px-4 overflow-hidden relative">
+      <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+        
+        {/* Premium Header */}
+        <div className="text-center space-y-6">
+           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              <p className="px-2 text-slate-400 font-black text-[10px] tracking-[0.3em] uppercase">
+                 Our Global Institutional Network
+              </p>
+           </div>
+           <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
+              Direct Priority Partnerships with <br className="hidden md:block" />
+              <span className="text-brand-primary">140+ Elite Institutions</span>
+           </h2>
+        </div>
+
+        <div className="space-y-8">
+          {/* Row 1: Moving Right (Standard) */}
+          <div className="relative">
+             <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+             <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+             
+             <Swiper {...swiperOptions(false)}>
+               {row1.map((logo, index) => (
+                 <SwiperSlide key={`r1-${index}`}>
+                   <div className="flex items-center justify-center py-4 px-3">
+                     <div className="w-full aspect-[2/1] rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center p-3 group hover:shadow-xl hover:border-brand-primary/20 transition-all duration-500 backdrop-blur-sm">
+                        <img
+                          src={logo}
+                          alt={`Partner ${index + 1}`}
+                          className="h-full w-full object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                        />
+                     </div>
+                   </div>
+                 </SwiperSlide>
+               ))}
+             </Swiper>
+          </div>
+
+          {/* Row 2: Moving Left (Reverse) */}
+          <div className="relative">
+             <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+             <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+             
+             <Swiper {...swiperOptions(true)}>
+               {row2.map((logo, index) => (
+                 <SwiperSlide key={`r2-${index}`}>
+                   <div className="flex items-center justify-center py-4 px-3">
+                     <div className="w-full aspect-[2/1] rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center p-3 group hover:shadow-xl hover:border-brand-primary/20 transition-all duration-500 backdrop-blur-sm">
+                        <img
+                          src={logo}
+                          alt={`Partner ${index + 1}`}
+                          className="h-full w-full object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                        />
+                     </div>
+                   </div>
+                 </SwiperSlide>
+               ))}
+             </Swiper>
+          </div>
+        </div>
       </div>
+      
+      {/* Decorative Blur Backgrounds */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-brand-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-64 h-64 bg-brand-secondary/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <style dangerouslySetInnerHTML={{__html: `
+        .flex-marquee .swiper-wrapper {
+          transition-timing-function: linear !important;
+        }
+      `}} />
     </section>
   );
 };
+
 
 export default OurPartners;

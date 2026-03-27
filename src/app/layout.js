@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer } from 'react-toastify';
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
+import CookieConsent from '@/components/common/CookieConsent';
+import WhatsAppButton from '@/components/common/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,6 +49,8 @@ export default function RootLayout({ children }) {
         {children}
         <ToastContainer />
         <ScrollToTopButton />
+        <CookieConsent />
+        <WhatsAppButton />
       </body>
     </html>
   );

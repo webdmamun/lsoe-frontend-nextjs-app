@@ -1,199 +1,208 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { MapPin, GraduationCap, ArrowRight, Sparkles } from "lucide-react";
+import React, { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 
-const StudyDestinations = () => {
-  const destinations = [
-    {
-      name: "United Kingdom",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/United_Kingdom_rgqqjn.jpg",
-      universities: "160+",
-      students: "500K+",
-      gradient: "from-blue-600 to-indigo-600"
-    },
-    {
-      name: "United States",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/United_States_c5lzwj.jpg",
-      universities: "200+",
-      students: "1M+",
-      gradient: "from-red-600 to-blue-600"
-    },
-    {
-      name: "Canada",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Canada_jpinbr.jpg",
-      universities: "100+",
-      students: "600K+",
-      gradient: "from-red-600 to-red-700"
-    },
-    {
-      name: "Australia",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Australia_fjeayl.jpg",
-      universities: "43+",
-      students: "700K+",
-      gradient: "from-green-600 to-yellow-600"
-    },
-    {
-      name: "New Zealand",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/New_Zealand_tr2byw.jpg",
-      universities: "8+",
-      students: "100K+",
-      gradient: "from-blue-600 to-black"
-    },
-    {
-      name: "Ireland",
-      image: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/countries/Ireland_ms5l4d.jpg",
-      universities: "30+",
-      students: "200K+",
-      gradient: "from-green-600 to-orange-600"
-    },
-  ];
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
+import Link from 'next/link';
+import { 
+  GraduationCap, ShieldCheck, Map, 
+  Wallet, Building2, Briefcase,
+  ChevronLeft, ChevronRight, ArrowUpRight
+} from 'lucide-react';
 
-  const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
+const swiperData = [
+  {
+    title: "Unrivaled University Network",
+    desc: "Gain direct priority access to top-tier academic institutions scattered across the UK.",
+    icon: <Building2 className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop",
+    href: "/about-us"
+  },
+  {
+    title: "End-to-End Admission",
+    desc: "From initial application strategy to finalizing your enrollment seamlessly.",
+    icon: <GraduationCap className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
+    href: "/application-assessment"
+  },
+  {
+    title: "Expert Visa Guidance",
+    desc: "Navigate complex immigration rules confidently with our dedicated consulting team.",
+    icon: <ShieldCheck className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
+    href: "/student-visa-advice"
+  },
+  {
+    title: "Scholarship & Funding",
+    desc: "Identify and secure maximum financial aid for your academic journey abroad.",
+    icon: <Wallet className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop",
+    href: "/financial-planning-scholarships"
+  },
+  {
+    title: "Post-Study Pathways",
+    desc: "Earn a globally revered degree that opens doors to elite international employers.",
+    icon: <Briefcase className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop",
+    href: "/contact-us"
+  },
+  {
+    title: "Secure UK Accommodation",
+    desc: "Transition smoothly with comfortable, safe, and student-focused housing solutions.",
+    icon: <Map className="w-7 h-7" />,
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1000&auto=format&fit=crop",
+    href: "/secure-accommodation"
+  }
+];
+
+export default function StudyDestinations() {
+  const swiperRef = useRef(null);
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <section className="py-24 lg:py-32 bg-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-[600px] w-full bg-slate-50 animate-pulse rounded-[3rem]" />
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="relative w-full py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-slate-50 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-secondary/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="py-24 lg:py-32 bg-white overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-brand-secondary" />
-            <span className="text-sm font-semibold text-brand-primary uppercase tracking-wider">
-              Study Abroad
-            </span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-primary/10 text-brand-primary font-bold text-sm tracking-wide mb-6">
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              WHY CHOOSE LSOE
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight leading-[1.1]">
+              Your Pathway to <br className="hidden md:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Prestigious Education</span>
+            </h2>
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-            Your Dream Study Destination
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">
-              Awaits You
-            </span>
-          </h2>
-          
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Start your inspiring academic journey in these vibrant and welcoming
-            study destinations around the world
-          </p>
-        </motion.div>
+          <div className="max-w-md">
+            <p className="text-lg text-gray-500 font-medium leading-relaxed">
+              Experience world-class education with full-service guidance. We handle the complexities so you can focus on your academic future.
+            </p>
+          </div>
+        </div>
 
-        {/* Destinations Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {destinations.map((dest, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{ y: -8 }}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative h-80 overflow-hidden">
-                <img
-                  src={dest.image}
-                  alt={dest.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${dest.gradient} opacity-60 group-hover:opacity-70 transition-opacity duration-500`} />
-                
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                  {/* Top Badge */}
-                  <div className="flex justify-end">
-                    <div className="bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full">
-                      <MapPin className="w-4 h-4 text-white inline mr-1" />
-                      <span className="text-white text-sm font-semibold">Popular</span>
+        {/* Carousel Content */}
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={28}
+            slidesPerView={1}
+            loop={true}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            className="pb-4"
+          >
+            {swiperData.map((item, idx) => (
+              <SwiperSlide key={idx} className="h-auto pb-8 pt-2 px-1">
+                <Link href={item.href} className="block active:scale-95 transition-transform duration-200">
+                  <div className="relative w-full h-[520px] rounded-[2rem] overflow-hidden group bg-gray-900 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+                    
+                    {/* Background Image with Zoom & Darken on Hover */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-40 opacity-80"
+                      style={{ backgroundImage: `url('${item.image}')` }}
+                    />
+                    
+                    {/* Heavy Bottom Gradient for Text Legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    {/* Top Right Floating Icon */}
+                    <div className="absolute top-6 right-6 w-14 h-14 rounded-[1rem] bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20 transition-transform duration-500 group-hover:-translate-y-2 group-hover:bg-brand-primary group-hover:border-brand-primary">
+                      {item.icon}
                     </div>
-                  </div>
 
-                  {/* Bottom Content */}
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-3xl font-bold text-white mb-3 transform group-hover:translate-x-2 transition-transform duration-300">
-                        {dest.name}
-                      </h3>
-                      
-                      <div className="flex items-center gap-4 text-white/90 text-sm">
-                        <div className="flex items-center gap-1">
-                          <GraduationCap className="w-4 h-4" />
-                          <span>{dest.universities} Universities</span>
+                    {/* Bottom Content Area with Hover Reveal */}
+                    <div className="absolute bottom-0 left-0 right-0 p-8 flex flex-col justify-end h-full">
+                      <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-4">
+                        <h3 className="text-2xl font-bold text-white mb-3 leading-snug">
+                          {item.title}
+                        </h3>
+                        {/* Description sliding up */}
+                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                          <div className="overflow-hidden">
+                            <p className="text-base text-gray-300 leading-relaxed font-medium pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                              {item.desc}
+                            </p>
+                          </div>
                         </div>
-                        <div className="h-1 w-1 bg-white/50 rounded-full" />
-                        <span>{dest.students} Students</span>
+                        
+                        {/* Animated Arrow */}
+                        <div className="mt-4 flex items-center text-brand-secondary font-bold text-sm tracking-wide uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 delay-200">
+                          Learn More <ArrowUpRight className="w-4 h-4 ml-1" />
+                        </div>
                       </div>
                     </div>
 
-                    {/* Explore Button */}
-                    <div className="flex items-center gap-2 text-white font-semibold opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      <span>Explore Programs</span>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                    </div>
                   </div>
-                </div>
-              </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
 
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Minimalist Navigation Arrows */}
+          <div className="absolute -top-24 right-0 hidden md:flex items-center gap-3">
+            <button 
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="w-12 h-12 rounded-full border-2 border-gray-200 hover:border-brand-primary hover:bg-brand-primary flex items-center justify-center text-gray-400 hover:text-white transition-all focus:outline-none"
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button 
+              onClick={() => swiperRef.current?.slideNext()}
+              className="w-12 h-12 rounded-full border-2 border-gray-200 hover:border-brand-primary hover:bg-brand-primary flex items-center justify-center text-gray-400 hover:text-white transition-all focus:outline-none"
+              aria-label="Next Slide"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+          
+          {/* Mobile Arrows */}
+          <div className="flex justify-center gap-4 mt-2 md:hidden">
+            <button 
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="w-12 h-12 rounded-full bg-brand-primary/5 flex items-center justify-center text-brand-primary transition-colors focus:outline-none"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button 
+              onClick={() => swiperRef.current?.slideNext()}
+              className="w-12 h-12 rounded-full bg-brand-primary/5 flex items-center justify-center text-brand-primary transition-colors focus:outline-none"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-gray-600 mb-6">
-            Can't find your dream destination? We work with universities worldwide!
-          </p>
-          <button className="group px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <span className="flex items-center gap-2">
-              Explore All Destinations
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-            </span>
-          </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default StudyDestinations;
+}

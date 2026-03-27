@@ -1,6 +1,7 @@
 import AdmissionContactBanner from '@/components/AdmissionContactCompo/AdmissionContactBanner';
 import AdmissionContactCard from '@/components/AdmissionContactCompo/AdmissionContactCard';
 import ContactForm from '@/components/AdmissionContactCompo/ContactForm';
+import ContactMapSection from '@/components/AdmissionContactCompo/ContactMapSection';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 import AdmissionNav from '@/components/shared/header/AdmissionNav';
 
@@ -11,12 +12,14 @@ export const metadata = {
 
 export default function ContactUsPage() {
   return (
-    <div>
-      <AdmissionNav />
+    <div className="bg-white">
+      <AdmissionNav isDark={true} />
       <AdmissionContactBanner />
       <AdmissionContactCard />
       <ContactForm />
+      <ContactMapSection />
       <AdmissionFooter />
     </div>
   );
 }
+

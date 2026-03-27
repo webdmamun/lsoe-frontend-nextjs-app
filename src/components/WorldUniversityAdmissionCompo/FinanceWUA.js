@@ -22,7 +22,7 @@ const FinanceWUA = () => {
             better planning and insights tailored to your destination.
           </p>
 
-          <Link href="/student-financial-information">
+          <Link href="/financial-planning-scholarships">
             <button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition">
               Finance Information
             </button>

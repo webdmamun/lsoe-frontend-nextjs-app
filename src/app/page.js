@@ -2,15 +2,11 @@ import AdmissionNav from '@/components/shared/header/AdmissionNav';
 import GlobalBanner from '@/components/homeCompo/GlobalBanner/GlobalBanner';
 import BannerBottom from '@/components/homeCompo/bannerBottom/BannerBottom';
 import StudyDestinations from '@/components/homeCompo/studyDestinations/StudyDestinations';
-import Counter from '@/components/homeCompo/Counter/Counter';
+import ComprehensiveSupportWUA from '@/components/WorldUniversityAdmissionCompo/ComprehensiveSupportWUA';
 import ReviewsSection from '@/components/homeCompo/Reviews/ReviewsSection';
 import EnquiryForm from '@/components/homeCompo/enquiryForm/EnquiryForm';
-import AssessmentWUA from '@/components/WorldUniversityAdmissionCompo/AssessmentWUA';
-import StudentVisaAdviceWUA from '@/components/WorldUniversityAdmissionCompo/StudentVisaAdviceWUA';
-import FinanceWUA from '@/components/WorldUniversityAdmissionCompo/FinanceWUA';
-import AccommodationWUA from '@/components/WorldUniversityAdmissionCompo/AccommodationWUA';
 import ReferralProgram from '@/components/homeCompo/ReferralProgram/ReferralProgram';
-import AwardsSection from '@/components/homeCompo/Awards/AwardsSection';
+import ApplicationProcess from '@/components/homeCompo/ApplicationProcess/ApplicationProcess';
 import OurPartners from '@/components/AdmissionAboutCompo/OurPartners';
 import FAQSection from '@/components/homeCompo/faqCompo/FAQSection';
 import NewsletterSignup from '@/components/homeCompo/newsletterSignup/NewsletterSignup';
@@ -29,15 +25,11 @@ export default function HomePage() {
       <GlobalBanner />
       <BannerBottom />
       <StudyDestinations />
-      <Counter />
+      <ComprehensiveSupportWUA />
       <ReviewsSection />
       <EnquiryForm />
-      <AssessmentWUA />
-      <StudentVisaAdviceWUA />
-      <FinanceWUA />
-      <AccommodationWUA />
       <ReferralProgram />
-      <AwardsSection />
+      <ApplicationProcess />
       <OurPartners />
       <FAQSection />
       <NewsletterSignup />
@@ -45,3 +37,4 @@ export default function HomePage() {
     </div>
   );
 }
+
