@@ -11,26 +11,26 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   metadataBase: new URL('https://www.londonschoolofexcellence.com'),
-  title: 'LSOE - London School of Excellence',
-  description: 'A leading UK education hub providing expert university admissions, student visa advice, and career consultancy. Join 10,000+ students on their journey to excellence.',
-  keywords: 'UK education, university admission, student visa, career hub, London School of Excellence, LSOE, study in London, UK degrees',
-  authors: [{ name: 'LSOE Admissions Team' }],
+  title: 'London School of Excellence | Best UK University Consultant for International Students',
+  description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities, scholarships, and professional visa support.',
+  keywords: 'UK education, university admission, student visa, career hub, London School of Excellence, LSOE, study in London, UK degrees, international student consultant',
+  authors: [{ name: 'London School of Excellence Admissions Team' }],
   icons: {
     icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
     shortcut: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
     apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
   },
   openGraph: {
-    title: 'LSOE - London School of Excellence',
-    description: 'Your Gateway to UK Education and Employment Worldwide.',
+    title: 'London School of Excellence | Best UK University Consultant for International Students',
+    description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities, scholarships, and professional visa support.',
     url: 'https://www.londonschoolofexcellence.com',
     siteName: 'London School of Excellence',
     images: [
       {
-        url: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'London School of Excellence logo',
+        alt: 'London School of Excellence - Your Gateway to UK Education',
       },
     ],
     locale: 'en_GB',
@@ -38,9 +38,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LSOE - London School of Excellence',
-    description: 'Your Gateway to UK Education and Employment Worldwide.',
-    images: ['https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png'],
+    title: 'London School of Excellence | Best UK University Consultant for International Students',
+    description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities and scholarships.',
+    images: ['/og-image.png'],
   },
 };
 
