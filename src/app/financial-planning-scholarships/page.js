@@ -2,8 +2,8 @@ import FinancePageClient from "@/components/ServicePages/FinancePageClient";
 
 export const metadata = {
   title: "Financial Planning & Scholarships | London School of Excellence",
-  description: "Secure your educational future with LSOE's scholarship audits and life cost analysis. Expert guidance on proof of funds and student bank statements for UKVI.",
-  keywords: "UK scholarships, student finance UK, study abroad funding, LSOE finance guidance, UK university budget planning",
+  description: "Secure your educational future with LSOE's financial planning for Home and International students. Expert guidance on tuition fees, scholarships, and UKVI proof of funds.",
+  keywords: "UK scholarships, Home student finance, international funding UK, student budget planning, LSOE finance",
 };
 
 export default function Page() {

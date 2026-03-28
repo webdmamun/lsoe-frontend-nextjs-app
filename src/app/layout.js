@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   metadataBase: new URL('https://www.londonschoolofexcellence.com'),
-  title: 'London School of Excellence | Best UK University Consultant for International Students',
-  description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities, scholarships, and professional visa support.',
-  keywords: 'UK education, university admission, student visa, career hub, London School of Excellence, LSOE, study in London, UK degrees, international student consultant',
+  title: 'London School of Excellence | UK University Admissions for Local & International Students',
+  description: 'London School of Excellence provides expert UK university admission services for both local (Home) and international students. Free consultancy, UCAS support, scholarships, and professional guidance for your academic success.',
+  keywords: 'UK education, local student admission, international student consultancy, London School of Excellence, UCAS help, study in UK, university placement, LSOE admissions',
   authors: [{ name: 'London School of Excellence Admissions Team' }],
   icons: {
     icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
@@ -21,8 +21,8 @@ export const metadata = {
     apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
   },
   openGraph: {
-    title: 'London School of Excellence | Best UK University Consultant for International Students',
-    description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities, scholarships, and professional visa support.',
+    title: 'London School of Excellence | UK University Admissions for Local & International Students',
+    description: 'Elite UK university admission support for local and international students. Start your academic journey with professional guidance, scholarships, and career consultancy.',
     url: 'https://www.londonschoolofexcellence.com',
     siteName: 'London School of Excellence',
     images: [
@@ -30,7 +30,7 @@ export const metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'London School of Excellence - Your Gateway to UK Education',
+        alt: 'London School of Excellence - Best UK University Admission Consultant',
       },
     ],
     locale: 'en_GB',
@@ -38,8 +38,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'London School of Excellence | Best UK University Consultant for International Students',
-    description: 'London School of Excellence is the best UK education consultant for international students. Get expert guidance to study in the UK with top-tier universities and scholarships.',
+    title: 'London School of Excellence | UK University Admissions for Local & International Students',
+    description: 'Expert UK university admission support for both local and international students. Join the London School of Excellence today.',
     images: ['/og-image.png'],
   },
 };

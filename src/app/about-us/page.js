@@ -10,7 +10,8 @@ import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
   title: 'About Us | London School of Excellence',
-  description: 'Learn about London School of Excellence - A premium UK education provider offering expert university admissions and global career opportunities.',
+  description: 'Learn about London School of Excellence - A premium UK education hub offering expert university admissions and global career opportunities for both Home and International students.',
+  keywords: 'LSOE about, UK education hub, Home and International students, admission consultancy, global education',
 };
 
 export default function AboutUsPage() {
