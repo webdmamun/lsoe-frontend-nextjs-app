@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Admin Dashboard - LSOE',
+  title: 'Admin Dashboard | London School of Excellence',
   description: 'Secure admin portal for managing applications.',
-  robots: { index: false, follow: false }
+  robots: { index: false, follow: false, nocache: true }
 };
 
 export default function AdminLayout({ children }) {

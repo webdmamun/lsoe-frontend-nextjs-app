@@ -57,6 +57,37 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "London School of Excellence",
+              "url": "https://www.londonschoolofexcellence.com",
+              "logo": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
+              "sameAs": [
+                "https://www.facebook.com/londonschoolofexcellence/",
+                "https://www.linkedin.com/company/london-school-of-excellence/",
+                "https://www.instagram.com/lsoe.ltd/",
+                "https://www.tiktok.com/@londonschoolofexcellence"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "5 Station Parade, Hornchurch, Elm Park",
+                "addressLocality": "London",
+                "postalCode": "RM12 5AB",
+                "addressCountry": "GB"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+44-1708-784763",
+                "contactType": "admissions",
+                "email": "info.office@londonschoolofexcellence.com"
+              }
+            })
+          }}
+        />
         {children}
         <ToastContainer />
         <ScrollToTopButton />

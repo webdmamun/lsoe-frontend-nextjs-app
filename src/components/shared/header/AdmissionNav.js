@@ -66,7 +66,7 @@ export default function AdmissionNav({ isDark = false }) {
           <Link href="/" className="relative z-50 flex items-center group shrink-0">
             <img
               src={useWhiteBranding ? whiteLogo : colorLogo}
-              alt="LSOE Logo"
+              alt="London School of Excellence Logo"
               className={`transition-all duration-500 will-change-transform group-hover:scale-105 ${
                 isScrolled ? "h-9 sm:h-10 w-auto" : "h-10 sm:h-12 lg:h-14 w-auto"
               }`}
@@ -158,7 +158,7 @@ export default function AdmissionNav({ isDark = false }) {
             <div className="absolute bottom-[-20%] right-[-20%] w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="absolute top-8 left-6 sm:left-10 z-[100]">
-              <img src={colorLogo} alt="LSOE" className="h-10 opacity-50 grayscale"/>
+              <img src={colorLogo} alt="London School of Excellence" className="h-10 opacity-50 grayscale"/>
             </div>
 
             <nav className="flex flex-col gap-5 relative z-10 w-full max-w-sm mx-auto">

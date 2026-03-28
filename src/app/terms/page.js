@@ -2,8 +2,9 @@ import AdmissionNav from "@/components/shared/header/AdmissionNav";
 import AdmissionFooter from "@/components/shared/Footer/AdmissionFooter";
 
 export const metadata = {
-  title: "Terms & Conditions - LSOE",
-  description: "Read the terms and conditions for using the LSOE portal and services.",
+  title: 'Terms & Conditions | London School of Excellence',
+  description: 'View the official terms and conditions for using the London School of Excellence portal and global consultancy services.',
+  keywords: 'LSOE terms, admission hub rules, education consultancy agreement',
 };
 
 export default function TermsPage() {

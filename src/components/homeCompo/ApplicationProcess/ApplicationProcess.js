@@ -106,7 +106,7 @@ export default function ApplicationProcess() {
             <div className="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl relative border-[12px] border-white shadow-blue-100/50">
               <img 
                 src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop" 
-                alt="Student success" 
+                alt="Successful international students at London School of Excellence" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

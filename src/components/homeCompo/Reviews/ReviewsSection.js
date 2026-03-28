@@ -174,7 +174,7 @@ export default function ReviewsSection() {
                     <div className="relative">
                       <img
                         src={item.image}
-                        alt={item.name}
+                        alt={`Student testimonial from ${item.name} - ${item.course}`}
                         className="w-20 h-20 rounded-2xl border-4 border-white shadow-lg object-cover"
                       />
                       <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
