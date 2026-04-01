@@ -6,7 +6,7 @@ export async function POST(request) {
     const { username, password } = await request.json();
 
     // Verification check for admin portal access
-    if (username === "admin" && password === "lsoe2026") {
+    if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
       const cookieStore = await cookies();
       cookieStore.set({
         name: "admin_auth_token",
