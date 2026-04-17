@@ -84,7 +84,6 @@ const studentsLinks = [
 
 const resourcesLinks = [
   { name: "UCAS Guide",                href: "/ucas-guide" },
-  { name: "AQF Guide",                 href: "/aqf-guide" },
   { name: "FAQ",                       href: "/faq" },
   { name: "Financial Planning",        href: "/financial-planning-scholarships" },
   { name: "Application Assessment",    href: "/application-assessment" },
@@ -97,8 +96,6 @@ const companyLinks = [
   { name: "Partner Institutions", href: "/partner-institutions" },
   { name: "Become an Agent",      href: "/become-an-agent" },
   { name: "Refer a Student",      href: "/refer-and-earn" },
-  { name: "Partner With Us",      href: "/partner-with-us" },
-  { name: "Agent Portal",         href: "/agent-partner" },
 ];
 
 const trustBadges = [
@@ -200,22 +197,22 @@ const AdmissionFooter = () => {
             {/* Contact block */}
             <div className="space-y-3 pt-1">
               <a
-                href="tel:+442012345678"
+                href="tel:+441708784763"
                 className="flex items-center gap-3 text-slate-400 hover:text-brand-secondary transition-colors text-sm group"
               >
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-brand-primary/20 transition-colors">
                   <Phone className="w-4 h-4" />
                 </span>
-                +44 (0)20 1234 5678
+                +44 (0) 1708 784763
               </a>
               <a
-                href="mailto:info@londonschoolofexcellence.com"
+                href="mailto:info.office@londonschoolofexcellence.com"
                 className="flex items-center gap-3 text-slate-400 hover:text-brand-secondary transition-colors text-sm group"
               >
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-brand-primary/20 transition-colors">
                   <Mail className="w-4 h-4" />
                 </span>
-                info@londonschoolofexcellence.com
+                info.office@londonschoolofexcellence.com
               </a>
               <div className="flex items-start gap-3 text-slate-400 text-sm">
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 mt-0.5">

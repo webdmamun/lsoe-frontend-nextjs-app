@@ -44,9 +44,9 @@ const links = [
   },
   {
     icon: <Handshake className="w-5 h-5" />,
-    title: "Partner With LSOE",
-    desc: "Education agents and institutions: explore partnership opportunities with LSOE.",
-    href: "/agent-partner",
+    title: "Talk to an Adviser",
+    desc: "Get free personalized guidance on your university application options.",
+    href: "/contact-us",
     color: "text-violet-600",
     bg: "bg-violet-50",
   },

@@ -270,7 +270,6 @@ export default function HomePage() {
       <OurPartners />
       <UsefulLinksPreview />
       <FAQSection />
-      <NewsletterSignup />
       <BookCTA variant="pre-footer" />
       <AdmissionFooter />
     </div>
