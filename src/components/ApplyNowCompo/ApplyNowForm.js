@@ -63,6 +63,7 @@ const Checkbox = ({ label, required, error, ...props }) => (
 
 // React Select Custom Styling matching Tailwind theme
 const selectStyles = {
+  menuPortal: base => ({ ...base, zIndex: 9999 }),
   control: (base, state) => ({
     ...base,
     padding: '2px 6px',
@@ -110,8 +111,7 @@ const studyLocations = [
 
 // General Subjects
 const subjectOptions = [
-  "Business & Management", "Health & Social Care", "IT & Computer Science", 
-  "Engineering", "Arts & Design", "Law", "Finance & Accounting", "Other"
+  "Business", "Health", "Computing", "Law", "Engineering", "Not sure"
 ].map(s => ({ label: s, value: s }));
 
 
@@ -121,10 +121,20 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
   );
   const [origin, setOrigin] = useState(initialOrigin); 
   
+  // Fix Next.js App Router component reuse keeping old state across route jumps:
+  const [prevInitialOrigin, setPrevInitialOrigin] = useState(initialOrigin);
+  if (initialOrigin !== prevInitialOrigin) {
+    setPrevInitialOrigin(initialOrigin);
+    setOrigin(initialOrigin);
+    setStep(initialOrigin === 'uk' ? 1 : initialOrigin === 'international' ? 3 : 0);
+  }
+  
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "", nationality: "", englishLevel: "", 
     liveInEngland: "", studyLocation: null, residencyStatus: "", callDate: "", acceptedTerms: false,
-    country: null, city: "", interestedSubject: null,
+    country: null, city: null, interestedSubject: null, highestQualification: "", workingStatus: "",
+    intake: "", needVisaSupport: "",
+    lastEducationalQualification: "", englishProficiency: "", levelOfStudy: "", fieldOfStudy: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -150,7 +160,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
   const validateUkStep2 = () => {
     const errs = {};
-    if (!formData.englishLevel) errs.englishLevel = "Required";
+    if (!formData.interestedSubject) errs.interestedSubject = "Required";
     if (!formData.liveInEngland) errs.liveInEngland = "Required";
     if (!formData.studyLocation) errs.studyLocation = "Required";
     if (!formData.residencyStatus) errs.residencyStatus = "Required";
@@ -160,15 +170,25 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
     return Object.keys(errs).length === 0;
   };
 
-  const validateInternational = () => {
+  const validateIntStep1 = () => {
     const errs = {};
-    if (!formData.country) errs.country = "Required";
-    if (!formData.city) errs.city = "Required";
-    if (!formData.phone) errs.phone = "Required";
+    if (!formData.firstName) errs.firstName = "First Name is required";
+    if (!formData.lastName) errs.lastName = "Last Name is required";
     if (!formData.email) errs.email = "Required";
     else if (!/\S+@\S+\.\S+/.test(formData.email)) errs.email = "Invalid email formatting";
-    if (!formData.interestedSubject) errs.interestedSubject = "Required";
-    if (!formData.englishLevel) errs.englishLevel = "Required";
+    if (!formData.phone) errs.phone = "Required";
+    if (!formData.nationality) errs.nationality = "Required";
+    
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const validateIntStep2 = () => {
+    const errs = {};
+    if (!formData.lastEducationalQualification) errs.lastEducationalQualification = "Required";
+    if (!formData.englishProficiency) errs.englishProficiency = "Required";
+    if (!formData.levelOfStudy) errs.levelOfStudy = "Required";
+    if (!formData.fieldOfStudy) errs.fieldOfStudy = "Required";
     
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -179,12 +199,16 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
       setStep(2);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    if (step === 3 && validateIntStep1()) {
+      setStep(4);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handleSubmit = async () => {
     let isValid = false;
     if (origin === 'uk') isValid = validateUkStep2();
-    if (origin === 'international') isValid = validateInternational();
+    if (origin === 'international') isValid = validateIntStep2();
 
     if (isValid) {
       setIsSubmitting(true);
@@ -196,15 +220,20 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
           lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
-          nationality: formData.nationality,
-          englishLevel: formData.englishLevel,
+          nationality: formData.nationality?.value || formData.nationality,
+          englishLevel: origin === 'international' ? formData.englishProficiency?.value || formData.englishProficiency : undefined,
           liveInEngland: formData.liveInEngland,
           studyLocation: formData.studyLocation?.value || formData.studyLocation,
           residencyStatus: formData.residencyStatus,
           callDate: formData.callDate,
-          country: formData.country?.value || formData.country,
-          city: formData.city,
-          interestedSubject: formData.interestedSubject?.value || formData.interestedSubject,
+          country: undefined,
+          city: undefined,
+          interestedSubject: origin === 'international' ? formData.fieldOfStudy : (formData.interestedSubject?.value || formData.interestedSubject),
+          highestQualification: origin === 'international' ? formData.lastEducationalQualification : undefined,
+          workingStatus: undefined,
+          intake: undefined,
+          needVisaSupport: undefined,
+          levelOfStudy: origin === 'international' ? formData.levelOfStudy : undefined,
         };
 
         const res = await fetch('/api/applications', {
@@ -216,7 +245,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
         if (!res.ok) throw new Error("Failed to submit");
         
         setIsSubmitting(false);
-        setStep(4);
+        setStep(5);
       } catch (error) {
         console.error("Submission error:", error);
         alert("There was an error submitting your application. Please try again.");
@@ -280,7 +309,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
       `}</style>
       <div className={isStandalone ? "w-full" : "max-w-5xl w-full mx-auto"}>
         
-        {!isStandalone && step !== 4 && (
+        {!isStandalone && step !== 5 && (
           <div className="text-center mb-10">
             <h1 className="text-4xl font-black text-gray-900 tracking-tight">
               Apply <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Now</span>
@@ -293,7 +322,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
         <div className={`bg-white rounded-[2rem] ${isStandalone ? "" : "shadow-xl shadow-gray-200/50 border border-gray-100 md:flex-row"} overflow-hidden flex flex-col min-h-[550px]`}>
           
-          {origin === 'uk' && step !== 4 && step !== 0 && (
+          {origin === 'uk' && step !== 5 && step !== 0 && (
             <div className={`${isStandalone ? 'flex w-full p-6 sm:p-8' : 'hidden md:flex w-1/3 p-10'} bg-brand-primary text-white flex-col justify-between relative overflow-hidden`}>
               <div className="absolute top-[-20%] right-[-20%] w-64 h-64 bg-brand-secondary opacity-30 rounded-full blur-3xl mix-blend-screen pointer-events-none"></div>
               
@@ -328,11 +357,11 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
             </div>
           )}
 
-          <div className={`p-6 sm:p-10 flex-1 relative ${origin === 'uk' && step !== 0 && !isStandalone ? 'md:w-2/3' : 'w-full'} flex flex-col justify-center`}>
+          <div className={`p-6 sm:p-10 flex-1 relative ${origin === 'uk' && step !== 0 && step !== 5 && !isStandalone ? 'md:w-2/3' : 'w-full'} flex flex-col justify-center`}>
             <AnimatePresence mode="wait">
               
               {/* STEP 0 */}
-              {step === 0 && (
+              {step === 0 && !initialOrigin && (
                 <motion.div key="step0" variants={variants} initial="initial" animate="animate" exit="exit" className="max-w-2xl mx-auto w-full text-center py-10">
                   <h2 className="text-3xl font-extrabold text-gray-900 mb-10 tracking-tight">Where are you applying from?</h2>
                   
@@ -363,9 +392,11 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
               {/* STEP 1 UK */}
               {step === 1 && origin === 'uk' && (
                 <motion.div key="uk1" variants={variants} initial="initial" animate="animate" exit="exit" className="w-full">
-                  <button onClick={() => setStep(0)} className="flex items-center text-sm font-bold text-gray-400 hover:text-brand-primary mb-8 transition-colors uppercase tracking-wider">
-                    <ArrowLeft className="w-4 h-4 mr-1.5" /> Start Over
-                  </button>
+                  {!initialOrigin && (
+                    <button onClick={() => setStep(0)} className="flex items-center text-sm font-bold text-gray-400 hover:text-brand-primary mb-8 transition-colors uppercase tracking-wider">
+                      <ArrowLeft className="w-4 h-4 mr-1.5" /> Start Over
+                    </button>
+                  )}
                   <h2 className="text-3xl font-extrabold text-brand-primary mb-8">Personal Details</h2>
                   
                   <div className="space-y-6">
@@ -419,12 +450,18 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
                   <h2 className="text-3xl font-extrabold text-brand-primary mb-8">Eligibility & Study Info</h2>
 
                   <div className="space-y-6">
-                    <NativeSelect 
-                      label="English Level" required 
-                      options={["Beginner / A1-A2", "Intermediate / B1-B2", "Advanced / C1-C2", "Native"]}
-                      value={formData.englishLevel} onChange={(e) => updateField('englishLevel', e.target.value)}
-                      error={errors.englishLevel}
-                    />
+                    <div className="space-y-1.5 w-full">
+                      <label className="block text-sm font-semibold text-gray-700">Study Interest <span className="text-brand-secondary">*</span></label>
+                      <CreatableSelect 
+                        instanceId="uk-interested-subject"
+                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
+                        styles={selectStyles}
+                        options={subjectOptions}
+                        placeholder="Search or type a subject..."
+                        value={formData.interestedSubject}
+                        onChange={(val) => updateField('interestedSubject', val)}
+                      />
+                    </div>
 
                     <NativeSelect 
                       label="Do you live in England?" required 
@@ -435,12 +472,26 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
                     <div className="space-y-1.5 w-full">
                       <label className="block text-sm font-semibold text-gray-700">
-                        Where would you like to study? <span className="text-brand-secondary">*</span>
+                        Preferred City <span className="text-brand-secondary">*</span>
                       </label>
                       <CreatableSelect 
+                        instanceId="uk-study-location"
+                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
                         styles={selectStyles}
-                        options={studyLocations}
-                        placeholder="Search or type a city name..."
+                        options={[
+                          { value: "London", label: "London" },
+                          { value: "Manchester", label: "Manchester" },
+                          { value: "Birmingham", label: "Birmingham" },
+                          { value: "Luton", label: "Luton" },
+                          { value: "Newcastle", label: "Newcastle" },
+                          { value: "Leicester", label: "Leicester" },
+                          { value: "Sheffield", label: "Sheffield" },
+                          { value: "Leeds", label: "Leeds" },
+                          { value: "Nottingham", label: "Nottingham" }
+                        ]}
+                        formatCreateLabel={(userInput) => `Add "${userInput}"`}
+                        noOptionsMessage={() => null}
+                        placeholder="Search or type a city..."
                         value={formData.studyLocation}
                         onChange={(val) => updateField('studyLocation', val)}
                       />
@@ -449,7 +500,16 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
                     <NativeSelect 
                       label="Residency Status" required 
-                      options={["Pre-settled", "Settled", "ILR", "Student Visa", "Other eligible visa"]}
+                      options={[
+                        "British Citizenship",
+                        "Irish Citizenship",
+                        "Settled Status",
+                        "Pre Settled Status",
+                        "Indefinite Leave to Remain (ILR)",
+                        "Limited leave to remain (LLR)",
+                        "Other type of visas",
+                        "None of the above"
+                      ]}
                       value={formData.residencyStatus} onChange={(e) => updateField('residencyStatus', e.target.value)}
                       error={errors.residencyStatus}
                     />
@@ -489,6 +549,12 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
                     >
                       {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : "Submit Application"}
                     </button>
+
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-8 pt-6 text-[11px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest border-t border-gray-100/60">
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> 100% Free Consultation</span>
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> No Hidden Fees</span>
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> Fast Process</span>
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -496,52 +562,122 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
               {/* STEP 3 INT */}
               {step === 3 && origin === 'international' && (
                 <motion.div key="int1" variants={variants} initial="initial" animate="animate" exit="exit" className="w-full max-w-2xl mx-auto">
-                  <button onClick={() => setStep(0)} className="flex items-center text-sm font-bold text-gray-400 hover:text-brand-secondary mb-6 transition-colors uppercase tracking-wider">
-                    <ArrowLeft className="w-4 h-4 mr-1.5" /> Start Over
-                  </button>
+                  {!initialOrigin && (
+                    <button onClick={() => setStep(0)} className="flex items-center text-sm font-bold text-gray-400 hover:text-brand-secondary mb-6 transition-colors uppercase tracking-wider">
+                      <ArrowLeft className="w-4 h-4 mr-1.5" /> Start Over
+                    </button>
+                  )}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-brand-secondary tracking-wider uppercase">Application Progress</span>
+                    <span className="text-xs font-bold text-gray-400">Step 1 of 2</span>
+                  </div>
                   <h2 className="text-3xl font-extrabold text-brand-primary mb-2">International Application</h2>
                   <p className="text-gray-500 text-base mb-8 font-medium">Create your profile to begin the admission process.</p>
 
                   <div className="space-y-6">
-                    
                     <div className={`grid grid-cols-1 ${!isStandalone ? 'sm:grid-cols-2' : ''} gap-6`}>
-                      <div className="space-y-1.5 w-full">
-                        <label className="block text-sm font-semibold text-gray-700">Country <span className="text-brand-secondary">*</span></label>
-                        <Select 
-                          styles={selectStyles}
-                          options={countryOptions}
-                          placeholder="Search country..."
-                          value={formData.country}
-                          onChange={(val) => updateField('country', val)}
-                        />
-                        {errors.country && <p className="text-xs text-red-500 font-medium mt-1">{errors.country}</p>}
-                      </div>
-
-                      <Input label="City" required value={formData.city} onChange={(e) => updateField('city', e.target.value)} error={errors.city} placeholder="e.g. Mumbai" />
+                      <Input label="First Name" required value={formData.firstName} onChange={(e) => updateField('firstName', e.target.value)} error={errors.firstName} placeholder="John" />
+                      <Input label="Last Name" required value={formData.lastName} onChange={(e) => updateField('lastName', e.target.value)} error={errors.lastName} placeholder="Doe" />
                     </div>
 
-                    <Input label="Phone Number (include country code)" required type="tel" value={formData.phone} onChange={(e) => updateField('phone', e.target.value)} error={errors.phone} placeholder="+91 98765 43210" />
-                    
                     <Input label="Email Address" required type="email" value={formData.email} onChange={(e) => updateField('email', e.target.value)} error={errors.email} placeholder="you@example.com" />
+                    
+                    <Input label="Phone / WhatsApp (include country code)" required type="tel" value={formData.phone} onChange={(e) => updateField('phone', e.target.value)} error={errors.phone} placeholder="+91 98765 43210" />
 
                     <div className="space-y-1.5 w-full">
-                      <label className="block text-sm font-semibold text-gray-700">Interested Subject <span className="text-brand-secondary">*</span></label>
+                      <label className="block text-sm font-semibold text-gray-700">Nationality <span className="text-brand-secondary">*</span></label>
+                      <Select 
+                        instanceId="international-nationality"
+                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
+                        styles={selectStyles}
+                        options={countryOptions}
+                        placeholder="Search or select nationality..."
+                        value={formData.nationality}
+                        onChange={(val) => updateField('nationality', val)}
+                      />
+                      {errors.nationality && <p className="text-xs text-red-500 font-medium mt-1">{errors.nationality}</p>}
+                    </div>
+
+                    <button 
+                      onClick={handleNext}
+                      className="w-full bg-gradient-to-r from-brand-primary to-brand-secondary hover:shadow-lg hover:-translate-y-0.5 text-white font-bold py-4 px-6 rounded-[1rem] shadow-md transition-all flex justify-center items-center gap-2 mt-10 active:scale-[0.98]"
+                    >
+                      Next Step <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* STEP 4 INT */}
+              {step === 4 && origin === 'international' && (
+                <motion.div key="int2" variants={variants} initial="initial" animate="animate" exit="exit" className="w-full max-w-2xl mx-auto">
+                  <button onClick={() => setStep(3)} className="flex items-center text-sm font-bold text-gray-400 hover:text-brand-secondary mb-6 transition-colors uppercase tracking-wider">
+                    <ArrowLeft className="w-4 h-4 mr-1.5" /> Back to Details
+                  </button>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-brand-secondary tracking-wider uppercase">Application Progress</span>
+                    <span className="text-xs font-bold text-gray-400">Step 2 of 2</span>
+                  </div>
+                  <h2 className="text-3xl font-extrabold text-brand-primary mb-8">Study Info</h2>
+
+                  <div className="space-y-6">
+                    <Input 
+                      label="Last Educational Qualification" required 
+                      value={formData.lastEducationalQualification} 
+                      onChange={(e) => updateField('lastEducationalQualification', e.target.value)}
+                      error={errors.lastEducationalQualification}
+                      placeholder="e.g. High School Diploma"
+                    />
+
+                    <NativeSelect 
+                      label="English Proficiency" required 
+                      options={[
+                        "IELTS", "TOEFL", "Duolingo", "PTE Academic", "OIETC", 
+                        "MOI", "Cambridge English Qualification", "UKVI IELTS", "GRE", "SAT"
+                      ]}
+                      value={formData.englishProficiency} onChange={(e) => updateField('englishProficiency', e.target.value)}
+                      error={errors.englishProficiency}
+                    />
+
+                    <NativeSelect 
+                      label="What level of study are you applying for?" required 
+                      options={[
+                        "International Foundation Programme", 
+                        "Diploma Courses", 
+                        "Undergraduate", 
+                        "Postgraduate", 
+                        "Research Masters", 
+                        "Professional Courses", 
+                        "MPhil/ PhD"
+                      ]}
+                      value={formData.levelOfStudy} 
+                      onChange={(e) => updateField('levelOfStudy', e.target.value)}
+                      error={errors.levelOfStudy}
+                    />
+
+                    <div className="space-y-1.5 w-full">
+                      <label className="block text-sm font-semibold text-gray-700">What field of study are you interested in? <span className="text-brand-secondary">*</span></label>
                       <CreatableSelect 
+                        instanceId="international-field-of-study"
+                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
                         styles={selectStyles}
                         options={subjectOptions}
                         placeholder="Search or type a subject..."
-                        value={formData.interestedSubject}
-                        onChange={(val) => updateField('interestedSubject', val)}
+                        value={formData.fieldOfStudy}
+                        onChange={(val) => updateField('fieldOfStudy', val)}
                       />
-                      {errors.interestedSubject && <p className="text-xs text-red-500 font-medium mt-1">{errors.interestedSubject}</p>}
+                      {errors.fieldOfStudy && <p className="text-xs text-red-500 font-medium mt-1">{errors.fieldOfStudy}</p>}
                     </div>
 
-                    <NativeSelect 
-                      label="English Level" required 
-                      options={["Beginner", "Intermediate", "Advanced", "Native"]}
-                      value={formData.englishLevel} onChange={(e) => updateField('englishLevel', e.target.value)}
-                      error={errors.englishLevel}
-                    />
+                    <div className="pt-4 border-t border-gray-100 mt-6">
+                      <Checkbox 
+                        label="I agree to the Terms & Conditions and consent to LSOE processing my personal data according to the Privacy Policy."
+                        required
+                        checked={formData.acceptedTerms}
+                        onChange={(e) => updateField('acceptedTerms', e.target.checked)}
+                        error={errors.acceptedTerms}
+                      />
+                    </div>
 
                     <button 
                       onClick={handleSubmit}
@@ -550,25 +686,35 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
                     >
                       {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : "Submit Application"}
                     </button>
+
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-8 pt-6 text-[11px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest border-t border-gray-100/60">
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> 100% Free Consultation</span>
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> No Hidden Fees</span>
+                      <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-secondary" /> Fast Process</span>
+                    </div>
                   </div>
                 </motion.div>
               )}
 
-              {/* SUCCESS */}
-              {step === 4 && (
-                <motion.div key="success" variants={variants} initial="initial" animate="animate" exit="exit" className="w-full text-center py-20 max-w-lg mx-auto">
-                  <div className="w-28 h-28 bg-brand-secondary/10 rounded-full flex items-center justify-center mx-auto mb-8 relative">
-                    <div className="absolute inset-0 bg-brand-secondary/10 rounded-full animate-ping"></div>
-                    <CheckCircle2 className="w-14 h-14 text-brand-secondary" />
+              {/* STEP 5 SUCCESS */}
+              {step === 5 && (
+                <motion.div key="success" variants={variants} initial="initial" animate="animate" exit="exit" className="text-center w-full max-w-lg mx-auto py-10">
+                  <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner border border-green-100">
+                    <CheckCircle2 className="w-12 h-12 text-green-500" />
                   </div>
-                  <h2 className="text-4xl font-black text-brand-primary mb-4 tracking-tight">Application Submitted!</h2>
-                  <p className="text-lg text-gray-600 leading-relaxed mb-10 font-medium">
+                  <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Application Submitted!</h2>
+                  <p className="text-gray-500 text-base mb-10 font-medium leading-relaxed">
                     Thank you for applying to the London School of Excellence. A member of our admissions team will be in touch with you shortly.
                   </p>
                   <button 
-                    onClick={() => { setStep(0); setOrigin(null); setFormData({
-                      firstName: "", lastName: "", email: "", phone: "", nationality: "", englishLevel: "", liveInEngland: "", studyLocation: null, residencyStatus: "", callDate: "", acceptedTerms: false, country: null, city: "", interestedSubject: null
-                    }); window.scrollTo({top:0, behavior:"smooth"}); }}
+                    onClick={() => { 
+                      setStep(initialOrigin === 'uk' ? 1 : initialOrigin === 'international' ? 3 : 0); 
+                      setOrigin(initialOrigin); 
+                      setFormData({
+                        firstName: "", lastName: "", email: "", phone: "", nationality: "", englishLevel: "", liveInEngland: "", studyLocation: null, residencyStatus: "", callDate: "", acceptedTerms: false, country: null, city: null, interestedSubject: null, highestQualification: "", workingStatus: "", intake: "", needVisaSupport: ""
+                      }); 
+                      window.scrollTo({top:0, behavior:"smooth"}); 
+                    }}
                     className="bg-gray-100 hover:bg-gray-200 text-brand-primary font-bold py-3.5 px-8 rounded-full shadow-sm transition-all"
                   >
                     Return to Start
