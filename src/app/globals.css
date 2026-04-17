@@ -11,6 +11,15 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Accounts for the sticky fixed header height */
+}
+
+/* Strict mobile scroll lock preventing iOS background bleed */
+body.menu-open {
+  overflow: hidden !important;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overscroll-behavior: none;
 }
 
 body {

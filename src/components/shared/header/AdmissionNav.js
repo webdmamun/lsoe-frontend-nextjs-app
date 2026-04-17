@@ -46,8 +46,8 @@ export default function AdmissionNav({ isDark = false }) {
   });
 
   useEffect(() => {
-    if (isMobileMenuOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "unset";
+    if (isMobileMenuOpen) document.body.classList.add("menu-open");
+    else document.body.classList.remove("menu-open");
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
@@ -82,17 +82,17 @@ export default function AdmissionNav({ isDark = false }) {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-out will-change-transform ${
-          isScrolled ? "py-3 px-4 sm:px-6 md:px-8 mt-2" : "py-6 px-4 sm:px-6 md:px-8 lg:px-12"
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-out will-change-transform ${
+          isScrolled ? "py-2 px-4 sm:px-6 md:px-8" : "py-4 lg:py-6 px-4 sm:px-6 md:px-8 lg:px-12"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div
-          className={`mx-auto flex items-center justify-between transition-all duration-500 ${
+          className={`mx-auto flex items-center justify-between transition-all duration-300 ${
             isScrolled
-              ? "max-w-6xl bg-white/85 backdrop-blur-xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[2rem] px-5 sm:px-6 py-2.5"
+              ? "max-w-6xl bg-white/90 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-[2rem] px-5 sm:px-6 py-2"
               : "max-w-7xl bg-transparent px-2 sm:px-2 py-2"
           }`}
         >
@@ -483,6 +483,13 @@ export default function AdmissionNav({ isDark = false }) {
                 >
                   <FileText className="w-6 h-6" />
                   Apply Now
+                </Link>
+                <Link
+                  href="/contact-us"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="mt-3 flex items-center justify-center gap-3 w-full py-5 bg-white/80 border-2 border-brand-primary text-brand-primary rounded-[1.5rem] text-xl font-bold active:scale-95 transition-transform"
+                >
+                  Free Consultation
                 </Link>
               </motion.div>
             </nav>

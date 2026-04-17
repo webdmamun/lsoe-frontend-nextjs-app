@@ -141,16 +141,16 @@ const GlobalBanner = () => {
             <Link href="/student-finance-uk" className="text-brand-primary underline underline-offset-2 hover:text-brand-secondary transition-colors">Student Finance England</Link>, and visa support — for both UK/EU and international students.
           </p>
 
-          <div className="flex flex-wrap gap-3 mt-4">
+          <div className="flex flex-col sm:flex-row gap-3 mt-6 sm:mt-4">
             <Link
               href="/apply-now"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-7 py-3.5 rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-7 py-4 sm:py-3.5 w-full sm:w-auto rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
-              Apply Now
+              Start Free Application
             </Link>
             <Link
               href="/contact-us"
-              className="inline-flex items-center gap-2 border-2 border-brand-primary text-brand-primary bg-white/80 backdrop-blur-sm px-7 py-3.5 rounded-full font-bold hover:bg-brand-primary hover:text-white transition-all duration-300"
+              className="inline-flex justify-center items-center gap-2 border-2 border-brand-primary text-brand-primary bg-white/80 backdrop-blur-sm px-7 py-4 sm:py-3.5 w-full sm:w-auto rounded-full font-bold hover:bg-brand-primary hover:text-white transition-all duration-300"
             >
               Free Consultation
             </Link>
@@ -159,9 +159,9 @@ const GlobalBanner = () => {
           {/* Trust bullets */}
           <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
             {[
-              "100% Free Admission Support",
+              "100% Free Consultation",
+              "No Hidden Fees",
               "140+ UK University Partners",
-              "Student Finance England Guidance",
               "10,000+ Students Supported",
             ].map((bullet) => (
               <span key={bullet} className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-700">

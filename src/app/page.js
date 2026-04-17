@@ -20,11 +20,11 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'London School of Excellence | Free UK University Admissions Support',
+  title: 'UK University Admissions | London School of Excellence',
   description:
     'Start your UK university journey with expert, 100% free admissions support. UCAS guidance, Student Finance England, Student Route visa advice, and course matching for UK/EU and international students. Trusted by 10,000+ students since 2013.',
   openGraph: {
-    title: 'London School of Excellence | Free UK University Admissions Support',
+    title: 'UK University Admissions | London School of Excellence',
     description:
       'Free UK university admissions support for Home and international students — UCAS, Student Route visas, Student Finance, and course matching. Expert guidance since 2013.',
     url: '/',
@@ -32,7 +32,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'London School of Excellence | Free UK University Admissions Support',
+    title: 'UK University Admissions | London School of Excellence',
     description:
       'Free UK university admissions for Home and international students. UCAS, visas, Student Finance, and accommodation from LSOE.',
     images: ['/og-image.png'],

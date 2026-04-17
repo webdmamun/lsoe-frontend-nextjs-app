@@ -15,7 +15,7 @@ const Input = ({ label, required, error, ...props }) => (
       {label} {required && <span className="text-brand-secondary">*</span>}
     </label>
     <input 
-      className={`w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border ${error ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all placeholder:text-gray-400 font-medium`}
+      className={`w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border ${error ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all placeholder:text-gray-400 font-medium text-[16px] sm:text-sm`}
       {...props}
     />
     {error && <p className="text-xs text-red-500 font-medium mt-1">{error}</p>}
@@ -29,7 +29,7 @@ const NativeSelect = ({ label, required, error, options, ...props }) => (
     </label>
     <div className="relative">
       <select 
-        className={`w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border ${error ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all appearance-none font-medium cursor-pointer ${props.value ? 'text-gray-900' : 'text-gray-500'}`}
+        className={`w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border ${error ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all appearance-none font-medium cursor-pointer text-[16px] sm:text-sm ${props.value ? 'text-gray-900' : 'text-gray-500'}`}
         {...props}
       >
         <option value="" disabled>Select...</option>
@@ -66,6 +66,7 @@ const selectStyles = {
   control: (base, state) => ({
     ...base,
     padding: '2px 6px',
+    fontSize: '16px',
     borderRadius: '1rem',
     borderWidth: '1px',
     borderColor: state.isFocused ? '#26b2e6' : '#e5e7eb', // brand-secondary or gray-200
@@ -383,7 +384,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
                         </span>
                         <input 
                           type="tel"
-                          className={`w-full px-4 py-3 bg-gray-50/50 rounded-r-[1rem] border ${errors.phone ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all font-medium`}
+                          className={`w-full px-4 py-3 bg-gray-50/50 rounded-r-[1rem] border ${errors.phone ? 'border-red-400 focus:ring-red-100' : 'border-gray-200 focus:ring-brand-secondary/20'} focus:ring-4 focus:border-brand-secondary outline-none transition-all font-medium text-[16px] sm:text-sm`}
                           placeholder="7123 456789"
                           value={formData.phone}
                           onChange={(e) => updateField('phone', e.target.value)}
@@ -466,7 +467,7 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
                         timeCaption="Time"
                         dateFormat="MMMM d, yyyy h:mm aa"
                         placeholderText="Select date and time..."
-                        className="w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border border-gray-200 focus:ring-brand-secondary/20 focus:ring-4 focus:border-brand-secondary outline-none transition-all placeholder:text-gray-400 font-medium text-gray-900"
+                        className="w-full px-4 py-3 bg-gray-50/50 rounded-[1rem] border border-gray-200 focus:ring-brand-secondary/20 focus:ring-4 focus:border-brand-secondary outline-none transition-all placeholder:text-gray-400 font-medium text-[16px] sm:text-sm text-gray-900"
                         wrapperClassName="w-full"
                       />
                     </div>

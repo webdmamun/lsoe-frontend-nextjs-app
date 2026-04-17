@@ -132,16 +132,16 @@ const AdmissionFooter = () => {
                 Speak to an LSOE adviser today — free UCAS support, visa guidance, and course matching for UK/EU and international students.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0 mt-8 lg:mt-0">
               <Link
                 href="/apply-now"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-brand-primary text-white rounded-full font-bold text-sm hover:bg-brand-primary/90 transition-all shadow-lg hover:shadow-brand-primary/30 hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 w-full sm:w-auto bg-brand-primary text-white rounded-full font-bold text-sm hover:bg-brand-primary/90 transition-all shadow-lg hover:shadow-brand-primary/30 hover:scale-105"
               >
                 Apply Now <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/contact-us"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-slate-600 text-slate-300 rounded-full font-bold text-sm hover:border-brand-secondary hover:text-brand-secondary transition-all"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 sm:py-3.5 w-full sm:w-auto border border-slate-600 text-slate-300 rounded-full font-bold text-sm hover:border-brand-secondary hover:text-brand-secondary transition-all"
               >
                 Free Consultation
               </Link>
@@ -153,7 +153,7 @@ const AdmissionFooter = () => {
       {/* ── Trust stats band ────────────────────────────────────────────────── */}
       <div className="relative z-10 border-b border-slate-800 bg-slate-800/40">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trustBadges.map((b) => (
               <div key={b.stat} className="flex items-center gap-4">
                 <div className="w-11 h-11 rounded-xl bg-brand-primary/20 text-brand-secondary flex items-center justify-center shrink-0">

@@ -2,9 +2,8 @@ import { getAllStaticParams } from '@/lib/courses/courseData';
 
 export default function sitemap() {
   const base    = 'https://www.londonschoolofexcellence.com';
-  // Static date prevents serialization errors during Next.js static generation.
-  // Update this string on each meaningful content deploy.
-  const updated = '2026-04-17';
+  // Dynamic date ensures Google always sees the freshest sitemap generation.
+  const updated = new Date().toISOString();
 
   const pages = [
     { path: '',                                       priority: 1.0, freq: 'weekly'  },
