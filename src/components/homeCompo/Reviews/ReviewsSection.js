@@ -57,7 +57,7 @@ export default function ReviewsSection() {
             </span>
           </h2>
           <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
-            Watch real video stories from ambitious international students who achieved their dreams with LSOE's dedicated application support.
+            Real stories from UK Home and international students who secured places at top UK universities with free support from LSOE.
           </p>
         </div>
 

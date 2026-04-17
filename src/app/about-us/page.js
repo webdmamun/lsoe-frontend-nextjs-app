@@ -9,9 +9,23 @@ import PartnerWithUs from '@/components/AdmissionAboutCompo/PartnerWithUs';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'About Us | London School of Excellence',
-  description: 'Learn about London School of Excellence - A premium UK education hub offering expert university admissions and global career opportunities for both Home and International students.',
-  keywords: 'LSOE about, UK education hub, Home and International students, admission consultancy, global education',
+  title: 'About Us — Trusted UK Admissions Consultancy Since 2013',
+  description:
+    'Since 2013, London School of Excellence (LSOE) has helped students gain places at leading UK universities. Learn about our mission, experienced advisors, and 140+ university partnerships.',
+  openGraph: {
+    title: 'About London School of Excellence — Trusted Since 2013',
+    description:
+      'Since 2013, LSOE has guided students into top UK universities. Discover our story, expert team, and commitment to every student\'s success.',
+    url: '/about-us',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About London School of Excellence' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About London School of Excellence — Trusted Since 2013',
+    description:
+      'Since 2013, LSOE has helped students gain places at leading UK universities. Learn about our mission and team.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function AboutUsPage() {

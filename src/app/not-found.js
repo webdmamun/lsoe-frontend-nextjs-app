@@ -107,8 +107,8 @@ export default function NotFound() {
             <Link href="/contact-us" className="text-gray-600 font-medium hover:text-brand-primary transition-colors">
               Contact Us
             </Link>
-            <Link href="/partner-with-us" className="text-gray-600 font-medium hover:text-brand-primary transition-colors">
-              Partner With Us
+            <Link href="/agent-partner" className="text-gray-600 font-medium hover:text-brand-primary transition-colors">
+              Become an Agent
             </Link>
           </div>
         </motion.div>

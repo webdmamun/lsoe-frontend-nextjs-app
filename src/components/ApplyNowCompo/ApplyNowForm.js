@@ -114,9 +114,11 @@ const subjectOptions = [
 ].map(s => ({ label: s, value: s }));
 
 
-export default function ApplyNowForm({ isStandalone = false }) {
-  const [step, setStep] = useState(0); 
-  const [origin, setOrigin] = useState(null); 
+export default function ApplyNowForm({ isStandalone = false, initialOrigin = null }) {
+  const [step, setStep] = useState(
+    initialOrigin === 'uk' ? 1 : initialOrigin === 'international' ? 3 : 0
+  );
+  const [origin, setOrigin] = useState(initialOrigin); 
   
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "", nationality: "", englishLevel: "", 

@@ -125,38 +125,50 @@ const GlobalBanner = () => {
 
       <div className="relative z-20 w-full mx-auto px-6 sm:px-10 lg:px-24 pt-32 sm:pt-40 md:pt-48 pb-20 sm:pb-32 flex items-center min-h-[32rem]">
         <div className="w-full lg:w-2/3 text-left space-y-6 text-gray-900">
-          <p className="text-sm sm:text-base font-medium border-l-4 border-red-500 pl-3 text-gray-700">
-            As official delegate of a top-ranking UK university, we can help you
-            pursue any course you choose.
+          <p className="text-sm sm:text-base font-medium border-l-4 border-brand-secondary pl-3 text-gray-700">
+            Free UK university admissions support for Home and international students — expert guidance since 2013.
           </p>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-            An official delegate of <br className="hidden sm:inline" /> a
-            top-ranking UK university
+            Start Your UK University Journey
+            <br className="hidden sm:inline" />
+            <span className="text-brand-secondary">with Expert Support — 100% Free</span>
           </h1>
 
-          <div className="flex flex-wrap gap-8 font-semibold text-base text-gray-800">
-            {[
-              { stat: "10,000+", label: "Student’s Career" },
-              { stat: "13+", label: "Recruitment Awards" },
-              { stat: "140+", label: "University Partners" },
-            ].map((item, i) => (
-              <div key={i}>
-                <p className="text-red-600 text-2xl sm:text-3xl font-bold">
-                  {item.stat}
-                </p>
-                <p>{item.label}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-base sm:text-lg text-gray-600 font-medium max-w-xl leading-relaxed">
+            Get admitted to top UK universities with step-by-step guidance on courses,{" "}
+            <Link href="/ucas-guide" className="text-brand-primary underline underline-offset-2 hover:text-brand-secondary transition-colors">UCAS applications</Link>,{" "}
+            <Link href="/student-finance-uk" className="text-brand-primary underline underline-offset-2 hover:text-brand-secondary transition-colors">Student Finance England</Link>, and visa support — for both UK/EU and international students.
+          </p>
 
-          <div>
+          <div className="flex flex-wrap gap-3 mt-4">
             <Link
               href="/apply-now"
-              className="inline-block bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition-transform duration-300 uppercase mt-4"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-7 py-3.5 rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              Apply Now
+            </Link>
+            <Link
+              href="/contact-us"
+              className="inline-flex items-center gap-2 border-2 border-brand-primary text-brand-primary bg-white/80 backdrop-blur-sm px-7 py-3.5 rounded-full font-bold hover:bg-brand-primary hover:text-white transition-all duration-300"
             >
               Free Consultation
             </Link>
+          </div>
+
+          {/* Trust bullets */}
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
+            {[
+              "100% Free Admission Support",
+              "140+ UK University Partners",
+              "Student Finance England Guidance",
+              "10,000+ Students Supported",
+            ].map((bullet) => (
+              <span key={bullet} className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-700">
+                <svg className="w-4 h-4 text-brand-secondary shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                {bullet}
+              </span>
+            ))}
           </div>
         </div>
       </div>

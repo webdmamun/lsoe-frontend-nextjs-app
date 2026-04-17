@@ -7,6 +7,7 @@ import ServiceHero from "@/components/shared/ServiceHero";
 import { FileCheck, Search, ClipboardList, Send, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import RelatedServices from "@/components/shared/RelatedServices";
 
 export default function ApplicationAssessment() {
   const features = [
@@ -110,6 +111,7 @@ export default function ApplicationAssessment() {
         </div>
       </section>
 
+      <RelatedServices current="/application-assessment" />
       <AdmissionFooter />
     </div>
   );

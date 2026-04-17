@@ -3,9 +3,23 @@ import ReferEarnForm from '@/components/PartnerWithUs/ReferEarnForm';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'Refer & Earn | London School of Excellence',
-  description: 'Recommend students to the London School of Excellence and earn rewards. Help peers achieve their study abroad goals through our referral program.',
-  keywords: 'refer and earn, LSOE rewards, student referral, study abroad rewards, education referral network',
+  title: 'Refer and Earn — Student Referral Programme',
+  description:
+    'Refer a student to London School of Excellence and earn financial rewards. Help friends and peers access free UK university admissions support through our student referral programme.',
+  openGraph: {
+    title: 'Refer and Earn — London School of Excellence Referral Programme',
+    description:
+      'Earn rewards by referring students to LSOE. Help peers access free UK university admissions support and get paid for every successful referral.',
+    url: '/refer-and-earn',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Refer and Earn — LSOE Referral Programme' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Refer and Earn — London School of Excellence',
+    description:
+      'Earn rewards for every student you refer to LSOE. Free UK university admissions support for your friends, financial rewards for you.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function ReferAndEarnPage() {

@@ -7,6 +7,7 @@ import ServiceHero from "@/components/shared/ServiceHero";
 import { Plane, ShieldCheck, FileText, Users, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import RelatedServices from "@/components/shared/RelatedServices";
 
 export default function StudentVisaAdvice() {
   const features = [
@@ -110,6 +111,7 @@ export default function StudentVisaAdvice() {
         </div>
       </section>
 
+      <RelatedServices current="/student-visa-advice" />
       <AdmissionFooter />
     </div>
   );

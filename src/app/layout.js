@@ -11,9 +11,12 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   metadataBase: new URL('https://www.londonschoolofexcellence.com'),
-  title: 'London School of Excellence | UK University Admissions for Local & International Students',
-  description: 'London School of Excellence provides expert UK university admission services for both local (Home) and international students. Free consultancy, UCAS support, scholarships, and professional guidance for your academic success.',
-  keywords: 'UK education, local student admission, international student consultancy, London School of Excellence, UCAS help, study in UK, university placement, LSOE admissions',
+  title: {
+    default: 'London School of Excellence | UK University Admissions Consultancy',
+    template: '%s | London School of Excellence',
+  },
+  description:
+    'London School of Excellence (LSOE) is a free UK university admissions consultancy based in London. Expert guidance for Home and international students on UCAS applications, Student Route visas, scholarships, and accommodation since 2013.',
   authors: [{ name: 'London School of Excellence Admissions Team' }],
   icons: {
     icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
@@ -21,8 +24,9 @@ export const metadata = {
     apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
   },
   openGraph: {
-    title: 'London School of Excellence | UK University Admissions for Local & International Students',
-    description: 'Elite UK university admission support for local and international students. Start your academic journey with professional guidance, scholarships, and career consultancy.',
+    title: 'London School of Excellence | UK University Admissions Consultancy',
+    description:
+      'Free university admissions support for UK Home and international students. UCAS guidance, Student Route visa advice, scholarships, and accommodation — expert help since 2013.',
     url: 'https://www.londonschoolofexcellence.com',
     siteName: 'London School of Excellence',
     images: [
@@ -30,7 +34,7 @@ export const metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'London School of Excellence - Best UK University Admission Consultant',
+        alt: 'London School of Excellence — Free UK University Admissions Consultancy',
       },
     ],
     locale: 'en_GB',
@@ -38,8 +42,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'London School of Excellence | UK University Admissions for Local & International Students',
-    description: 'Expert UK university admission support for both local and international students. Join the London School of Excellence today.',
+    title: 'London School of Excellence | UK University Admissions Consultancy',
+    description:
+      'Free UK university admissions guidance for Home and international students. UCAS, visas, scholarships, and accommodation support from LSOE.',
     images: ['/og-image.png'],
   },
 };
@@ -62,29 +67,123 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "EducationalOrganization",
-              "name": "London School of Excellence",
-              "url": "https://www.londonschoolofexcellence.com",
-              "logo": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
-              "sameAs": [
-                "https://www.facebook.com/londonschoolofexcellence/",
-                "https://www.linkedin.com/company/london-school-of-excellence/",
-                "https://www.instagram.com/lsoe.ltd/",
-                "https://www.tiktok.com/@londonschoolofexcellence"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "5 Station Parade, Hornchurch, Elm Park",
-                "addressLocality": "London",
-                "postalCode": "RM12 5AB",
-                "addressCountry": "GB"
-              },
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+44-1708-784763",
-                "contactType": "admissions",
-                "email": "info.office@londonschoolofexcellence.com"
-              }
+              "@graph": [
+                {
+                  "@type": "EducationalOrganization",
+                  "@id": "https://www.londonschoolofexcellence.com/#organization",
+                  "name": "London School of Excellence",
+                  "alternateName": "LSOE",
+                  "foundingDate": "2013",
+                  "url": "https://www.londonschoolofexcellence.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
+                    "width": 400,
+                    "height": 100
+                  },
+                  "image": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
+                  "description": "London School of Excellence (LSOE) is a free UK university admissions consultancy based in London, providing expert guidance for Home and international students since 2013.",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "5 Station Parade, Hornchurch, Elm Park",
+                    "addressLocality": "London",
+                    "postalCode": "RM12 5AB",
+                    "addressCountry": "GB"
+                  },
+                  "contactPoint": [
+                    {
+                      "@type": "ContactPoint",
+                      "telephone": "+441708784763",
+                      "contactType": "admissions",
+                      "email": "info.office@londonschoolofexcellence.com",
+                      "areaServed": ["GB", "EU"],
+                      "availableLanguage": "English"
+                    },
+                    {
+                      "@type": "ContactPoint",
+                      "telephone": "+441708784763",
+                      "contactType": "customer service",
+                      "areaServed": ["GB", "EU"],
+                      "availableLanguage": "English"
+                    }
+                  ],
+                  "sameAs": [
+                    "https://www.facebook.com/londonschoolofexcellence/",
+                    "https://www.linkedin.com/company/london-school-of-excellence/",
+                    "https://www.instagram.com/lsoe.ltd/",
+                    "https://twitter.com/LsoeLtd",
+                    "https://www.youtube.com/@lsoeteam",
+                    "https://www.tiktok.com/@londonschoolofexcellence"
+                  ]
+                },
+                {
+                  "@type": "LocalBusiness",
+                  "@id": "https://www.londonschoolofexcellence.com/#localbusiness",
+                  "name": "London School of Excellence",
+                  "url": "https://www.londonschoolofexcellence.com",
+                  "telephone": "+441708784763",
+                  "email": "info.office@londonschoolofexcellence.com",
+                  "priceRange": "Free",
+                  "currenciesAccepted": "GBP",
+                  "paymentAccepted": "Free consultancy service",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "5 Station Parade, Hornchurch, Elm Park",
+                    "addressLocality": "London",
+                    "postalCode": "RM12 5AB",
+                    "addressCountry": "GB"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 51.5574,
+                    "longitude": 0.2109
+                  },
+                  "areaServed": ["GB", "EU"],
+                  "openingHoursSpecification": [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                      "opens": "09:00",
+                      "closes": "18:00"
+                    },
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "dayOfWeek": "Saturday",
+                      "opens": "10:00",
+                      "closes": "16:00"
+                    }
+                  ],
+                  "parentOrganization": {
+                    "@id": "https://www.londonschoolofexcellence.com/#organization"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.londonschoolofexcellence.com/#website",
+                  "url": "https://www.londonschoolofexcellence.com",
+                  "name": "London School of Excellence",
+                  "inLanguage": "en-GB",
+                  "publisher": {
+                    "@id": "https://www.londonschoolofexcellence.com/#organization"
+                  }
+                },
+                {
+                  "@type": "WebPage",
+                  "@id": "https://www.londonschoolofexcellence.com/#webpage",
+                  "url": "https://www.londonschoolofexcellence.com",
+                  "name": "London School of Excellence | UK University Admissions Consultancy",
+                  "description": "London School of Excellence (LSOE) is a free UK university admissions consultancy based in London. Expert guidance for Home and international students on UCAS applications, Student Route visas, scholarships, and accommodation since 2013.",
+                  "inLanguage": "en-GB",
+                  "isPartOf": { "@id": "https://www.londonschoolofexcellence.com/#website" },
+                  "about": { "@id": "https://www.londonschoolofexcellence.com/#organization" },
+                  "breadcrumb": {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.londonschoolofexcellence.com" }
+                    ]
+                  }
+                }
+              ]
             })
           }}
         />

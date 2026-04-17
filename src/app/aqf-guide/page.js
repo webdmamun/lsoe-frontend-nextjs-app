@@ -4,9 +4,9 @@ import AqfGuideDetails from '@/components/AqfGuideCompo/AqfGuideDetails';
 import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 
 export const metadata = {
-  title: 'AQF Guide | London School of Excellence',
-  description: 'A comprehensive Australian Qualifications Framework (AQF) guide for international students. Understand qualification levels and paths with London School of Excellence.',
-  keywords: 'AQF levels, Australian education guide, qualification framework, study abroad advice, London School of Excellence',
+  title: 'AQF Guide',
+  description: 'An overview of the Australian Qualifications Framework (AQF) for reference purposes.',
+  robots: { index: false, follow: false },
 };
 
 export default function AqfGuidePage() {

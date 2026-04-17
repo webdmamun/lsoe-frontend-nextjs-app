@@ -7,6 +7,7 @@ import ServiceHero from "@/components/shared/ServiceHero";
 import { Home, MapPin, Building, Key, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import RelatedServices from "@/components/shared/RelatedServices";
 
 export default function SecureAccommodation() {
   const features = [
@@ -110,6 +111,7 @@ export default function SecureAccommodation() {
         </div>
       </section>
 
+      <RelatedServices current="/secure-accommodation" />
       <AdmissionFooter />
     </div>
   );

@@ -107,10 +107,10 @@ export default function BannerBottom() {
 
             <div className="space-y-6 text-lg text-gray-500 font-medium leading-relaxed max-w-2xl">
               <p>
-                Since 2013, London School of Excellence has expertly curated premium educational pathways for ambitious students spanning 15 countries worldwide.
+                Since 2013, London School of Excellence has helped students from 15+ countries gain places at leading UK universities — completely free of charge.
               </p>
               <p>
-                By strictly leveraging our established partnerships with prestigious UK universities, we unlock exclusive insights into priority admissions, complex visas, and unparalleled tuition funding opportunities.
+                Our partnerships with 140+ UK universities give your application priority consideration. Whether you need UCAS support, Student Route visa guidance, or scholarship help — we handle it all.
               </p>
             </div>
           </div>

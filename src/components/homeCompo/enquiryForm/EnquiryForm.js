@@ -54,10 +54,10 @@ export default function LSOEEnquiryForm() {
 
             <div className="mb-8">
               <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
-                Let LSOE Help You
+                Start Your UK University Application
               </h2>
-              <p className="text-gray-500 font-medium text-lg">
-                Complete your application below for premium guidance on courses, universities, and exclusive scholarships!
+              <p className="text-gray-500 font-medium text-base leading-relaxed">
+                Fill in the form and an LSOE advisor will contact you within 24 hours. Tell us whether you are based in the UK or applying from abroad — we tailor our support to your situation.
               </p>
             </div>
 

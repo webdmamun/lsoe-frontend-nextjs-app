@@ -2,9 +2,21 @@ import AdmissionNav from "@/components/shared/header/AdmissionNav";
 import AdmissionFooter from "@/components/shared/Footer/AdmissionFooter";
 
 export const metadata = {
-  title: 'Terms & Conditions | London School of Excellence',
-  description: 'View the official terms and conditions for using the London School of Excellence portal and global consultancy services.',
-  keywords: 'LSOE terms, admission hub rules, education consultancy agreement',
+  title: 'Terms and Conditions',
+  description:
+    'Read the terms and conditions for using London School of Excellence services and website. Covers use of services, intellectual property, and limitation of liability.',
+  openGraph: {
+    title: 'Terms and Conditions — London School of Excellence',
+    description: 'Official terms and conditions for using London School of Excellence services and website.',
+    url: '/terms',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Terms and Conditions — London School of Excellence' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms and Conditions — London School of Excellence',
+    description: 'Official terms and conditions for using London School of Excellence services and website.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function TermsPage() {

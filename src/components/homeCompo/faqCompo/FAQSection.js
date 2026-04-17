@@ -6,29 +6,24 @@ import { HelpCircle, ChevronDown, MessageCircle, Edit3 } from "lucide-react";
 
 const faqs = [
   {
-    question: "What types of universities are available through LSOE?",
+    question: "Is the LSOE admissions service really free?",
     answer:
-      "We provide streamlined admission support to a curated selection of prestigious UK universities. Our advisors evaluate your profile to match you with institutions that best align with your academic and career goals.",
+      "Yes — 100% free. LSOE charges students nothing for its admissions support. Our service is funded by our partner universities, who pay us a referral fee only when a student successfully enrols. You receive full, expert support at absolutely no cost — no hidden fees, no consultancy charges.",
   },
   {
-    question: "How many students has LSOE supported so far?",
+    question: "Who is eligible for Student Finance England?",
     answer:
-      "Over the past decade, LSOE has successfully guided nearly 10,000 international students through their UK education journey, maintaining an industry-leading success rate.",
+      "UK Home students (UK nationals and those with settled status) studying at an approved UK university are typically eligible for a Tuition Fee Loan of up to £9,535 per year and a Maintenance Loan based on household income. Some postgraduate students can also access a Master's Loan of up to £12,167. Our advisors can confirm your exact entitlement during a free consultation.",
   },
   {
-    question: "Is the UK education system globally recognized?",
+    question: "Can international students apply through LSOE?",
     answer:
-      "Absolutely. UK degrees are highly sought after by employers worldwide. The system is known for its rigorous standards, academic excellence, and diverse range of specialized programs.",
+      "Absolutely. LSOE supports students from over 15 countries applying to UK universities. We assist with course selection, university shortlisting, application preparation, and the UK Student Route visa process — all at no charge. English language requirements (typically IELTS 6.0) and equivalent academic qualifications are required.",
   },
   {
-    question: "Are there any consulting fees at LSOE?",
+    question: "How long does the UK university application process take?",
     answer:
-      "No. Our core consultancy services for international students—including course selection and application processing—are provided entirely free of charge as part of our commitment to accessible education.",
-  },
-  {
-    question: "What specific assistance do your consultants provide?",
-    answer:
-      "Our experts assist with every phase: from initial course strategy and university selection to scholarship identification, visa documentation, and pre-departure briefings.",
+      "The timeline varies by intake. For September entry, most UCAS applications close in January. We recommend starting 3–6 months before your target intake to allow time for document preparation, university offers, and visa processing. Our team will walk you through every step and keep your application on track from start to offer.",
   },
 ];
 

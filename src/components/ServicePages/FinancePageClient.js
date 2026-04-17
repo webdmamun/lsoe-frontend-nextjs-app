@@ -7,6 +7,7 @@ import ServiceHero from "@/components/shared/ServiceHero";
 import { Wallet, Coins, Calculator, FileCheck, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import RelatedServices from "@/components/shared/RelatedServices";
 
 export default function FinancialPlanningScholarships() {
   const features = [
@@ -110,6 +111,7 @@ export default function FinancialPlanningScholarships() {
         </div>
       </section>
 
+      <RelatedServices current="/financial-planning-scholarships" />
       <AdmissionFooter />
     </div>
   );
