@@ -1,11 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import BlogForm from '@/components/office/blog/BlogForm';
 
 export default function CreateBlogPage() {
-  const router = useRouter();
-
   const handleCreate = async (payload) => {
     const res = await fetch('/api/office/blogs', {
       method: 'POST',
@@ -17,9 +14,7 @@ export default function CreateBlogPage() {
     if (!res.ok || !json.success) {
       throw new Error(json.error || 'Failed to create blog');
     }
-
-    router.refresh();
-    router.push('/office-dashboard/blog');
+    // Navigation is handled by BlogForm after showing success message
   };
 
   return (

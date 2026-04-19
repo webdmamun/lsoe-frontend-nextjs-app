@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Loader2, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { CheckCircle2, ArrowLeft, Loader2, Save, Send } from 'lucide-react';
 import Link from 'next/link';
 import { estimateReadingTimeMinutes, slugify } from '@/lib/blog/blogUtils';
 import DashboardShell from '@/components/office/DashboardShell';
@@ -24,6 +25,15 @@ const DEFAULT_FORM = {
   category: 'General',
 };
 
+// Fields required only when publishing (not for drafts)
+const PUBLISH_REQUIRED = [
+  { key: 'slug',            label: 'Slug' },
+  { key: 'excerpt',         label: 'Excerpt' },
+  { key: 'content',         label: 'Content' },
+  { key: 'metaTitle',       label: 'Meta title' },
+  { key: 'metaDescription', label: 'Meta description' },
+];
+
 function toLocalDateTimeInput(value) {
   if (!value) return '';
   const d = new Date(value);
@@ -39,11 +49,13 @@ export default function BlogForm({
   description,
   submitLabel = 'Save',
 }) {
+  const router = useRouter();
   const [form, setForm] = useState(DEFAULT_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [slugTouched, setSlugTouched] = useState(false);
   const [apiError, setApiError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     if (!initialData) {
@@ -79,24 +91,24 @@ export default function BlogForm({
 
   const setField = (key, value) => {
     setApiError('');
+    setSuccessMessage('');
     setErrors((prev) => ({ ...prev, [key]: '' }));
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
   const validate = () => {
     const nextErrors = {};
+    const isDraft = form.status === 'draft';
 
+    // Title always required
     if (!form.title.trim()) nextErrors.title = 'Title is required';
-    if (!form.slug.trim()) nextErrors.slug = 'Slug is required';
-    if (!form.excerpt.trim()) nextErrors.excerpt = 'Excerpt is required';
-    if (!form.content.trim()) nextErrors.content = 'Content is required';
-    if (!form.metaTitle.trim()) nextErrors.metaTitle = 'Meta title is required';
-    if (!form.metaDescription.trim()) nextErrors.metaDescription = 'Meta description is required';
-    if (!form.authorName.trim()) nextErrors.authorName = 'Author name is required';
-    if (!form.category.trim()) nextErrors.category = 'Category is required';
 
-    if (form.status === 'published' && !form.publishDate) {
-      nextErrors.publishDate = 'Publish date is required for published posts';
+    // Extra fields required only when publishing
+    if (!isDraft) {
+      for (const { key, label } of PUBLISH_REQUIRED) {
+        if (!form[key].trim()) nextErrors[key] = `${label} is required to publish`;
+      }
+      if (!form.publishDate) nextErrors.publishDate = 'Publish date is required to publish';
     }
 
     setErrors(nextErrors);
@@ -109,14 +121,24 @@ export default function BlogForm({
 
     setIsSubmitting(true);
     setApiError('');
+    setSuccessMessage('');
 
     try {
       await onSubmit({
         ...form,
-        slug: slugify(form.slug),
+        slug: slugify(form.slug || form.title),
         publishDate: form.publishDate ? new Date(form.publishDate).toISOString() : null,
         tags: form.tags,
       });
+
+      const msg = form.status === 'published' ? 'Post published successfully!' : 'Draft saved!';
+      setSuccessMessage(msg);
+
+      // Navigate to list after a brief success display
+      setTimeout(() => {
+        router.refresh();
+        router.push('/office-dashboard/blog');
+      }, 1400);
     } catch (error) {
       setApiError(error?.message || 'Failed to save blog post');
     } finally {
@@ -126,7 +148,7 @@ export default function BlogForm({
 
   return (
     <DashboardShell>
-    <div className="max-w-6xl mx-auto p-4 sm:p-8">
+      <div className="max-w-6xl mx-auto p-4 sm:p-8">
         <div className="flex items-start justify-between gap-4 mb-8">
           <div>
             <Link href="/office-dashboard/blog" className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:underline mb-3">
@@ -150,9 +172,18 @@ export default function BlogForm({
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Error banner */}
           {apiError ? (
             <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600 font-medium">
               {apiError}
+            </div>
+          ) : null}
+
+          {/* Success banner */}
+          {successMessage ? (
+            <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-700 font-medium flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 shrink-0" />
+              {successMessage}
             </div>
           ) : null}
 
@@ -163,10 +194,10 @@ export default function BlogForm({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Field label="Title" error={errors.title} helpText="Use a clear keyword-focused title.">
+              <Field label="Title *" error={errors.title} helpText="Use a clear keyword-focused title.">
                 <input value={form.title} onChange={(e) => setField('title', e.target.value)} className={inputClass(errors.title)} placeholder="Post title" />
               </Field>
-              <Field label="Slug" error={errors.slug} helpText="URL-friendly and unique.">
+              <Field label={`Slug${form.status !== 'draft' ? ' *' : ''}`} error={errors.slug} helpText="URL-friendly and unique.">
                 <input
                   value={form.slug}
                   onChange={(e) => {
@@ -179,11 +210,11 @@ export default function BlogForm({
               </Field>
             </div>
 
-            <Field label="Excerpt" error={errors.excerpt}>
+            <Field label={`Excerpt${form.status !== 'draft' ? ' *' : ''}`} error={errors.excerpt}>
               <textarea value={form.excerpt} onChange={(e) => setField('excerpt', e.target.value)} rows={3} className={inputClass(errors.excerpt)} placeholder="Short summary shown on /blog" />
             </Field>
 
-            <Field label="Content (Markdown)" error={errors.content}>
+            <Field label={`Content (Markdown)${form.status !== 'draft' ? ' *' : ''}`} error={errors.content}>
               <textarea value={form.content} onChange={(e) => setField('content', e.target.value)} rows={16} className={inputClass(errors.content)} placeholder="Write post content using markdown headings, lists, links, and images." />
               <p className="text-xs text-slate-400 mt-1">Supported: headings (`##`), lists, links (`[text](url)`), and images (`![alt](url)`).</p>
             </Field>
@@ -202,7 +233,7 @@ export default function BlogForm({
                   <option value="published">Published</option>
                 </select>
               </Field>
-              <Field label="Publish Date" error={errors.publishDate}>
+              <Field label={`Publish Date${form.status !== 'draft' ? ' *' : ''}`} error={errors.publishDate}>
                 <input type="datetime-local" value={form.publishDate} onChange={(e) => setField('publishDate', e.target.value)} className={inputClass(errors.publishDate)} />
               </Field>
               <Field label="Author Name" error={errors.authorName}>
@@ -242,11 +273,11 @@ export default function BlogForm({
               />
             </div>
 
-            <Field label="Meta Title" error={errors.metaTitle}>
+            <Field label={`Meta Title${form.status !== 'draft' ? ' *' : ''}`} error={errors.metaTitle}>
               <input value={form.metaTitle} onChange={(e) => setField('metaTitle', e.target.value)} className={inputClass(errors.metaTitle)} placeholder="SEO title" />
             </Field>
 
-            <Field label="Meta Description" error={errors.metaDescription}>
+            <Field label={`Meta Description${form.status !== 'draft' ? ' *' : ''}`} error={errors.metaDescription}>
               <textarea value={form.metaDescription} onChange={(e) => setField('metaDescription', e.target.value)} rows={3} className={inputClass(errors.metaDescription)} placeholder="SEO description" />
             </Field>
 
@@ -259,13 +290,13 @@ export default function BlogForm({
             <p className="text-xs text-slate-400 font-medium hidden sm:block">
               Status: <span className="font-bold text-slate-700 capitalize">{form.status}</span>
               {form.status === 'draft' && (
-                <span className="ml-2 text-amber-600">· Mark as published below before saving to go live</span>
+                <span className="ml-2 text-amber-600">· Mark as Published below before saving to go live</span>
               )}
             </p>
             <div className="flex gap-3 w-full sm:w-auto">
               <button
                 type="button"
-                disabled={isSubmitting}
+                disabled={isSubmitting || Boolean(successMessage)}
                 onClick={() => setField('status', form.status === 'published' ? 'draft' : 'published')}
                 className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border font-bold text-sm transition-all disabled:opacity-60 ${
                   form.status === 'published'
@@ -278,7 +309,7 @@ export default function BlogForm({
               </button>
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || Boolean(successMessage)}
                 className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-primary text-white font-bold hover:brightness-110 transition-all disabled:opacity-60"
               >
                 {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}

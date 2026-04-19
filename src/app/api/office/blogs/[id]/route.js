@@ -9,8 +9,11 @@ function unauthorised() {
 export async function GET(_request, { params }) {
   if (!(await isAdminAuthenticated())) return unauthorised();
 
+  // params is a Promise in Next.js 15+ — must be awaited before accessing properties
+  const { id } = await params;
+
   try {
-    const data = await getAdminBlogById(params.id);
+    const data = await getAdminBlogById(id);
     if (!data) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
     }
@@ -25,9 +28,11 @@ export async function GET(_request, { params }) {
 export async function PATCH(request, { params }) {
   if (!(await isAdminAuthenticated())) return unauthorised();
 
+  const { id } = await params;
+
   try {
     const body = await request.json();
-    const updated = await updateBlog(params.id, body);
+    const updated = await updateBlog(id, body);
 
     if (!updated) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
@@ -52,8 +57,10 @@ export async function PATCH(request, { params }) {
 export async function DELETE(_request, { params }) {
   if (!(await isAdminAuthenticated())) return unauthorised();
 
+  const { id } = await params;
+
   try {
-    const removed = await deleteBlog(params.id);
+    const removed = await deleteBlog(id);
 
     if (!removed) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });

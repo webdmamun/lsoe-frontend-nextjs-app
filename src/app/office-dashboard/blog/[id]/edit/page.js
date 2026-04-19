@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { use, useEffect, useState } from 'react';
 import BlogForm from '@/components/office/blog/BlogForm';
 import DashboardShell from '@/components/office/DashboardShell';
 import { Loader2 } from 'lucide-react';
 
 export default function EditBlogPage({ params }) {
-  const router = useRouter();
+  // params is a Promise in Next.js 15+ — use() unwraps it synchronously for client components
+  const { id } = use(params);
+
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -18,7 +19,7 @@ export default function EditBlogPage({ params }) {
       setError('');
 
       try {
-        const res = await fetch(`/api/office/blogs/${params.id}`, { cache: 'no-store' });
+        const res = await fetch(`/api/office/blogs/${id}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok || !json.success) {
           throw new Error(json.error || 'Failed to load blog post');
@@ -32,10 +33,10 @@ export default function EditBlogPage({ params }) {
     };
 
     run();
-  }, [params.id]);
+  }, [id]);
 
   const handleUpdate = async (payload) => {
-    const res = await fetch(`/api/office/blogs/${params.id}`, {
+    const res = await fetch(`/api/office/blogs/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -45,9 +46,7 @@ export default function EditBlogPage({ params }) {
     if (!res.ok || !json.success) {
       throw new Error(json.error || 'Failed to update blog post');
     }
-
-    router.refresh();
-    router.push('/office-dashboard/blog');
+    // Navigation is handled by BlogForm after showing success message
   };
 
   if (isLoading) {

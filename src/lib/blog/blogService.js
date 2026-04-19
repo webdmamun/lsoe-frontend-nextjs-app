@@ -140,9 +140,12 @@ function normalizeIncomingPost(input = {}, { partial = false } = {}) {
     normalized.publishDate = nowIso();
   }
 
-  const errors = [];
-  const required = ['title', 'slug', 'excerpt', 'content', 'metaTitle', 'metaDescription', 'authorName', 'category'];
+  // Draft only requires title; published requires the full content set.
+  const DRAFT_REQUIRED = ['title'];
+  const PUBLISH_REQUIRED = ['title', 'slug', 'excerpt', 'content', 'metaTitle', 'metaDescription', 'authorName', 'category'];
+  const required = normalized.status === BLOG_STATUS.PUBLISHED ? PUBLISH_REQUIRED : DRAFT_REQUIRED;
 
+  const errors = [];
   if (!partial) {
     for (const key of required) {
       if (!normalized[key]) errors.push(`${key} is required`);
@@ -344,9 +347,10 @@ export async function deleteBlog(id) {
   }
 
   const supabase = getSupabaseClient();
-  const { error } = await supabase.from('blogs').delete().eq('id', id);
+  const { data, error } = await supabase.from('blogs').delete().eq('id', id).select('id');
   if (error) throw error;
-  return true;
+  // Returns false when no row matched (caller treats this as 404)
+  return Array.isArray(data) && data.length > 0;
 }
 
 // Backward-compatible aliases used by existing pages/routes.

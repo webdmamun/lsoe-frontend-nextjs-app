@@ -16,8 +16,11 @@ export async function DELETE(_request, { params }) {
   const auth = await requireAdmin();
   if (!auth.ok) return auth.response;
 
+  // params is a Promise in Next.js 15+ — must be awaited before accessing properties
+  const { id } = await params;
+
   try {
-    await deleteOfficeAdminUser(params.id, {
+    await deleteOfficeAdminUser(id, {
       currentUserId: auth.session.userId,
       currentEmail: auth.session.email,
     });
@@ -40,4 +43,3 @@ export async function DELETE(_request, { params }) {
     return NextResponse.json({ success: false, error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
-
