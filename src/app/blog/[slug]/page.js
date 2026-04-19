@@ -119,7 +119,7 @@ export default async function BlogArticlePage({ params }) {
 
       <AdmissionNav isDark={true} />
 
-      <article className="bg-white">
+      <article className="bg-white pt-20 lg:pt-24">
         <nav aria-label="breadcrumb" className="bg-slate-50 border-b border-slate-100">
           <div className="max-w-4xl mx-auto px-6 py-3 flex flex-wrap items-center gap-1 text-sm text-slate-500">
             <Link href="/" className="hover:text-brand-primary transition-colors">Home</Link>
@@ -130,7 +130,7 @@ export default async function BlogArticlePage({ params }) {
           </div>
         </nav>
 
-        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-40 pb-20 px-6 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-20 pb-20 px-6 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(38,178,230,0.14),transparent_60%)]" />
           <div className="max-w-4xl mx-auto relative z-10">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">{post.category}</p>
@@ -152,7 +152,7 @@ export default async function BlogArticlePage({ params }) {
               <img
                 src={post.featuredImage}
                 alt={post.title}
-                className="w-full max-h-[480px] object-cover rounded-3xl border border-slate-100 shadow-sm mb-10"
+                className="w-full h-auto rounded-3xl border border-slate-100 shadow-sm mb-10"
               />
             ) : null}
 
