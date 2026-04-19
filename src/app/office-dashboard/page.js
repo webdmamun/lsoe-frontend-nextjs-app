@@ -4,7 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  LogOut, Users, Search, Loader2, Handshake, Gift, Trash2, X,
+  LogOut, Users, Search, Loader2, Trash2, X,
   Mail, Phone, Globe2, MapPin, CalendarDays, GraduationCap,
   Building2, AlertTriangle, RefreshCw, Eye, BookOpen, ChevronDown,
   UserCheck, Star, Clock, CheckCircle2, XCircle, Briefcase, Newspaper, Shield,
@@ -462,8 +462,6 @@ export default function AdminDashboard() {
 
   const tabConfig = [
     { key: "applications", label: "Applications", icon: Users },
-    { key: "partners",     label: "Partners",     icon: Handshake },
-    { key: "referrals",   label: "Referrals",    icon: Gift },
   ];
 
   // Table column headers per tab
@@ -497,7 +495,7 @@ export default function AdminDashboard() {
       <aside className="hidden lg:flex w-64 xl:w-72 bg-[#012759] text-white flex-col fixed inset-y-0 z-20 shadow-xl">
         <div className="p-6 xl:p-8 border-b border-white/10">
           <div className="text-xl xl:text-2xl font-black tracking-tight text-white">LSOE Admin</div>
-          <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Lead Management</p>
+          <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Office Dashboard</p>
           <div className="mt-5 rounded-2xl border border-white/15 bg-white/5 px-4 py-3">
             <p className="text-sm font-bold text-white truncate">{sessionMeta.name}</p>
             <p className="text-[11px] uppercase tracking-wider text-slate-300 mt-0.5">
@@ -568,19 +566,17 @@ export default function AdminDashboard() {
             <Newspaper className="w-4 h-4 shrink-0" />
             Blogs
           </button>
-          {isSuperAdmin ? (
-            <button
-              onClick={() => router.push("/office-dashboard/users")}
-              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
-                pathname.startsWith("/office-dashboard/users")
-                  ? "bg-white/15 text-white"
-                  : "text-slate-300 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              <Shield className="w-4 h-4 shrink-0" />
-              Users
-            </button>
-          ) : null}
+          <button
+            onClick={() => router.push("/office-dashboard/users")}
+            className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
+              pathname.startsWith("/office-dashboard/users")
+                ? "bg-white/15 text-white"
+                : "text-slate-300 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            <Shield className="w-4 h-4 shrink-0" />
+            Users
+          </button>
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl font-medium text-sm transition-colors"
@@ -643,24 +639,6 @@ export default function AdminDashboard() {
           </div>
         </header>
 
-        {/* Mobile Tab Bar */}
-        <div className="lg:hidden flex border-b border-gray-200 bg-white px-4 gap-1 overflow-x-auto">
-          {tabConfig.map(({ key, label, icon: Icon }) => (
-            <button
-              key={key}
-              onClick={() => { setActiveTab(key); setDetailItem(null); }}
-              className={`flex items-center gap-1.5 px-4 py-3 text-sm font-semibold border-b-2 whitespace-nowrap transition-colors ${
-                activeTab === key ? "border-brand-secondary text-brand-primary" : "border-transparent text-gray-400 hover:text-gray-700"
-              }`}
-            >
-              <Icon className="w-4 h-4" /> {label}
-              <span className={`ml-1 text-xs px-1.5 py-0.5 rounded-full font-bold ${activeTab === key ? "bg-brand-secondary/10 text-brand-secondary" : "bg-gray-100 text-gray-400"}`}>
-                {counts[key]}
-              </span>
-            </button>
-          ))}
-        </div>
-
         {/* Status Filter Tabs */}
         <div className="bg-white border-b border-gray-100 px-4 sm:px-8 py-3 flex items-center gap-2 overflow-x-auto">
           <button
@@ -719,7 +697,7 @@ export default function AdminDashboard() {
           ) : filteredData.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-32 text-gray-400 bg-white rounded-2xl border border-dashed border-gray-200">
               <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-4">
-                {activeTab === "applications" ? <Users className="w-8 h-8 text-gray-200" /> : activeTab === "partners" ? <Handshake className="w-8 h-8 text-gray-200" /> : <Gift className="w-8 h-8 text-gray-200" />}
+                <Users className="w-8 h-8 text-gray-200" />
               </div>
               <p className="text-lg font-bold text-gray-600">No {activeTab} found</p>
               <p className="text-sm text-gray-400 mt-1 font-medium">Try changing your filters or search term</p>

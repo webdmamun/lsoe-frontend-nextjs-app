@@ -8,7 +8,6 @@ export default function DashboardShell({ children }) {
   const router = useRouter();
   const pathname = usePathname();
   const [sessionMeta, setSessionMeta] = useState({ name: 'Admin User', role: 'admin' });
-  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -19,7 +18,6 @@ export default function DashboardShell({ children }) {
         if (!mounted) return;
         const role = json?.data?.role || 'admin';
         const name = json?.data?.name || json?.data?.email || 'Admin User';
-        setIsSuperAdmin(Boolean(res.ok && json?.success && role === 'super_admin'));
         setSessionMeta({ name, role });
       } catch { /* keep defaults */ }
     })();
@@ -34,7 +32,7 @@ export default function DashboardShell({ children }) {
   const navItems = [
     { href: '/office-dashboard', label: 'Dashboard', icon: LayoutDashboard, exact: true },
     { href: '/office-dashboard/blog', label: 'Blogs', icon: Newspaper },
-    ...(isSuperAdmin ? [{ href: '/office-dashboard/users', label: 'Users', icon: Shield }] : []),
+    { href: '/office-dashboard/users', label: 'Users', icon: Shield },
   ];
 
   const initials = sessionMeta.name
