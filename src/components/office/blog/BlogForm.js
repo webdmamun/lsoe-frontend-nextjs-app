@@ -84,7 +84,7 @@ export default function BlogForm({
       category: initialData.category || 'General',
     });
     setSavedStatus(initialData.status || 'draft');
-    setSlugTouched(Boolean(initialData.slug));
+    setSlugTouched(true);
   }, [initialData]);
 
   useEffect(() => {
@@ -146,7 +146,7 @@ export default function BlogForm({
     try {
       await onSubmit({
         ...form,
-        slug: slugify(form.slug || form.title),
+        slug: form.slug.trim() || slugify(form.title),
         publishDate: form.publishDate ? new Date(form.publishDate).toISOString() : null,
         tags: form.tags,
       });
