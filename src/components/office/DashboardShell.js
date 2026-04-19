@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { LayoutDashboard, LogOut, Newspaper, Shield } from 'lucide-react';
+import { LayoutDashboard, LogOut, Newspaper, Shield, Users } from 'lucide-react';
 
 export default function DashboardShell({ children }) {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function DashboardShell({ children }) {
   };
 
   const navItems = [
-    { href: '/office-dashboard', label: 'Dashboard', icon: LayoutDashboard, exact: true },
+    { href: '/office-dashboard', label: 'Applications', icon: Users, exact: true },
     { href: '/office-dashboard/blog', label: 'Blogs', icon: Newspaper },
     { href: '/office-dashboard/users', label: 'Users', icon: Shield },
   ];
@@ -44,7 +44,8 @@ export default function DashboardShell({ children }) {
 
   return (
     <div className="min-h-screen flex bg-slate-100/70">
-      {/* ── Sidebar ── */}
+
+      {/* ── Desktop Sidebar ── */}
       <aside className="hidden lg:flex w-64 xl:w-72 bg-[#012759] text-white flex-col fixed inset-y-0 z-20 shadow-xl">
         <div className="p-6 xl:p-8 border-b border-white/10">
           <div className="text-xl xl:text-2xl font-black tracking-tight text-white">LSOE Admin</div>
@@ -110,18 +111,14 @@ export default function DashboardShell({ children }) {
               </button>
             );
           })}
-          <button
-            onClick={handleLogout}
-            title="Sign Out"
-            className="p-2 rounded-lg text-slate-400 hover:text-white"
-          >
+          <button onClick={handleLogout} title="Sign Out" className="p-2 rounded-lg text-slate-400 hover:text-white">
             <LogOut className="w-4 h-4" />
           </button>
         </div>
       </div>
 
       {/* ── Main content ── */}
-      <main className="flex-1 lg:ml-64 xl:ml-72 pt-14 lg:pt-0 min-h-screen">
+      <main className="flex-1 lg:ml-64 xl:ml-72 pt-14 lg:pt-0 min-h-screen flex flex-col">
         {children}
       </main>
     </div>
