@@ -46,6 +46,7 @@ export default function EditBlogPage({ params }) {
       throw new Error(json.error || 'Failed to update blog post');
     }
 
+    router.refresh();
     router.push('/office-dashboard/blog');
   };
 

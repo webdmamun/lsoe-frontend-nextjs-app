@@ -18,6 +18,7 @@ export default function CreateBlogPage() {
       throw new Error(json.error || 'Failed to create blog');
     }
 
+    router.refresh();
     router.push('/office-dashboard/blog');
   };
 
