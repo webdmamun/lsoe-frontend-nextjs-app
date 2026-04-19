@@ -119,8 +119,8 @@ export default async function BlogArticlePage({ params }) {
 
       <AdmissionNav isDark={true} />
 
-      <article className="bg-white pt-20 lg:pt-24">
-        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-14 pb-10 px-6 overflow-hidden">
+      <article className="bg-white">
+        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-36 lg:pt-40 pb-10 px-6 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(38,178,230,0.14),transparent_60%)]" />
           <div className="max-w-4xl mx-auto relative z-10">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">{post.category}</p>
