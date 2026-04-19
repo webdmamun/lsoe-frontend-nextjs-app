@@ -40,14 +40,15 @@ export const dynamicParams = false;
 
 // ── Metadata ───────────────────────────────────────────────────────────────────
 export async function generateMetadata({ params }) {
-  const course = await getCourseBySlug(params.category, params.slug);
+  const { category, slug } = await params;
+  const course = await getCourseBySlug(category, slug);
   if (!course) return { title: 'Course Not Found' };
   return generateCourseMetadata(course);
 }
 
 // ── Page ───────────────────────────────────────────────────────────────────────
 export default async function CourseDetailPage({ params }) {
-  const { category, slug } = params;
+  const { category, slug } = await params;
 
   const [course, allInCategory] = await Promise.all([
     getCourseBySlug(category, slug),

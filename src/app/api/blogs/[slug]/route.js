@@ -3,7 +3,8 @@ import { getPublishedBlogBySlug } from '@/lib/blog/blogService';
 
 export async function GET(_request, { params }) {
   try {
-    const blog = await getPublishedBlogBySlug(params.slug);
+    const { slug } = await params;
+    const blog = await getPublishedBlogBySlug(slug);
     if (!blog) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
     }

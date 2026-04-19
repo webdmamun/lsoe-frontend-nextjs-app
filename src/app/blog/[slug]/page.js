@@ -31,7 +31,8 @@ function getRelevantCourseLinks(post) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getPublishedBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) {
     return {
@@ -68,7 +69,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function BlogArticlePage({ params }) {
-  const post = await getPublishedBlogBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPublishedBlogBySlug(slug);
 
   if (!post) {
     notFound();
