@@ -5,6 +5,7 @@ import { Loader2, Save, Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { estimateReadingTimeMinutes, slugify } from '@/lib/blog/blogUtils';
 import DashboardShell from '@/components/office/DashboardShell';
+import BlogImageUploader from '@/components/office/blog/BlogImageUploader';
 
 const DEFAULT_FORM = {
   title: '',
@@ -226,12 +227,19 @@ export default function BlogForm({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Field label="Featured Image URL">
-                <input value={form.featuredImage} onChange={(e) => setField('featuredImage', e.target.value)} className={inputClass()} placeholder="https://..." />
-              </Field>
-              <Field label="OG Image URL">
-                <input value={form.ogImage} onChange={(e) => setField('ogImage', e.target.value)} className={inputClass()} placeholder="https://..." />
-              </Field>
+              <BlogImageUploader
+                label="Featured Image"
+                value={form.featuredImage}
+                onChange={(url) => {
+                  setField('featuredImage', url);
+                  if (!form.ogImage) setField('ogImage', url);
+                }}
+              />
+              <BlogImageUploader
+                label="OG Image"
+                value={form.ogImage}
+                onChange={(url) => setField('ogImage', url)}
+              />
             </div>
 
             <Field label="Meta Title" error={errors.metaTitle}>
