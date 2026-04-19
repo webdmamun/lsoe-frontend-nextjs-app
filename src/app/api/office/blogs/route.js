@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { createBlog, listAdminBlogs } from '@/lib/blog/blogService';
 import { isAdminAuthenticated } from '@/lib/blog/adminAuth';
 
@@ -28,6 +29,13 @@ export async function POST(request) {
   try {
     const body = await request.json();
     const created = await createBlog(body);
+
+    // Invalidate ISR cache so /blog reflects new published post immediately
+    revalidatePath('/blog', 'page');
+    if (created.status === 'published' && created.slug) {
+      revalidatePath(`/blog/${created.slug}`, 'page');
+    }
+
     return NextResponse.json({ success: true, data: created }, { status: 201 });
   } catch (error) {
     console.error('[/api/office/blogs] POST error:', error);

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { CheckCircle2, ArrowLeft, Loader2, Save, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ArrowLeft, Loader2, Save, Send } from 'lucide-react';
 import Link from 'next/link';
 import { estimateReadingTimeMinutes, slugify } from '@/lib/blog/blogUtils';
 import DashboardShell from '@/components/office/DashboardShell';
@@ -25,13 +25,14 @@ const DEFAULT_FORM = {
   category: 'General',
 };
 
-// Fields required only when publishing (not for drafts)
+// Ordered list used for validation error summaries
 const PUBLISH_REQUIRED = [
   { key: 'slug',            label: 'Slug' },
   { key: 'excerpt',         label: 'Excerpt' },
   { key: 'content',         label: 'Content' },
   { key: 'metaTitle',       label: 'Meta title' },
   { key: 'metaDescription', label: 'Meta description' },
+  { key: 'publishDate',     label: 'Publish date' },
 ];
 
 function toLocalDateTimeInput(value) {
@@ -51,6 +52,8 @@ export default function BlogForm({
 }) {
   const router = useRouter();
   const [form, setForm] = useState(DEFAULT_FORM);
+  // Tracks the last-saved status (DB state). Badge compares against this to show pending state.
+  const [savedStatus, setSavedStatus] = useState('draft');
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [slugTouched, setSlugTouched] = useState(false);
@@ -60,6 +63,7 @@ export default function BlogForm({
   useEffect(() => {
     if (!initialData) {
       setForm(DEFAULT_FORM);
+      setSavedStatus('draft');
       return;
     }
 
@@ -79,6 +83,7 @@ export default function BlogForm({
       tags: Array.isArray(initialData.tags) ? initialData.tags.join(', ') : '',
       category: initialData.category || 'General',
     });
+    setSavedStatus(initialData.status || 'draft');
     setSlugTouched(Boolean(initialData.slug));
   }, [initialData]);
 
@@ -88,6 +93,9 @@ export default function BlogForm({
   }, [form.title, slugTouched]);
 
   const readingTimePreview = useMemo(() => estimateReadingTimeMinutes(form.content), [form.content]);
+
+  // True when the user has toggled status locally but hasn't saved yet
+  const statusPending = form.status !== savedStatus;
 
   const setField = (key, value) => {
     setApiError('');
@@ -100,24 +108,36 @@ export default function BlogForm({
     const nextErrors = {};
     const isDraft = form.status === 'draft';
 
-    // Title always required
     if (!form.title.trim()) nextErrors.title = 'Title is required';
 
-    // Extra fields required only when publishing
     if (!isDraft) {
       for (const { key, label } of PUBLISH_REQUIRED) {
-        if (!form[key].trim()) nextErrors[key] = `${label} is required to publish`;
+        const val = key === 'publishDate' ? form[key] : form[key]?.trim?.() ?? '';
+        if (!val) nextErrors[key] = `${label} is required to publish`;
       }
-      if (!form.publishDate) nextErrors.publishDate = 'Publish date is required to publish';
     }
 
     setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    return nextErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+
+    const fieldErrors = validate();
+
+    if (Object.keys(fieldErrors).length > 0) {
+      // If publishing is blocked, show a clear summary at the top
+      if (form.status === 'published') {
+        const missing = PUBLISH_REQUIRED
+          .filter(({ key }) => fieldErrors[key])
+          .map(({ label }) => label);
+        if (missing.length > 0) {
+          setApiError(`Cannot publish — missing required fields: ${missing.join(', ')}`);
+        }
+      }
+      return;
+    }
 
     setIsSubmitting(true);
     setApiError('');
@@ -133,8 +153,8 @@ export default function BlogForm({
 
       const msg = form.status === 'published' ? 'Post published successfully!' : 'Draft saved!';
       setSuccessMessage(msg);
+      setSavedStatus(form.status);
 
-      // Navigate to list after a brief success display
       setTimeout(() => {
         router.refresh();
         router.push('/office-dashboard/blog');
@@ -145,6 +165,20 @@ export default function BlogForm({
       setIsSubmitting(false);
     }
   };
+
+  // Badge configuration based on status + whether it's been saved yet
+  const badgeConfig = (() => {
+    if (form.status === 'published') {
+      if (statusPending) {
+        return { cls: 'bg-blue-100 text-blue-700 border-blue-200', label: 'Will publish on save', icon: <Send className="w-3.5 h-3.5" /> };
+      }
+      return { cls: 'bg-green-100 text-green-700 border-green-200', label: 'Published', icon: <CheckCircle2 className="w-3.5 h-3.5" /> };
+    }
+    if (statusPending) {
+      return { cls: 'bg-slate-100 text-slate-600 border-slate-200', label: 'Will revert to draft', icon: null };
+    }
+    return { cls: 'bg-amber-100 text-amber-700 border-amber-200', label: 'Draft', icon: null };
+  })();
 
   return (
     <DashboardShell>
@@ -159,13 +193,9 @@ export default function BlogForm({
             <p className="text-sm text-slate-500 mt-2">{description}</p>
           </div>
           <div className="hidden sm:flex flex-col items-end gap-1.5">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border ${
-              form.status === 'published'
-                ? 'bg-green-100 text-green-700 border-green-200'
-                : 'bg-amber-100 text-amber-700 border-amber-200'
-            }`}>
-              {form.status === 'published' ? <CheckCircle2 className="w-3.5 h-3.5" /> : null}
-              {form.status === 'published' ? 'Published' : 'Draft'}
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border ${badgeConfig.cls}`}>
+              {badgeConfig.icon}
+              {badgeConfig.label}
             </span>
             <p className="text-xs text-slate-400">~{readingTimePreview} min read</p>
           </div>
@@ -174,7 +204,8 @@ export default function BlogForm({
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Error banner */}
           {apiError ? (
-            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600 font-medium">
+            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-600 font-medium flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               {apiError}
             </div>
           ) : null}
@@ -289,7 +320,10 @@ export default function BlogForm({
           <div className="sticky bottom-0 bg-white/95 backdrop-blur border border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
             <p className="text-xs text-slate-400 font-medium hidden sm:block">
               Status: <span className="font-bold text-slate-700 capitalize">{form.status}</span>
-              {form.status === 'draft' && (
+              {statusPending && (
+                <span className="ml-2 text-blue-600">· Unsaved — click Save Post to apply</span>
+              )}
+              {!statusPending && form.status === 'draft' && (
                 <span className="ml-2 text-amber-600">· Mark as Published below before saving to go live</span>
               )}
             </p>

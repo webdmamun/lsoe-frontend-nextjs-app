@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { deleteBlog, getAdminBlogById, updateBlog } from '@/lib/blog/blogService';
 import { isAdminAuthenticated } from '@/lib/blog/adminAuth';
 
@@ -9,7 +10,6 @@ function unauthorised() {
 export async function GET(_request, { params }) {
   if (!(await isAdminAuthenticated())) return unauthorised();
 
-  // params is a Promise in Next.js 15+ — must be awaited before accessing properties
   const { id } = await params;
 
   try {
@@ -38,6 +38,12 @@ export async function PATCH(request, { params }) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
     }
 
+    // Invalidate /blog index and the specific slug page so changes appear immediately
+    revalidatePath('/blog', 'page');
+    if (updated.slug) {
+      revalidatePath(`/blog/${updated.slug}`, 'page');
+    }
+
     return NextResponse.json({ success: true, data: updated });
   } catch (error) {
     console.error('[/api/office/blogs/[id]] PATCH error:', error);
@@ -60,10 +66,18 @@ export async function DELETE(_request, { params }) {
   const { id } = await params;
 
   try {
+    // Fetch slug before deleting so we can revalidate the specific page
+    const existing = await getAdminBlogById(id);
+
     const removed = await deleteBlog(id);
 
     if (!removed) {
       return NextResponse.json({ success: false, error: 'Blog not found' }, { status: 404 });
+    }
+
+    revalidatePath('/blog', 'page');
+    if (existing?.slug) {
+      revalidatePath(`/blog/${existing.slug}`, 'page');
     }
 
     return NextResponse.json({ success: true, message: 'Blog deleted' });
