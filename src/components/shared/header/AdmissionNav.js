@@ -61,6 +61,7 @@ export default function AdmissionNav({ isDark = false }) {
   const navLinks = [
     { name: "UK / EU",       href: "/uk-eu-students" },
     { name: "International", href: "/international-students" },
+    { name: "Blog",          href: "/blog" },
     { name: "About Us",      href: "/about-us" },
     { name: "Contact Us",    href: "/contact-us" },
   ];
@@ -68,6 +69,7 @@ export default function AdmissionNav({ isDark = false }) {
   const mobileNavLinks = [
     { name: "UK / EU Students",       href: "/uk-eu-students" },
     { name: "International Students", href: "/international-students" },
+    { name: "Blog",                   href: "/blog" },
     { name: "About Us",               href: "/about-us" },
     { name: "Contact Us",             href: "/contact-us" },
   ];

@@ -83,6 +83,7 @@ const studentsLinks = [
 ];
 
 const resourcesLinks = [
+  { name: "Blog",                      href: "/blog" },
   { name: "UCAS Guide",                href: "/ucas-guide" },
   { name: "FAQ",                       href: "/faq" },
   { name: "Financial Planning",        href: "/financial-planning-scholarships" },
