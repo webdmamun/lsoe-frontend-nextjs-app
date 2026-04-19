@@ -12,7 +12,7 @@ const GlobalFooter = () => {
           <Link href="/">
             <ReactSVG
               className="w-60 mb-3"
-              src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE_Logo_White.svg"
+              src="https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE_Logo_White.svg"
             />
           </Link>
           {/* <p className="text-sm font-normal text-gray-600">

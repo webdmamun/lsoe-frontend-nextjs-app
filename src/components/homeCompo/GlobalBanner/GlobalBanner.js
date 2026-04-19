@@ -5,19 +5,19 @@ import Link from "next/link";
 
 const originalColumnVideos = [
   [
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/9_foyoaa.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/7_cgroas.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/8_g17ctr.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/9_foyoaa.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/7_cgroas.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/8_g17ctr.mp4",
   ],
   [
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_3_yj5hqm.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_1_apdmms.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/6_hrubya.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_3_yj5hqm.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_1_apdmms.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/6_hrubya.mp4",
   ],
   [
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/3_z1zoun.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/2_dht7kl.mp4",
-    "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_2_llaykh.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/3_z1zoun.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/2_dht7kl.mp4",
+    "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_2_llaykh.mp4",
   ],
 ];
 

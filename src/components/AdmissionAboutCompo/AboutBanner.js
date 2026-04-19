@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, Play, Globe2, GraduationCap, Award, Users } from "lucide-react";
 
 const videoSlides = [
-  "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_1_apdmms.mp4",
-  "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_3_yj5hqm.mp4",
-  "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-videos/video_2_llaykh.mp4",
+  "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_1_apdmms.mp4",
+  "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_3_yj5hqm.mp4",
+  "https://media.londonschoolofexcellence.com/lsoe-website-videos/video_2_llaykh.mp4",
 ];
 
 export default function AboutBanner() {

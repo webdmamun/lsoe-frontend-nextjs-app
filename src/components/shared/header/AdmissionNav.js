@@ -72,8 +72,8 @@ export default function AdmissionNav({ isDark = false }) {
     { name: "Contact Us",             href: "/contact-us" },
   ];
 
-  const colorLogo = "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png";
-  const whiteLogo = "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE_Logo_White.png";
+  const colorLogo = "https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE-logo-color.png";
+  const whiteLogo = "https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE_Logo_White.png";
   const useWhiteBranding = !isScrolled && isDark;
 
   const isUsefulLinksActive =

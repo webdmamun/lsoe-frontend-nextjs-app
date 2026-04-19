@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { Camera, MapPin, Sparkles } from "lucide-react";
 
 const galleryImages = [
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/8_vlbnq9.jpg", title: "Global Summit 2023", location: "London, UK" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/12_ojx6hf.jpg", title: "Partner Alliance", location: "Global" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/16_kcj6tv.jpg", title: "Student Success", location: "Cambridge" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/20_itr77f.jpg", title: "Innovation Lab", location: "LSOE HQ" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/15_dfqjd1.jpg", title: "Cultural Exchange", location: "Oxford" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/7_zlrodv.jpg", title: "Alumni Meet", location: "Manchester" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/10_wrfawl.jpg", title: "Future Leaders", location: "London" },
-  { url: "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/about-gallery/1_nzhco8.jpg", title: "Excellence Awards", location: "Global" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/8_vlbnq9.jpg", title: "Global Summit 2023", location: "London, UK" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/12_ojx6hf.jpg", title: "Partner Alliance", location: "Global" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/16_kcj6tv.jpg", title: "Student Success", location: "Cambridge" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/20_itr77f.jpg", title: "Innovation Lab", location: "LSOE HQ" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/15_dfqjd1.jpg", title: "Cultural Exchange", location: "Oxford" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/7_zlrodv.jpg", title: "Alumni Meet", location: "Manchester" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/10_wrfawl.jpg", title: "Future Leaders", location: "London" },
+  { url: "https://media.londonschoolofexcellence.com/lsoe-website-images/about-gallery/1_nzhco8.jpg", title: "Excellence Awards", location: "Global" },
 ];
 
 export default function AboutGallary() {

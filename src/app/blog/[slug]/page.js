@@ -95,7 +95,7 @@ export default async function BlogArticlePage({ params }) {
       name: 'London School of Excellence',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png',
+        url: 'https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE-logo-color.png',
       },
     },
     datePublished: post.publishDate,

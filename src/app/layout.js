@@ -16,9 +16,9 @@ export const metadata = {
     'London School of Excellence (LSOE) is a free UK university admissions consultancy based in London. Expert guidance for Home and international students on UCAS applications, Student Route visas, scholarships, and accommodation since 2013.',
   authors: [{ name: 'London School of Excellence Admissions Team' }],
   icons: {
-    icon: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
-    shortcut: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
-    apple: 'https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/favicon.jpg',
+    icon: 'https://media.londonschoolofexcellence.com/lsoe-website-images/favicon.jpg',
+    shortcut: 'https://media.londonschoolofexcellence.com/lsoe-website-images/favicon.jpg',
+    apple: 'https://media.londonschoolofexcellence.com/lsoe-website-images/favicon.jpg',
   },
   openGraph: {
     title: 'London School of Excellence | UK University Admissions Consultancy',
@@ -74,11 +74,11 @@ export default function RootLayout({ children }) {
                   "url": "https://www.londonschoolofexcellence.com",
                   "logo": {
                     "@type": "ImageObject",
-                    "url": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
+                    "url": "https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE-logo-color.png",
                     "width": 400,
                     "height": 100
                   },
-                  "image": "https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE-logo-color.png",
+                  "image": "https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE-logo-color.png",
                   "description": "London School of Excellence (LSOE) is a free UK university admissions consultancy based in London, providing expert guidance for Home and international students since 2013.",
                   "address": {
                     "@type": "PostalAddress",

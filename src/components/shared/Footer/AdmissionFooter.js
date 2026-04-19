@@ -183,7 +183,7 @@ const AdmissionFooter = () => {
           <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6">
             <Link href="/" className="block">
               <img
-                src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/LSOE_Logo_White.png"
+                src="https://media.londonschoolofexcellence.com/lsoe-website-images/LSOE_Logo_White.png"
                 alt="London School of Excellence — UK University Admissions"
                 className="w-52 brightness-110"
               />
@@ -233,7 +233,7 @@ const AdmissionFooter = () => {
               <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Certified By</p>
               <div className="bg-white/5 p-3 rounded-xl inline-block border border-white/10 hover:border-white/20 transition-colors">
                 <img
-                  src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/british%20council.png"
+                  src="https://media.londonschoolofexcellence.com/lsoe-website-images/british%20council.png"
                   alt="British Council Certified"
                   className="w-28 opacity-90 hover:opacity-100 transition-opacity"
                 />

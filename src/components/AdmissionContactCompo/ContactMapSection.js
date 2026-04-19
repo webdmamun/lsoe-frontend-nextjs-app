@@ -61,7 +61,7 @@ export default function ContactMapSection() {
               className="relative rounded-[3rem] overflow-hidden shadow-2xl group w-full aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/9] border-4 border-white bg-slate-100"
             >
               <img 
-                src="https://pub-7c1483b325f34a29a5b9ac96b82f4941.r2.dev/lsoe-website-images/office%20image.jpg" 
+                src="https://media.londonschoolofexcellence.com/lsoe-website-images/office%20image.jpg" 
                 alt="LSOE London Office" 
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
