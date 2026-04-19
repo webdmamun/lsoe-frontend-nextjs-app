@@ -120,17 +120,7 @@ export default async function BlogArticlePage({ params }) {
       <AdmissionNav isDark={true} />
 
       <article className="bg-white pt-20 lg:pt-24">
-        <nav aria-label="breadcrumb" className="bg-slate-50 border-b border-slate-100">
-          <div className="max-w-4xl mx-auto px-6 py-3 flex flex-wrap items-center gap-1 text-sm text-slate-500">
-            <Link href="/" className="hover:text-brand-primary transition-colors">Home</Link>
-            <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-            <Link href="/blog" className="hover:text-brand-primary transition-colors">Blog</Link>
-            <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-            <span className="text-slate-800 font-medium truncate max-w-[240px]">{post.title}</span>
-          </div>
-        </nav>
-
-        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-20 pb-20 px-6 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-slate-900 to-slate-800 pt-14 pb-10 px-6 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(38,178,230,0.14),transparent_60%)]" />
           <div className="max-w-4xl mx-auto relative z-10">
             <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-3">{post.category}</p>
@@ -143,6 +133,16 @@ export default async function BlogArticlePage({ params }) {
               <span>Last updated: {new Date(post.updatedAt || post.publishDate).toLocaleDateString('en-GB')}</span>
               <span>{formatReadingTimeLabel(post.readingTime)}</span>
             </div>
+
+            <nav aria-label="breadcrumb" className="mt-8 pt-6 border-t border-white/10">
+              <div className="flex flex-wrap items-center gap-1 text-sm text-slate-400">
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                <ChevronRight className="w-3.5 h-3.5 opacity-40" />
+                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+                <ChevronRight className="w-3.5 h-3.5 opacity-40" />
+                <span className="text-slate-300 font-medium truncate max-w-[320px]">{post.title}</span>
+              </div>
+            </nav>
           </div>
         </section>
 

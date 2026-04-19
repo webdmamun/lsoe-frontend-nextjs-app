@@ -70,7 +70,7 @@ export default async function BlogIndexPage() {
                   className="group block bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
                 >
                   {post.featuredImage ? (
-                    <img src={post.featuredImage} alt={post.title} className="w-full h-48 object-cover" loading="lazy" />
+                    <img src={post.featuredImage} alt={post.title} className="w-full h-auto" loading="lazy" />
                   ) : null}
 
                   <div className="p-6 flex-1 flex flex-col">
