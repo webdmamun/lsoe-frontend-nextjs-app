@@ -11,6 +11,41 @@ import {
 import DashboardShell from "@/components/office/DashboardShell";
 import StatCard from "@/components/office/ui/StatCard";
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function parseLabel(value) {
+  if (!value) return '';
+  try {
+    const parsed = JSON.parse(value);
+    if (parsed && typeof parsed === 'object') return String(parsed.label || parsed.value || value);
+  } catch { /* not JSON */ }
+  return String(value);
+}
+
+function formatDateTime(value) {
+  if (!value) return '';
+  try {
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return String(value);
+    return d.toLocaleString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    });
+  } catch {
+    return String(value);
+  }
+}
+
+function formatDate(value) {
+  if (!value) return '';
+  try {
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return String(value);
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  } catch {
+    return String(value);
+  }
+}
+
 // ─── Status Configurations ────────────────────────────────────────────────────
 const STATUS_CONFIG = {
   applications: {
@@ -154,7 +189,7 @@ function DetailDrawer({ item, tab, onClose, onStatusUpdate, isUpdating }) {
         <div className="flex-1 min-w-0">
           <h2 className="text-xl font-extrabold text-gray-900 truncate">{name}</h2>
           <p className="text-xs text-gray-400 font-medium mt-0.5">
-            {new Date(item.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+            {formatDate(item.createdAt)}
           </p>
           <div className="mt-2"><StatusPill status={item.status} tab={tab} /></div>
         </div>
@@ -188,27 +223,37 @@ function DetailDrawer({ item, tab, onClose, onStatusUpdate, isUpdating }) {
       <div className="flex-1 overflow-y-auto p-6 space-y-5">
         {tab === "applications" && (
           <>
-            <div className="grid grid-cols-2 gap-5">
-              <Field label="Email" value={item.email} icon={Mail} />
-              <Field label="Phone" value={item.phone} icon={Phone} />
-              <Field label="Nationality" value={item.nationality} icon={Globe2} />
-              <Field label="English Level" value={item.englishLevel} icon={GraduationCap} />
-              <Field label="Origin" value={item.origin === "uk" ? "UK Resident" : "International"} icon={MapPin} />
-              <Field label="Live in England" value={item.liveInEngland} />
+            {/* Contact */}
+            <div>
+              <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest mb-3">Contact</p>
+              <div className="grid grid-cols-2 gap-5">
+                <Field label="Email" value={item.email} icon={Mail} />
+                <Field label="Phone" value={item.phone} icon={Phone} />
+                <Field label="Nationality" value={item.nationality} icon={Globe2} />
+                <Field label="English Level" value={item.englishLevel} icon={GraduationCap} />
+              </div>
             </div>
             <div className="h-px bg-gray-100" />
+            {/* UK / EU fields */}
             {item.origin === "uk" ? (
-              <div className="grid grid-cols-2 gap-5">
-                <Field label="Study Location" value={item.studyLocation} icon={BookOpen} />
-                <Field label="Residency Status" value={item.residencyStatus} />
-                <Field label="Preferred Call Date" value={item.callDate} icon={CalendarDays} />
+              <div>
+                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest mb-3">UK / EU Application</p>
+                <div className="grid grid-cols-2 gap-5">
+                  {parseLabel(item.studyLocation) && <Field label="Study Location" value={parseLabel(item.studyLocation)} icon={BookOpen} />}
+                  {item.residencyStatus && <Field label="Residency Status" value={item.residencyStatus} />}
+                  {item.liveInEngland && <Field label="Live in England" value={item.liveInEngland} />}
+                  {item.callDate && <Field label="Preferred Call Time" value={formatDateTime(item.callDate)} icon={CalendarDays} />}
+                </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-5">
-                <Field label="Subject of Interest" value={item.interestedSubject} icon={BookOpen} />
-                <Field label="City" value={item.city} />
-                <Field label="Country" value={item.country} icon={Globe2} />
-                <Field label="Preferred Call Date" value={item.callDate} icon={CalendarDays} />
+              <div>
+                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest mb-3">International Application</p>
+                <div className="grid grid-cols-2 gap-5">
+                  {parseLabel(item.interestedSubject) && <Field label="Subject of Interest" value={parseLabel(item.interestedSubject)} icon={BookOpen} />}
+                  {item.country && <Field label="Country" value={item.country} icon={Globe2} />}
+                  {item.city && <Field label="City" value={item.city} icon={MapPin} />}
+                  {item.callDate && <Field label="Preferred Call Time" value={formatDateTime(item.callDate)} icon={CalendarDays} />}
+                </div>
               </div>
             )}
           </>
@@ -260,6 +305,7 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [originFilter, setOriginFilter] = useState("all");
   const [counts, setCounts] = useState({ applications: 0, referrals: 0 });
   const [detailItem, setDetailItem] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
@@ -276,6 +322,7 @@ export default function AdminDashboard() {
     setIsLoading(true);
     setData([]);
     setStatusFilter("All");
+    setOriginFilter("all");
     setSearchTerm("");
     try {
       const res = await fetch(ENDPOINTS[activeTab]);
@@ -342,6 +389,7 @@ export default function AdminDashboard() {
   const filteredData = data.filter((item) => {
     const term = searchTerm.toLowerCase();
     const matchesStatus = statusFilter === "All" || item.status === statusFilter;
+    const matchesOrigin = activeTab !== "applications" || originFilter === "all" || item.origin === originFilter;
     let matchesSearch = true;
     if (term) {
       if (activeTab === "applications") {
@@ -352,7 +400,7 @@ export default function AdminDashboard() {
           .some((v) => v?.toLowerCase().includes(term));
       }
     }
-    return matchesStatus && matchesSearch;
+    return matchesStatus && matchesOrigin && matchesSearch;
   });
 
   const statuses = STATUS_CONFIG[activeTab]?.statuses || [];
@@ -367,7 +415,7 @@ export default function AdminDashboard() {
   ];
 
   const tableHeaders = {
-    applications: ["Lead", "Contact", "Origin", "Subject / Loc.", "English", "Date", "Status", ""],
+    applications: ["Applicant", "Contact", "Origin", "Study Interest", "English", "Date", "Status", ""],
     referrals:    ["Student", "Contact", "Referred By", "Destination", "Level", "Date", "Status", ""],
   };
 
@@ -413,7 +461,7 @@ export default function AdminDashboard() {
       <div className="bg-white border-b border-gray-200 px-4 sm:px-8 flex gap-1 overflow-x-auto">
         {tabConfig.map(({ key, label, icon: Icon }) => (
           <button key={key}
-            onClick={() => { setActiveTab(key); setDetailItem(null); }}
+            onClick={() => { setActiveTab(key); setDetailItem(null); setOriginFilter("all"); }}
             className={`flex items-center gap-1.5 px-4 py-3 text-sm font-semibold border-b-2 whitespace-nowrap transition-colors ${
               activeTab === key ? "border-brand-secondary text-brand-primary" : "border-transparent text-gray-400 hover:text-gray-700"
             }`}
@@ -450,6 +498,32 @@ export default function AdminDashboard() {
           );
         })}
       </div>
+
+      {/* ── Origin Filter (Applications only) ── */}
+      {activeTab === "applications" && (
+        <div className="bg-slate-50 border-b border-gray-100 px-4 sm:px-8 py-2.5 flex items-center gap-2 overflow-x-auto">
+          <span className="text-[11px] font-black uppercase tracking-wider text-gray-400 shrink-0 mr-1">Origin:</span>
+          {[
+            { value: "all",           label: "All",           count: data.length },
+            { value: "uk",            label: "UK / EU",       count: data.filter((d) => d.origin === "uk").length },
+            { value: "international", label: "International",  count: data.filter((d) => d.origin === "international").length },
+          ].map(({ value, label, count }) => (
+            <button key={value} onClick={() => setOriginFilter(value)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
+                originFilter === value
+                  ? value === "uk"
+                    ? "bg-indigo-600 text-white"
+                    : value === "international"
+                    ? "bg-teal-600 text-white"
+                    : "bg-gray-900 text-white"
+                  : "bg-white text-gray-500 border border-gray-200 hover:bg-gray-100"
+              }`}
+            >
+              {label} ({count})
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* ── Content ── */}
       <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1400px] w-full mx-auto">
@@ -502,46 +576,52 @@ export default function AdminDashboard() {
                         <>
                           <td className="px-4 py-3.5 whitespace-nowrap">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white flex items-center justify-center text-xs font-extrabold shrink-0">
+                              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white flex items-center justify-center text-xs font-extrabold shrink-0 shadow-sm">
                                 {item.firstName?.[0]}{item.lastName?.[0]}
                               </div>
                               <div>
-                                <p className="font-bold text-gray-900 text-sm leading-tight">{item.firstName} {item.lastName}</p>
-                                <p className="text-[11px] text-gray-400 font-medium">{item.nationality || "—"}</p>
+                                <p className="font-extrabold text-gray-900 text-sm leading-tight">{item.firstName} {item.lastName}</p>
+                                <p className="text-[11px] text-gray-400 font-medium mt-0.5">{item.nationality || "—"}</p>
                               </div>
                             </div>
                           </td>
                           <td className="px-4 py-3.5">
-                            <p className="text-sm font-medium text-gray-700 max-w-[180px] truncate">{item.email}</p>
-                            <p className="text-xs text-gray-400 font-medium">{item.phone}</p>
+                            <p className="text-sm font-medium text-gray-700 max-w-[200px] truncate">{item.email}</p>
+                            <p className="text-xs text-gray-400 mt-0.5">{item.phone || "—"}</p>
                           </td>
                           <td className="px-4 py-3.5 whitespace-nowrap">
-                            <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-bold border ${
-                              item.origin === "uk"
-                                ? "bg-indigo-50 text-indigo-700 border-indigo-100"
-                                : "bg-teal-50 text-teal-700 border-teal-100"
-                            }`}>
-                              {item.origin === "uk" ? <MapPin className="w-3 h-3" /> : <Globe2 className="w-3 h-3" />}
-                              {item.origin === "uk" ? "UK" : "Intl"}
+                            {item.origin === "uk" ? (
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                                <MapPin className="w-3 h-3" /> UK / EU
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-teal-50 text-teal-700 border border-teal-100">
+                                <Globe2 className="w-3 h-3" /> International
+                              </span>
+                            )}
+                          </td>
+                          <td className="px-4 py-3.5 max-w-[180px]">
+                            <p className="text-sm font-semibold text-gray-800 truncate">
+                              {item.origin === "uk"
+                                ? (parseLabel(item.studyLocation) || "—")
+                                : (parseLabel(item.interestedSubject) || "—")}
+                            </p>
+                            <p className="text-[11px] text-gray-400 mt-0.5 truncate">
+                              {item.origin === "uk"
+                                ? (item.residencyStatus || "")
+                                : [item.city, item.country].filter(Boolean).join(", ")}
+                            </p>
+                          </td>
+                          <td className="px-4 py-3.5 whitespace-nowrap">
+                            <span className="text-xs font-bold text-gray-600 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-lg">
+                              {item.englishLevel || "—"}
                             </span>
                           </td>
-                          <td className="px-4 py-3.5">
-                            <p className="text-sm font-semibold text-gray-700 max-w-[140px] truncate">
-                              {item.origin === "uk" ? item.studyLocation : item.interestedSubject}
-                            </p>
-                            <p className="text-[11px] text-gray-400">
-                              {item.origin === "uk"
-                                ? item.residencyStatus
-                                : `${item.city || ""}${item.city && item.country ? ", " : ""}${item.country || ""}`}
-                            </p>
-                          </td>
                           <td className="px-4 py-3.5 whitespace-nowrap">
-                            <span className="text-xs font-semibold text-gray-600 bg-gray-50 border border-gray-200 px-2 py-1 rounded-lg">{item.englishLevel || "—"}</span>
-                          </td>
-                          <td className="px-4 py-3.5 whitespace-nowrap">
-                            <p className="text-xs font-medium text-gray-500">
-                              {new Date(item.createdAt).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
-                            </p>
+                            <p className="text-xs font-semibold text-gray-600">{formatDate(item.createdAt)}</p>
+                            {item.callDate && (
+                              <p className="text-[11px] text-gray-400 mt-0.5">Call: {formatDateTime(item.callDate)}</p>
+                            )}
                           </td>
                           <td className="px-4 py-3.5" onClick={(e) => e.stopPropagation()}>
                             <StatusSelect item={item} tab={activeTab} onUpdate={handleStatusUpdate} isUpdating={isUpdating} />
@@ -588,9 +668,7 @@ export default function AdminDashboard() {
                             <span className="text-xs font-semibold text-gray-600 bg-gray-50 border border-gray-200 px-2 py-1 rounded-lg">{item.studyLevel || "—"}</span>
                           </td>
                           <td className="px-4 py-3.5 whitespace-nowrap">
-                            <p className="text-xs font-medium text-gray-500">
-                              {new Date(item.createdAt).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
-                            </p>
+                            <p className="text-xs font-semibold text-gray-600">{formatDate(item.createdAt)}</p>
                           </td>
                           <td className="px-4 py-3.5" onClick={(e) => e.stopPropagation()}>
                             <StatusSelect item={item} tab={activeTab} onUpdate={handleStatusUpdate} isUpdating={isUpdating} />

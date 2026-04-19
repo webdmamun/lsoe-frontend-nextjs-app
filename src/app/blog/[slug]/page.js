@@ -11,7 +11,6 @@ import { notFound } from 'next/navigation';
 const SITE_URL = 'https://www.londonschoolofexcellence.com';
 
 export const revalidate = 300;
-export const dynamic = 'force-dynamic';
 
 const COURSE_LINKS = [
   { href: '/courses/business', label: 'Business & Management courses in the UK', keywords: ['business', 'management', 'marketing', 'finance', 'hr'] },
@@ -196,14 +195,18 @@ export default async function BlogArticlePage({ params }) {
               <h2 className="text-2xl font-black text-slate-900 mb-6">Related Posts</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {related.map((item) => (
-                  <article key={item.id} className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
+                  <Link
+                    key={item.id}
+                    href={`/blog/${item.slug}`}
+                    className="group block bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+                  >
                     <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">{item.category}</p>
-                    <h3 className="font-black text-slate-900 text-base mb-2 leading-snug">{item.title}</h3>
+                    <h3 className="font-black text-slate-900 text-base mb-2 leading-snug group-hover:text-brand-primary transition-colors">{item.title}</h3>
                     <p className="text-sm text-slate-500 mb-4">{item.excerpt}</p>
-                    <Link href={`/blog/${item.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:underline">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary group-hover:underline">
                       Read article <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </article>
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>

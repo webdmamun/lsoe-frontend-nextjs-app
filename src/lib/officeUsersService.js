@@ -47,9 +47,31 @@ function getEnvSuperAdminRecord() {
 
   return {
     id: 'env-super-admin',
-    name: 'Environment Super Admin',
+    name: 'System Admin',
     email: email || username,
-    role: OFFICE_ROLES.SUPER_ADMIN,
+    role: OFFICE_ROLES.ADMIN,
+    status: 'active',
+    createdAt: null,
+    source: 'env',
+  };
+}
+
+function getEnvAdminRecord() {
+  const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
+  const username = String(process.env.ADMIN_USERNAME || '').trim();
+  const label = email || username;
+  if (!label) return null;
+
+  // Don't duplicate if same identity as super admin env record
+  const superEmail = String(process.env.SUPER_ADMIN_EMAIL || '').trim().toLowerCase();
+  const superUsername = String(process.env.SUPER_ADMIN_USERNAME || '').trim();
+  if (label === superEmail || (username && username === superUsername)) return null;
+
+  return {
+    id: 'env-admin',
+    name: 'System Admin',
+    email: email || username,
+    role: OFFICE_ROLES.ADMIN,
     status: 'active',
     createdAt: null,
     source: 'env',
@@ -96,7 +118,9 @@ export async function listOfficeAdminUsers({ search = '', role = 'all' } = {}) {
     .map(mapAuthUser);
 
   const envSuperAdmin = getEnvSuperAdminRecord();
+  const envAdmin = getEnvAdminRecord();
   if (envSuperAdmin) mapped = [envSuperAdmin, ...mapped];
+  if (envAdmin) mapped = [envAdmin, ...mapped];
 
   const query = String(search || '').trim().toLowerCase();
   if (query) {

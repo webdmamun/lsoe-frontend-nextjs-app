@@ -6,19 +6,14 @@ function unauthorised() {
   return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
 }
 
-function forbidden() {
-  return NextResponse.json({ success: false, error: 'Forbidden' }, { status: 403 });
-}
-
-async function requireSuperAdmin() {
+async function requireAdmin() {
   const session = await getOfficeSession();
   if (!session.isAuthenticated) return { ok: false, response: unauthorised() };
-  if (session.role !== OFFICE_ROLES.SUPER_ADMIN) return { ok: false, response: forbidden() };
   return { ok: true, session };
 }
 
 export async function GET(request) {
-  const auth = await requireSuperAdmin();
+  const auth = await requireAdmin();
   if (!auth.ok) return auth.response;
 
   try {
@@ -35,7 +30,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const auth = await requireSuperAdmin();
+  const auth = await requireAdmin();
   if (!auth.ok) return auth.response;
 
   try {

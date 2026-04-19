@@ -25,7 +25,6 @@ export const metadata = {
 };
 
 export const revalidate = 300;
-export const dynamic = 'force-dynamic';
 
 export default async function BlogIndexPage() {
   const posts = await listPublishedBlogs();
@@ -65,14 +64,18 @@ export default async function BlogIndexPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {posts.map((post) => (
-                <article key={post.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="group block bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
                   {post.featuredImage ? (
                     <img src={post.featuredImage} alt={post.title} className="w-full h-48 object-cover" loading="lazy" />
                   ) : null}
 
                   <div className="p-6 flex-1 flex flex-col">
                     <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">{post.category}</p>
-                    <h2 className="text-lg font-black text-slate-900 mb-3 leading-snug">{post.title}</h2>
+                    <h2 className="text-lg font-black text-slate-900 mb-3 leading-snug group-hover:text-brand-primary transition-colors">{post.title}</h2>
                     <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1">{post.excerpt}</p>
 
                     <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
@@ -81,11 +84,11 @@ export default async function BlogIndexPage() {
                       <span>{formatReadingTimeLabel(post.readingTime)}</span>
                     </div>
 
-                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:underline">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary group-hover:underline">
                       Read article <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    </span>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           )}

@@ -18,7 +18,9 @@ function isLocalFallback() {
   const source = (process.env.BLOG_DATA_SOURCE || '').toLowerCase();
   if (source === 'supabase') return false;
 
-  if (process.env.NODE_ENV === 'production') {
+  // Only throw in actual Vercel deployments (VERCEL_ENV is injected automatically).
+  // Local `pnpm build` sets NODE_ENV=production but never sets VERCEL_ENV — allow seed fallback.
+  if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV) {
     throw new Error('[blogService] BLOG_DATA_SOURCE must be set to "supabase" in production');
   }
 

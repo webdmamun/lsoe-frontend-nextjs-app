@@ -43,17 +43,18 @@ const NativeSelect = ({ label, required, error, options, ...props }) => (
   </div>
 );
 
-const Checkbox = ({ label, required, error, ...props }) => (
+const Checkbox = ({ label, required, error, id, ...props }) => (
   <div className="flex items-start gap-3 mt-4">
     <div className="flex items-center h-5 mt-0.5">
-      <input 
-        type="checkbox" 
+      <input
+        id={id}
+        type="checkbox"
         className="w-5 h-5 rounded border-gray-300 text-brand-secondary focus:ring-brand-secondary"
         {...props}
       />
     </div>
     <div className="flex-1">
-      <label className="text-sm text-gray-600 font-medium leading-relaxed">
+      <label htmlFor={id} className="text-sm text-gray-600 font-medium leading-relaxed cursor-pointer">
         {label} {required && <span className="text-brand-secondary">*</span>}
       </label>
       {error && <p className="text-xs text-red-500 font-medium mt-1">{error}</p>}
@@ -534,7 +535,8 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
                     <div className="pt-4 border-t border-gray-100 mt-6">
                       <Checkbox 
-                        label="I agree to the Terms & Conditions and consent to LSOE processing my personal data according to the Privacy Policy."
+                        id="acceptedTerms"
+                        label={<>I agree to the{' '}<a href="/terms" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="underline text-brand-secondary hover:text-brand-primary transition-colors">Terms &amp; Conditions</a>{' '}and consent to LSOE processing my personal data according to the{' '}<a href="/privacy-policy" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="underline text-brand-secondary hover:text-brand-primary transition-colors">Privacy Policy</a>.</>}
                         required
                         checked={formData.acceptedTerms}
                         onChange={(e) => updateField('acceptedTerms', e.target.checked)}
@@ -671,7 +673,8 @@ export default function ApplyNowForm({ isStandalone = false, initialOrigin = nul
 
                     <div className="pt-4 border-t border-gray-100 mt-6">
                       <Checkbox 
-                        label="I agree to the Terms & Conditions and consent to LSOE processing my personal data according to the Privacy Policy."
+                        id="acceptedTerms"
+                        label={<>I agree to the{' '}<a href="/terms" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="underline text-brand-secondary hover:text-brand-primary transition-colors">Terms &amp; Conditions</a>{' '}and consent to LSOE processing my personal data according to the{' '}<a href="/privacy-policy" target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="underline text-brand-secondary hover:text-brand-primary transition-colors">Privacy Policy</a>.</>}
                         required
                         checked={formData.acceptedTerms}
                         onChange={(e) => updateField('acceptedTerms', e.target.checked)}
