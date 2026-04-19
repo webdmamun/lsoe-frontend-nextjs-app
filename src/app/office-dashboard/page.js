@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   LogOut, Users, Search, Loader2, Handshake, Gift, Trash2, X,
   Mail, Phone, Globe2, MapPin, CalendarDays, GraduationCap,
   Building2, AlertTriangle, RefreshCw, Eye, BookOpen, ChevronDown,
-  UserCheck, Star, Clock, CheckCircle2, XCircle, Briefcase,
+  UserCheck, Star, Clock, CheckCircle2, XCircle, Briefcase, Newspaper, Shield,
 } from "lucide-react";
 
 // ─── Status Configurations ────────────────────────────────────────────────────
@@ -325,7 +325,10 @@ export default function AdminDashboard() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdating, setIsUpdating] = useState(null); // item id currently being updated
   const [toast, setToast] = useState(null);
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
+  const [sessionMeta, setSessionMeta] = useState({ name: "Admin User", role: "admin" });
   const router = useRouter();
+  const pathname = usePathname();
 
   const showToast = (msg, type = "success") => {
     setToast({ msg, type });
@@ -345,16 +348,38 @@ export default function AdminDashboard() {
         setData(rows);
         setCounts((prev) => ({ ...prev, [activeTab]: rows.length }));
       } else {
-        console.error(`API error for ${activeTab}:`, res.status);
+        showToast(`Failed to load ${activeTab} (${res.status})`, "error");
       }
-    } catch (err) {
-      console.error(`Failed to fetch ${activeTab}:`, err);
+    } catch {
+      showToast(`Network error — could not load ${activeTab}`, "error");
     } finally {
       setIsLoading(false);
     }
   }, [activeTab]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch("/api/office/session", { cache: "no-store" });
+        const json = await res.json();
+        if (!mounted) return;
+        const role = json?.data?.role || "admin";
+        const name = json?.data?.name || json?.data?.email || "Admin User";
+        setIsSuperAdmin(Boolean(res.ok && json?.success && role === "super_admin"));
+        setSessionMeta({ name, role });
+      } catch {
+        if (!mounted) return;
+        setIsSuperAdmin(false);
+        setSessionMeta({ name: "Admin User", role: "admin" });
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   // Update status
   const handleStatusUpdate = async (id, newStatus) => {
@@ -448,14 +473,37 @@ export default function AdminDashboard() {
     referrals:    ["Student", "Contact", "Referred By", "Destination", "Level", "Date", "Status", ""],
   };
 
+  const activeTitle = activeTab === "applications"
+    ? "Applications"
+    : activeTab === "partners"
+      ? "Partnership Requests"
+      : "Student Referrals";
+
+  const newLeadsCount = data.filter((item) => {
+    const firstStatus = STATUS_CONFIG[activeTab]?.statuses[0];
+    return item.status === firstStatus;
+  }).length;
+
+  const summaryCards = [
+    { label: "Total Leads", value: data.length, icon: Users },
+    { label: "Filtered Results", value: filteredData.length, icon: Search },
+    { label: "New / Uncontacted", value: newLeadsCount, icon: Clock },
+  ];
+
   return (
-    <div className="min-h-screen flex bg-slate-50">
+    <div className="min-h-screen flex bg-slate-100/70">
 
       {/* ── Sidebar ───────────────────────────────────────────────────── */}
-      <aside className="hidden lg:flex w-64 xl:w-72 bg-[#012759] text-white flex-col fixed inset-y-0 z-20">
+      <aside className="hidden lg:flex w-64 xl:w-72 bg-[#012759] text-white flex-col fixed inset-y-0 z-20 shadow-xl">
         <div className="p-6 xl:p-8 border-b border-white/10">
           <div className="text-xl xl:text-2xl font-black tracking-tight text-white">LSOE Admin</div>
           <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Lead Management</p>
+          <div className="mt-5 rounded-2xl border border-white/15 bg-white/5 px-4 py-3">
+            <p className="text-sm font-bold text-white truncate">{sessionMeta.name}</p>
+            <p className="text-[11px] uppercase tracking-wider text-slate-300 mt-0.5">
+              {String(sessionMeta.role || "admin").replace("_", " ")}
+            </p>
+          </div>
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -497,7 +545,42 @@ export default function AdminDashboard() {
           })}
         </nav>
 
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-white/10 space-y-1.5">
+          <button
+            onClick={() => router.push("/office-dashboard")}
+            className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
+              pathname === "/office-dashboard"
+                ? "bg-white/15 text-white"
+                : "text-slate-300 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            <Users className="w-4 h-4 shrink-0" />
+            Dashboard
+          </button>
+          <button
+            onClick={() => router.push("/office-dashboard/blog")}
+            className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
+              pathname.startsWith("/office-dashboard/blog")
+                ? "bg-white/15 text-white"
+                : "text-slate-300 hover:text-white hover:bg-white/5"
+            }`}
+          >
+            <Newspaper className="w-4 h-4 shrink-0" />
+            Blogs
+          </button>
+          {isSuperAdmin ? (
+            <button
+              onClick={() => router.push("/office-dashboard/users")}
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-colors ${
+                pathname.startsWith("/office-dashboard/users")
+                  ? "bg-white/15 text-white"
+                  : "text-slate-300 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <Shield className="w-4 h-4 shrink-0" />
+              Users
+            </button>
+          ) : null}
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl font-medium text-sm transition-colors"
@@ -512,12 +595,11 @@ export default function AdminDashboard() {
       <main className="flex-1 lg:ml-64 xl:ml-72 flex flex-col min-h-screen">
 
         {/* Top Bar */}
-        <header className="bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sticky top-0 z-10 shadow-sm">
-          <div>
-            <h1 className="text-xl font-extrabold text-gray-900 capitalize tracking-tight">
-              {activeTab === "applications" ? "Applications" : activeTab === "partners" ? "Partnership Requests" : "Student Referrals"}
-            </h1>
-            <p className="text-xs text-gray-400 font-medium mt-0.5">{filteredData.length} of {data.length} leads</p>
+        <header className="bg-white/95 backdrop-blur border-b border-gray-200 px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sticky top-0 z-10 shadow-sm">
+          <div className="space-y-0.5">
+            <p className="text-[11px] uppercase tracking-wider font-bold text-slate-400">Dashboard</p>
+            <h1 className="text-xl font-extrabold text-gray-900 capitalize tracking-tight">{activeTitle}</h1>
+            <p className="text-xs text-gray-400 font-medium">{filteredData.length} of {data.length} leads</p>
           </div>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -538,6 +620,22 @@ export default function AdminDashboard() {
             >
               <RefreshCw className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`} />
             </button>
+            <div className="hidden md:flex items-center gap-2 pl-1">
+              <div className="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-black">
+                {(sessionMeta.name || "A")
+                  .split(" ")
+                  .map((v) => v[0] || "")
+                  .join("")
+                  .slice(0, 2)
+                  .toUpperCase()}
+              </div>
+              <div className="leading-tight">
+                <p className="text-sm font-bold text-slate-800 max-w-[140px] truncate">{sessionMeta.name}</p>
+                <p className="text-[11px] uppercase tracking-wide text-slate-400">
+                  {String(sessionMeta.role || "admin").replace("_", " ")}
+                </p>
+              </div>
+            </div>
             {/* Mobile logout */}
             <button onClick={handleLogout} className="lg:hidden p-2.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-500">
               <LogOut className="w-4 h-4" />
@@ -595,7 +693,24 @@ export default function AdminDashboard() {
         </div>
 
         {/* Table Content */}
-        <div className="flex-1 p-4 sm:p-6">
+        <div className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[1400px] w-full mx-auto">
+          <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-6">
+            {summaryCards.map((card) => (
+              <div
+                key={card.label}
+                className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow min-h-[104px] flex items-center justify-between"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-wider font-bold text-slate-400">{card.label}</p>
+                  <p className="mt-2 text-2xl font-black text-slate-900">{card.value}</p>
+                </div>
+                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center">
+                  <card.icon className="w-5 h-5" />
+                </div>
+              </div>
+            ))}
+          </section>
+
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-32 text-gray-400 gap-4">
               <Loader2 className="w-10 h-10 animate-spin text-brand-secondary" />

@@ -112,6 +112,11 @@ export default function LawCoursesPage() {
             LSOE helps you understand which LLB programmes match your career aspirations and
             guides your UCAS application — for free.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-8">
+            Build your plan with{' '}
+            <Link href="/apply-uk-courses" className="font-bold text-white underline hover:text-amber-300">UK course application steps</Link>{' '}
+            and <Link href="/free-admission-support-uk" className="font-bold text-white underline hover:text-amber-300">free admissions support details</Link>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/apply-now" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-amber-800 rounded-full font-bold hover:bg-amber-50 transition-all">
               Apply Now <ArrowRight className="w-4 h-4" />

@@ -70,6 +70,17 @@ export default function AmIEligiblePage() {
             UK universities accept a wide range of qualifications from the UK and overseas.
             This guide explains what is typically required and how your qualifications may be assessed.
           </p>
+          <p className="mt-5 text-sm text-slate-400 max-w-2xl mx-auto">
+            If you are UK-based, compare{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-brand-secondary">
+              local student pathways
+            </Link>{' '}
+            and{' '}
+            <Link href="/uk-student-finance-courses" className="font-bold text-white underline hover:text-brand-secondary">
+              student finance course routes
+            </Link>{' '}
+            before you apply.
+          </p>
         </div>
       </section>
 
@@ -177,6 +188,12 @@ export default function AmIEligiblePage() {
               Ask a Question
             </Link>
           </div>
+          <p className="mt-7 text-white/60 text-sm">
+            Helpful pages:{' '}
+            <Link href="/apply-uk-courses" className="underline hover:text-white">Apply UK Courses</Link>
+            {' · '}
+            <Link href="/free-admission-support-uk" className="underline hover:text-white">Free Admission Support UK</Link>
+          </p>
         </div>
       </section>
 

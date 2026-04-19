@@ -19,6 +19,29 @@ import {
   Briefcase, HeartPulse, Monitor, Scale, Cpu, ShieldCheck, Gift,
 } from 'lucide-react';
 
+const HOMEPAGE_FAQS = [
+  {
+    question: 'Is the LSOE admissions service really free?',
+    answer:
+      'Yes — 100% free. LSOE charges students nothing for its admissions support. Our service is funded by our partner universities, who pay us a referral fee only when a student successfully enrols. You receive full, expert support at absolutely no cost — no hidden fees, no consultancy charges.',
+  },
+  {
+    question: 'Who is eligible for Student Finance England?',
+    answer:
+      "UK Home students (UK nationals and those with settled status) studying at an approved UK university are typically eligible for a Tuition Fee Loan of up to £9,535 per year and a Maintenance Loan based on household income. Some postgraduate students can also access a Master's Loan of up to £12,167. Our advisors can confirm your exact entitlement during a free consultation.",
+  },
+  {
+    question: 'Can international students apply through LSOE?',
+    answer:
+      'Absolutely. LSOE supports students from over 15 countries applying to UK universities. We assist with course selection, university shortlisting, application preparation, and the UK Student Route visa process — all at no charge. English language requirements (typically IELTS 6.0) and equivalent academic qualifications are required.',
+  },
+  {
+    question: 'How long does the UK university application process take?',
+    answer:
+      'The timeline varies by intake. For September entry, most UCAS applications close in January. We recommend starting 3–6 months before your target intake to allow time for document preparation, university offers, and visa processing. Our team will walk you through every step and keep your application on track from start to offer.',
+  },
+];
+
 export const metadata = {
   title: 'UK University Admissions | London School of Excellence',
   description:
@@ -251,10 +274,100 @@ function FreeServiceExplainer() {
   );
 }
 
+function SeoPathwaysSupport() {
+  const links = [
+    {
+      title: 'Browse UK University Courses',
+      desc: 'Explore all available subject areas and progression routes.',
+      href: '/courses',
+    },
+    {
+      title: 'UK Student Finance Courses',
+      desc: 'Funded UK study options for Home and eligible EU students.',
+      href: '/uk-student-finance-courses',
+    },
+    {
+      title: 'Study in the UK for Local Students',
+      desc: 'Flexible routes for learners already based in the UK.',
+      href: '/study-in-uk-local-students',
+    },
+    {
+      title: 'Free Admission Support UK',
+      desc: 'No hidden fees and trusted admissions guidance since 2013.',
+      href: '/free-admission-support-uk',
+    },
+    {
+      title: 'Apply for UK Courses',
+      desc: 'Step-by-step application support from eligibility to submission.',
+      href: '/apply-uk-courses',
+    },
+  ];
+
+  const trustSignals = [
+    'Supporting students since 2013',
+    '10,000+ students supported',
+    '140+ university partners',
+    '100% free consultation',
+    'No hidden fees',
+  ];
+
+  return (
+    <section className="py-16 px-6 bg-white border-t border-slate-100">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-9">
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            UK University Admissions, Student Finance, and Free Support
+          </h2>
+          <p className="mt-3 text-slate-500 text-sm sm:text-base max-w-3xl mx-auto">
+            London School of Excellence supports UK and international pathways with practical admissions help,
+            Student Finance guidance, and fully free consultation support.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {links.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group rounded-2xl border border-slate-100 bg-slate-50 hover:border-brand-primary/30 hover:bg-white p-5 transition-all"
+            >
+              <h3 className="text-sm font-black text-slate-900 group-hover:text-brand-primary transition-colors mb-2">{item.title}</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-2">
+          {trustSignals.map((signal) => (
+            <span
+              key={signal}
+              className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-4 py-1.5 text-xs font-semibold text-slate-600"
+            >
+              {signal}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function HomePage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOMEPAGE_FAQS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <div className="bg-base-100">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AdmissionNav />
       <GlobalBanner />
       <HowItWorks />
@@ -264,6 +377,7 @@ export default function HomePage() {
       <PopularCourses />
       <StudyDestinations />
       <FreeServiceExplainer />
+      <SeoPathwaysSupport />
       <ComprehensiveSupportWUA />
       <ReviewsSection />
       <ReferralProgram />

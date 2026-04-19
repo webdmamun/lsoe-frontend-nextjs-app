@@ -4,7 +4,7 @@ import BreadcrumbSchema from '@/components/common/BreadcrumbSchema';
 import Link from 'next/link';
 import {
   Wallet, CheckCircle2, HelpCircle, Building2, BookOpen, Gift,
-  ArrowRight, GraduationCap, Handshake, Globe2, MapPin, FileText,
+  ArrowRight, GraduationCap, Handshake, Globe2, MapPin, FileText, Landmark,
   MessageCircle, Briefcase, Users,
 } from 'lucide-react';
 
@@ -51,6 +51,16 @@ const studentGuidance = [
     border: 'border-emerald-100 hover:border-emerald-300',
   },
   {
+    icon: <Landmark className="w-7 h-7" />,
+    title: 'UK Student Finance Courses',
+    desc: 'Explore high-intent UK course routes connected to Student Finance England support and funded study planning.',
+    href: '/uk-student-finance-courses',
+    cta: 'Explore funded routes',
+    color: 'text-brand-primary',
+    bg: 'bg-brand-primary/10',
+    border: 'border-brand-primary/10 hover:border-brand-primary/30',
+  },
+  {
     icon: <BookOpen className="w-7 h-7" />,
     title: 'UCAS Guide',
     desc: 'A plain-English walkthrough of the UCAS application system — from creating your account to accepting your offer.',
@@ -84,6 +94,16 @@ const studyPaths = [
     border: 'border-brand-primary/10 hover:border-brand-primary/30',
   },
   {
+    icon: <Users className="w-7 h-7" />,
+    title: 'Study in the UK for Local Students',
+    desc: 'Already in the UK? Discover flexible study modes, local guidance, and practical pathways into university.',
+    href: '/study-in-uk-local-students',
+    cta: 'See local pathways',
+    color: 'text-sky-600',
+    bg: 'bg-sky-50',
+    border: 'border-sky-100 hover:border-sky-300',
+  },
+  {
     icon: <Globe2 className="w-7 h-7" />,
     title: 'International Students',
     desc: 'Overseas students: UK admissions support, Student Route visa guidance, accommodation help, and pre-arrival advice.',
@@ -112,6 +132,16 @@ const studyPaths = [
     color: 'text-rose-600',
     bg: 'bg-rose-50',
     border: 'border-rose-100 hover:border-rose-300',
+  },
+  {
+    icon: <Gift className="w-7 h-7" />,
+    title: 'Free Admission Support UK',
+    desc: 'Understand how LSOE admissions support remains free for students with no hidden fees since 2013.',
+    href: '/free-admission-support-uk',
+    cta: 'See free support details',
+    color: 'text-emerald-600',
+    bg: 'bg-emerald-50',
+    border: 'border-emerald-100 hover:border-emerald-300',
   },
 ];
 

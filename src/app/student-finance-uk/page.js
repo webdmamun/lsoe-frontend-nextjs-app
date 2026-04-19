@@ -84,6 +84,16 @@ export default function StudentFinanceUkPage() {
             If you are a UK Home student applying to university, Student Finance England
             provides loans to cover your tuition fees and living costs. Here is what you need to know.
           </p>
+          <p className="mt-5 text-sm text-slate-400 max-w-2xl mx-auto">
+            Also explore{' '}
+            <Link href="/uk-student-finance-courses" className="font-bold text-white hover:text-brand-secondary underline">
+              UK student finance course pathways
+            </Link>{' '}
+            and our{' '}
+            <Link href="/apply-uk-courses" className="font-bold text-white hover:text-brand-secondary underline">
+              step-by-step UK course application guide
+            </Link>.
+          </p>
         </div>
       </section>
 
@@ -228,6 +238,10 @@ export default function StudentFinanceUkPage() {
           <p className="mt-8 text-white/50 text-sm">
             Also see:{' '}
             <Link href="/am-i-eligible" className="text-white/70 hover:text-white underline">Am I Eligible?</Link>
+            {' · '}
+            <Link href="/study-in-uk-local-students" className="text-white/70 hover:text-white underline">Study in UK (Local Students)</Link>
+            {' · '}
+            <Link href="/free-admission-support-uk" className="text-white/70 hover:text-white underline">Free Admission Support UK</Link>
             {' · '}
             <Link href="/ucas-guide" className="text-white/70 hover:text-white underline">UCAS Guide</Link>
           </p>

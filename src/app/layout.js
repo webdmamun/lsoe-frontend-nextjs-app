@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google';
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -6,8 +5,6 @@ import { ToastContainer } from 'react-toastify';
 import ScrollToTopButton from '@/components/common/ScrollToTopButton';
 import CookieConsent from '@/components/common/CookieConsent';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   metadataBase: new URL('https://www.londonschoolofexcellence.com'),
@@ -61,7 +58,7 @@ export default function RootLayout({ children }) {
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>
+      <body className="font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

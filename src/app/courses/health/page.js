@@ -112,6 +112,11 @@ export default function HealthCoursesPage() {
             Whether you are aiming for NHS nursing, social work, or healthcare management,
             LSOE guides you to the right programme for your qualifications.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-8">
+            For UK-based applicants, review{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-rose-300">flexible local study options</Link>{' '}
+            and <Link href="/apply-uk-courses" className="font-bold text-white underline hover:text-rose-300">application steps for UK courses</Link>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/apply-now" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-rose-700 rounded-full font-bold hover:bg-rose-50 transition-all">
               Apply Now <ArrowRight className="w-4 h-4" />

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /office-dashboard/
+Disallow: /office-login/
+Disallow: /api/
+
+Sitemap: https://www.londonschoolofexcellence.com/sitemap.xml

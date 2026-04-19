@@ -112,6 +112,11 @@ export default function ComputingCoursesPage() {
             From Computer Science to Cybersecurity, LSOE helps you identify the right programme and
             secure your university place — for free.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-8">
+            If you are already in the UK, compare{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-sky-300">local study pathways</Link>{' '}
+            and check <Link href="/uk-student-finance-courses" className="font-bold text-white underline hover:text-sky-300">Student Finance-linked course routes</Link>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/apply-now" className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-sky-700 rounded-full font-bold hover:bg-sky-50 transition-all">
               Apply Now <ArrowRight className="w-4 h-4" />

@@ -1,6 +1,9 @@
 import { getAllStaticParams } from '@/lib/courses/courseData';
+import { getPublishedBlogSlugs } from '@/lib/blog/blogService';
 
-export default function sitemap() {
+export const dynamic = 'force-dynamic';
+
+export default async function sitemap() {
   const base    = 'https://www.londonschoolofexcellence.com';
   // Dynamic date ensures Google always sees the freshest sitemap generation.
   const updated = new Date().toISOString();
@@ -12,6 +15,10 @@ export default function sitemap() {
     { path: '/apply-now',                             priority: 0.9, freq: 'monthly' },
     { path: '/apply/uk-eu',                           priority: 0.9, freq: 'monthly' },
     { path: '/apply/international',                   priority: 0.9, freq: 'monthly' },
+    { path: '/uk-student-finance-courses',            priority: 0.9, freq: 'weekly'  },
+    { path: '/study-in-uk-local-students',            priority: 0.9, freq: 'weekly'  },
+    { path: '/free-admission-support-uk',             priority: 0.9, freq: 'weekly'  },
+    { path: '/apply-uk-courses',                      priority: 0.9, freq: 'weekly'  },
     { path: '/uk-eu-students',                        priority: 0.8, freq: 'monthly' },
     { path: '/international-students',                priority: 0.8, freq: 'monthly' },
     { path: '/student-visa-advice',                   priority: 0.8, freq: 'monthly' },
@@ -38,8 +45,8 @@ export default function sitemap() {
     { path: '/faq',                                   priority: 0.8, freq: 'monthly' },
     { path: '/partner-institutions',                  priority: 0.7, freq: 'monthly' },
     { path: '/ucas-guide',                            priority: 0.8, freq: 'monthly' },
+    { path: '/blog',                                  priority: 0.8, freq: 'weekly'  },
     // De-prioritised / legal
-    { path: '/aqf-guide',                             priority: 0.3, freq: 'yearly'  },
     { path: '/privacy-policy',                        priority: 0.3, freq: 'yearly'  },
     { path: '/terms',                                 priority: 0.3, freq: 'yearly'  },
     { path: '/modern-slavery-policy',                 priority: 0.3, freq: 'yearly'  },
@@ -63,5 +70,13 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...courseDetailEntries];
+  const blogSlugs = await getPublishedBlogSlugs();
+  const blogEntries = blogSlugs.map((slug) => ({
+    url: `${base}/blog/${slug}`,
+    lastModified: updated,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...courseDetailEntries, ...blogEntries];
 }

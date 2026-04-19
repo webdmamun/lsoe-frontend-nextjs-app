@@ -112,6 +112,11 @@ export default function BusinessCoursesPage() {
             LSOE advisors help you find the right programme, prepare your UCAS application, and
             secure a place at a suitable university — completely free.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-8">
+            Planning to study locally with funding support? Start with{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-brand-secondary">UK local student pathways</Link>{' '}
+            and <Link href="/uk-student-finance-courses" className="font-bold text-white underline hover:text-brand-secondary">Student Finance course routes</Link>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/apply-now"

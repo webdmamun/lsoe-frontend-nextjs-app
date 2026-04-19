@@ -121,6 +121,11 @@ export default function FoundationCoursesPage() {
             Year is a well-established pathway into UK higher education. It is widely accepted and
             LSOE can guide you through the application process — free of charge.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-4">
+            Start with <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-violet-300">local student pathways</Link>{' '}
+            and <Link href="/apply-uk-courses" className="font-bold text-white underline hover:text-violet-300">application guidance for UK courses</Link>{' '}
+            to map your best entry route.
+          </p>
           <p className="text-slate-400 text-sm max-w-2xl mb-8">
             Foundation programmes are available for UK Home students, EU students, and international
             applicants. Upon successful completion, students typically progress directly to Year 1

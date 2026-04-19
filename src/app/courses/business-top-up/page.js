@@ -120,6 +120,10 @@ export default function BusinessTopUpPage() {
             a Top-Up degree lets you complete a full UK Honours degree in just one year.
             LSOE advisors help you find the right institution and manage your application — free.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-4">
+            Plan your next step with <Link href="/apply-uk-courses" className="font-bold text-white underline hover:text-orange-300">UK application steps</Link>{' '}
+            and <Link href="/free-admission-support-uk" className="font-bold text-white underline hover:text-orange-300">free admissions support information</Link>.
+          </p>
           <p className="text-slate-400 text-sm max-w-2xl mb-8">
             Top-Up degrees are particularly popular with international students who arrive with
             partial qualifications, and UK students who completed college-level Business programmes.

@@ -97,6 +97,12 @@ export default function UkEuStudentsPage() {
             Whether you are applying for the first time or changing your career direction, our London-based advisors
             guide you through UCAS, Student Finance England, and everything in between — at no cost to you.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mx-auto mb-10">
+            See our dedicated guides for{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-brand-secondary">students already in the UK</Link>,{' '}
+            <Link href="/uk-student-finance-courses" className="font-bold text-white underline hover:text-brand-secondary">student finance course options</Link>, and{' '}
+            <Link href="/apply-uk-courses" className="font-bold text-white underline hover:text-brand-secondary">how to apply for UK courses</Link>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/apply/uk-eu"
@@ -197,6 +203,10 @@ export default function UkEuStudentsPage() {
             >
               Browse all UK courses <ArrowRight className="w-3.5 h-3.5" />
             </Link>
+            <p className="mt-3 text-xs text-slate-500">
+              Looking for free support details? Visit{' '}
+              <Link href="/free-admission-support-uk" className="font-bold text-brand-primary hover:underline">Free Admission Support UK</Link>.
+            </p>
           </div>
         </div>
       </section>

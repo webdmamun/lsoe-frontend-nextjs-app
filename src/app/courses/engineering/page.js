@@ -120,6 +120,11 @@ export default function EngineeringCoursesPage() {
             LSOE advisors help you identify an accredited programme that matches your qualifications
             and supports your career goals — free of charge.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-8">
+            Explore <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-teal-300">local UK study routes</Link>{' '}
+            and <Link href="/uk-student-finance-courses" className="font-bold text-white underline hover:text-teal-300">Student Finance course pathways</Link>{' '}
+            before applying.
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/apply-now"

@@ -121,6 +121,12 @@ export default function PostgraduateCoursesPage() {
             you for professional routes that require a Masters or equivalent. LSOE can provide
             guidance on postgraduate options at our partner institutions.
           </p>
+          <p className="text-sm text-slate-400 max-w-2xl mb-4">
+            Returning to study in the UK? Review{' '}
+            <Link href="/study-in-uk-local-students" className="font-bold text-white underline hover:text-pink-300">local student pathways</Link>{' '}
+            and <Link href="/free-admission-support-uk" className="font-bold text-white underline hover:text-pink-300">our free support model</Link>{' '}
+            before finalising your course plan.
+          </p>
           <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-400/30 rounded-xl px-4 py-3 mb-8 max-w-2xl">
             <span className="text-amber-300 text-sm font-medium">
               Note: LSOE&apos;s primary expertise is undergraduate admissions. For postgraduate enquiries,
