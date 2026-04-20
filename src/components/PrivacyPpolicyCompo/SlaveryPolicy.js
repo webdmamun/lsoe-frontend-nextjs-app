@@ -89,7 +89,7 @@ const sections = [
           </p>
           <div className="bg-white p-5 rounded-xl shadow-sm text-sm text-gray-800 space-y-2 border border-red-50">
             <p>For any concerns or further information, please contact us immediately at:</p>
-            <p><a href="mailto:info.office@londonschoolofexcellence.com" className="text-red-600 font-bold hover:underline">info.office@londonschoolofexcellence.com</a></p>
+            <p><a href="mailto:contact@londonschoolofexcellence.com" className="text-red-600 font-bold hover:underline">contact@londonschoolofexcellence.com</a></p>
           </div>
         </div>
       </div>

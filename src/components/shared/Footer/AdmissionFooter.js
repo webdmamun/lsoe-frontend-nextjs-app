@@ -207,19 +207,28 @@ const AdmissionFooter = () => {
                 +44 (0) 1708 784763
               </a>
               <a
-                href="mailto:info.office@londonschoolofexcellence.com"
+                href="tel:+447901024151"
+                className="flex items-center gap-3 text-slate-400 hover:text-brand-secondary transition-colors text-sm group"
+              >
+                <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-brand-primary/20 transition-colors">
+                  <Phone className="w-4 h-4" />
+                </span>
+                +44 7901 024151
+              </a>
+              <a
+                href="mailto:contact@londonschoolofexcellence.com"
                 className="flex items-center gap-3 text-slate-400 hover:text-brand-secondary transition-colors text-sm group"
               >
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-brand-primary/20 transition-colors">
                   <Mail className="w-4 h-4" />
                 </span>
-                info.office@londonschoolofexcellence.com
+                contact@londonschoolofexcellence.com
               </a>
               <div className="flex items-start gap-3 text-slate-400 text-sm">
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-4 h-4" />
                 </span>
-                <span>London, United Kingdom</span>
+                <span>5 Station Parade, Hornchurch, RM12 5AB, United Kingdom</span>
               </div>
               <div className="flex items-center gap-3 text-slate-400 text-sm">
                 <span className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">

@@ -7,8 +7,8 @@ import { PhoneCall, MessageSquare, Mail, MapPin } from "lucide-react";
 export default function AdmissionContactBanner() {
   const contactQuickStats = [
     { icon: <PhoneCall className="w-5 h-5" />, label: "Call Us", val: "Mon — Fri, 10:00 AM — 5:00 PM" },
-    { icon: <MessageSquare className="w-5 h-5" />, label: "WhatsApp", val: "+44 (0)1708 784763" },
-    { icon: <Mail className="w-5 h-5" />, label: "Email", val: "info.office@londonschoolofexcellence.com" },
+    { icon: <MessageSquare className="w-5 h-5" />, label: "WhatsApp", val: "+44 7901 024151" },
+    { icon: <Mail className="w-5 h-5" />, label: "Email", val: "contact@londonschoolofexcellence.com" },
   ];
 
   return (

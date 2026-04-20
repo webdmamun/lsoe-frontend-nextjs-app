@@ -79,13 +79,6 @@ export default function StudyInUkLocalStudentsPage() {
         { name: 'Study in UK for Local Students', href: '/study-in-uk-local-students' },
       ]} />
       <AdmissionNav isDark={true} />
-      <nav aria-label="breadcrumb" className="bg-slate-50 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-6 py-3 flex flex-wrap items-center gap-1 text-sm text-slate-500">
-          <Link href="/" className="hover:text-brand-primary transition-colors">Home</Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-          <span className="text-slate-800 font-medium">Study in UK for Local Students</span>
-        </div>
-      </nav>
 
       <section className="relative bg-gradient-to-br from-slate-900 to-brand-primary pt-40 pb-24 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(38,178,230,0.14),transparent_60%)]" />
@@ -101,6 +94,13 @@ export default function StudyInUkLocalStudentsPage() {
             If you are already based in the UK, you may have access to flexible routes into university.
             LSOE helps local students compare study modes, funding options, and course pathways that fit real-life commitments.
           </p>
+          <nav aria-label="breadcrumb" className="mt-8 pt-6 border-t border-white/10">
+            <ol className="flex flex-wrap items-center justify-center gap-1 text-sm text-slate-500">
+              <li><Link href="/" className="hover:text-slate-300 transition-colors">Home</Link></li>
+              <li><ChevronRight className="w-3.5 h-3.5 opacity-30" /></li>
+              <li className="text-slate-400 font-medium">Study in UK for Local Students</li>
+            </ol>
+          </nav>
         </div>
       </section>
 

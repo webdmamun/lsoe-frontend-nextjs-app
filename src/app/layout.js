@@ -92,7 +92,7 @@ export default function RootLayout({ children }) {
                       "@type": "ContactPoint",
                       "telephone": "+441708784763",
                       "contactType": "admissions",
-                      "email": "info.office@londonschoolofexcellence.com",
+                      "email": "contact@londonschoolofexcellence.com",
                       "areaServed": ["GB", "EU"],
                       "availableLanguage": "English"
                     },
@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
                   "name": "London School of Excellence",
                   "url": "https://www.londonschoolofexcellence.com",
                   "telephone": "+441708784763",
-                  "email": "info.office@londonschoolofexcellence.com",
+                  "email": "contact@londonschoolofexcellence.com",
                   "priceRange": "Free",
                   "currenciesAccepted": "GBP",
                   "paymentAccepted": "Free consultancy service",

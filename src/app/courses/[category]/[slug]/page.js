@@ -104,23 +104,21 @@ export default async function CourseDetailPage({ params }) {
 
       <AdmissionNav />
 
-      {/* ── Breadcrumb ── */}
-      <nav aria-label="breadcrumb" className="bg-slate-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-6 py-3 flex flex-wrap items-center gap-1 text-sm text-slate-500">
-          <Link href="/" className="hover:text-brand-primary transition-colors">Home</Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-          <Link href="/courses" className="hover:text-brand-primary transition-colors">Courses</Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-          <Link href={categoryPath} className="hover:text-brand-primary transition-colors">{categoryLabel}</Link>
-          <ChevronRight className="w-3.5 h-3.5 opacity-40" />
-          <span className="text-slate-800 font-medium truncate max-w-[220px]">{course.title}</span>
-        </div>
-      </nav>
-
       <main>
         {/* ── Hero ── */}
-        <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-16 px-6">
+        <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white pt-32 pb-16 px-6">
           <div className="max-w-5xl mx-auto">
+            <nav aria-label="breadcrumb" className="mb-6">
+              <ol className="flex flex-wrap items-center gap-1 text-sm text-slate-500">
+                <li><Link href="/" className="hover:text-slate-300 transition-colors">Home</Link></li>
+                <li><ChevronRight className="w-3.5 h-3.5 opacity-30" /></li>
+                <li><Link href="/courses" className="hover:text-slate-300 transition-colors">Courses</Link></li>
+                <li><ChevronRight className="w-3.5 h-3.5 opacity-30" /></li>
+                <li><Link href={categoryPath} className="hover:text-slate-300 transition-colors">{categoryLabel}</Link></li>
+                <li><ChevronRight className="w-3.5 h-3.5 opacity-30" /></li>
+                <li className="text-slate-400 font-medium truncate max-w-[220px]">{course.title}</li>
+              </ol>
+            </nav>
             <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand-secondary mb-4">
               {categoryLabel}
             </span>

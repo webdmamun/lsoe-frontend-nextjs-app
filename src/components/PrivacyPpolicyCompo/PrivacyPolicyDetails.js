@@ -33,8 +33,8 @@ const sections = [
             <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Full Legal Name:</strong> London School Of Excellence Ltd</li>
             <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Postal Address:</strong> 5 Station Parade, Hornchurch, RM12 5AB, United Kingdom</li>
             <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Data Protection Officer:</strong> Charley Chappell</li>
-            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Email:</strong> <a href="mailto:info.office@londonschoolofexcellence.com" className="text-brand-secondary font-semibold hover:underline">info.office@londonschoolofexcellence.com</a></li>
-            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Telephone:</strong> +44 7546 795387</li>
+            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Email:</strong> <a href="mailto:contact@londonschoolofexcellence.com" className="text-brand-secondary font-semibold hover:underline">contact@londonschoolofexcellence.com</a></li>
+            <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-secondary"></div> <strong>Telephone:</strong> +44 (0)1708 784763</li>
           </ul>
         </div>
       </div>
@@ -212,7 +212,7 @@ const sections = [
           ))}
         </div>
         <p className="mt-4 text-sm text-gray-500 italic bg-gray-50 p-4 rounded-xl border border-gray-100">
-          To exercise any of these rights, please contact our DPO at <a href="mailto:info.office@londonschoolofexcellence.com" className="text-brand-primary font-bold hover:underline">info.office@londonschoolofexcellence.com</a>.
+          To exercise any of these rights, please contact our DPO at <a href="mailto:contact@londonschoolofexcellence.com" className="text-brand-primary font-bold hover:underline">contact@londonschoolofexcellence.com</a>.
         </p>
       </div>
     ),

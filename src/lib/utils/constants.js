@@ -6,7 +6,7 @@ export const SITE_ACRONYM = "LSOE";
 export const SITE_TAGLINE = "Your Gateway to UK Education and Employment";
 
 // Contact Information
-export const CONTACT_EMAIL = "info.office@londonschoolofexcellence.com";
+export const CONTACT_EMAIL = "contact@londonschoolofexcellence.com";
 export const CONTACT_PHONE = "+44 (0)1708 784763";
 
 // Social Media Links

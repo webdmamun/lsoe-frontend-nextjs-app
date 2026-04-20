@@ -68,12 +68,8 @@ const GlobalFooter = () => {
             <a href="tel:+447901024151">+44 7901 024151</a>
           </h6>
           <h6>
-            <i className="fas fa-fax footer-icon mx-2"></i>
-            <a href="tel:+44(0)1708397393">+44 (0)1708397393</a>
-          </h6>
-          <h6>
             <i className="fas fa-envelope footer-icon mx-2"></i>
-            <a href="mailto:info.office@londonschoolofexcellence.com">info.office@londonschoolofexcellence.com</a>
+            <a href="mailto:contact@londonschoolofexcellence.com">contact@londonschoolofexcellence.com</a>
           </h6>
         </div>
       </footer>
@@ -131,7 +127,7 @@ const GlobalFooter = () => {
               </svg>
             </a>
             <a
-              href="https://api.whatsapp.com/send?phone=447574091716"
+              href="https://api.whatsapp.com/send?phone=447901024151"
               target="_blank"
               rel="noreferrer"
             >
