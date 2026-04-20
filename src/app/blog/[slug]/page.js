@@ -64,7 +64,9 @@ export async function generateMetadata({ params }) {
   }
 
   const canonical = post.canonicalUrl || `/blog/${post.slug}`;
-  const ogImage = post.ogImage || post.featuredImage || '/og-image.png';
+  // Use dedicated ogImage only — featuredImage is a portrait/square thumbnail,
+  // not 1200×630, so it renders incorrectly on social previews.
+  const ogImage = post.ogImage || '/og-image.png';
 
   return {
     title: post.metaTitle || post.title,
@@ -112,7 +114,7 @@ export default async function BlogArticlePage({ params }) {
     '@type': 'Article',
     headline: post.title,
     description: post.metaDescription || post.excerpt,
-    image: [post.ogImage || post.featuredImage || `${SITE_URL}/og-image.png`],
+    image: [post.ogImage || `${SITE_URL}/og-image.png`],
     author: { '@type': 'Person', name: post.authorName },
     publisher: {
       '@type': 'Organization',

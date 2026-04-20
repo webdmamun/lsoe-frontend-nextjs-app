@@ -292,13 +292,10 @@ export default function BlogForm({
               <BlogImageUploader
                 label="Featured Image"
                 value={form.featuredImage}
-                onChange={(url) => {
-                  setField('featuredImage', url);
-                  if (!form.ogImage) setField('ogImage', url);
-                }}
+                onChange={(url) => setField('featuredImage', url)}
               />
               <BlogImageUploader
-                label="OG Image"
+                label="OG Image — 1200×630px for social sharing"
                 value={form.ogImage}
                 onChange={(url) => setField('ogImage', url)}
               />
