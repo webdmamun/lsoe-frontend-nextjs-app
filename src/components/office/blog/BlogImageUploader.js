@@ -3,10 +3,15 @@
 import { useCallback, useRef, useState } from 'react';
 import { ImagePlus, Loader2, X, UploadCloud } from 'lucide-react';
 
-const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif';
+const ACCEPT = 'image/jpeg,image/png,image/webp';
 const MAX_MB = 5;
 
-export default function BlogImageUploader({ value = '', onChange, label = 'Featured Image' }) {
+export default function BlogImageUploader({
+  value = '',
+  onChange,
+  label = 'Featured Image',
+  uploadVariant = 'featured',
+}) {
   const inputRef = useRef(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
@@ -33,13 +38,19 @@ export default function BlogImageUploader({ value = '', onChange, label = 'Featu
       const json = await res.json();
 
       if (!json.success) throw new Error(json.error || 'Upload failed');
-      onChange(json.url);
+
+      const uploadedUrl =
+        json[`${uploadVariant}Url`] ||
+        json.variants?.[uploadVariant] ||
+        json.url;
+
+      onChange(uploadedUrl, json);
     } catch (err) {
       setError(err.message || 'Upload failed');
     } finally {
       setUploading(false);
     }
-  }, [onChange]);
+  }, [onChange, uploadVariant]);
 
   const handleFiles = useCallback((files) => {
     if (!files || files.length === 0) return;
@@ -112,7 +123,7 @@ export default function BlogImageUploader({ value = '', onChange, label = 'Featu
               <p className="text-sm text-slate-500 font-medium text-center">
                 Drag & drop or <span className="text-brand-primary font-bold">click to upload</span>
               </p>
-              <p className="text-xs text-slate-400">JPEG, PNG, WebP, GIF · max {MAX_MB} MB</p>
+              <p className="text-xs text-slate-400">JPEG, PNG, WebP · max {MAX_MB} MB</p>
             </>
           )}
         </div>

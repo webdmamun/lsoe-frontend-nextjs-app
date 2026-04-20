@@ -3,6 +3,7 @@ import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 import BreadcrumbSchema from '@/components/common/BreadcrumbSchema';
 import { formatReadingTimeLabel } from '@/lib/blog/blogUtils';
 import { listPublishedBlogs } from '@/lib/blog/blogService';
+import { DEFAULT_BLOG_IMAGE_URL, getBlogImageUrls } from '@/lib/blog/blogImages.mjs';
 import Link from 'next/link';
 import { ArrowRight, BookOpenText, CalendarDays, MessageCircle, UserCircle2 } from 'lucide-react';
 
@@ -14,13 +15,13 @@ export const metadata = {
     title: 'LSOE Blog | UK Admissions and Student Finance Insights',
     description: 'Helpful guides for UK and international students covering admissions, funding, and course selection.',
     url: '/blog',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'LSOE Blog' }],
+    images: [{ url: DEFAULT_BLOG_IMAGE_URL, width: 1200, height: 630, alt: 'LSOE Blog' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'LSOE Blog | Admissions and Student Finance Guides',
     description: 'Read practical UK admissions and student finance advice from London School of Excellence.',
-    images: ['/og-image.png'],
+    images: [DEFAULT_BLOG_IMAGE_URL],
   },
 };
 
@@ -63,33 +64,42 @@ export default async function BlogIndexPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="group block bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
-                >
-                  {post.featuredImage ? (
-                    <img src={post.featuredImage} alt={post.title} className="w-full h-auto" loading="lazy" />
-                  ) : null}
+              {posts.map((post) => {
+                const images = getBlogImageUrls(post);
 
-                  <div className="p-6 flex-1 flex flex-col">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">{post.category}</p>
-                    <h2 className="text-lg font-black text-slate-900 mb-3 leading-snug group-hover:text-brand-primary transition-colors">{post.title}</h2>
-                    <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1">{post.excerpt}</p>
-
-                    <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
-                      <span className="inline-flex items-center gap-1"><UserCircle2 className="w-3.5 h-3.5" /> {post.authorName}</span>
-                      <span className="inline-flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {new Date(post.publishDate).toLocaleDateString('en-GB')}</span>
-                      <span>{formatReadingTimeLabel(post.readingTime)}</span>
+                return (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className="group block bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all"
+                  >
+                    <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100">
+                      <img
+                        src={images.thumbnail}
+                        alt={post.title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                        loading="lazy"
+                      />
                     </div>
 
-                    <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary group-hover:underline">
-                      Read article <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">{post.category}</p>
+                      <h2 className="text-lg font-black text-slate-900 mb-3 leading-snug group-hover:text-brand-primary transition-colors">{post.title}</h2>
+                      <p className="text-sm text-slate-500 leading-relaxed mb-5 flex-1">{post.excerpt}</p>
+
+                      <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+                        <span className="inline-flex items-center gap-1"><UserCircle2 className="w-3.5 h-3.5" /> {post.authorName}</span>
+                        <span className="inline-flex items-center gap-1"><CalendarDays className="w-3.5 h-3.5" /> {new Date(post.publishDate).toLocaleDateString('en-GB')}</span>
+                        <span>{formatReadingTimeLabel(post.readingTime)}</span>
+                      </div>
+
+                      <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-primary group-hover:underline">
+                        Read article <ArrowRight className="w-4 h-4" />
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>

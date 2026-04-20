@@ -2,11 +2,12 @@
   "name": "lsoe-nextjs",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.21.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "BASELINE_BROWSER_MAPPING_IGNORE_OLD_DATA=true eslint ."
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -16,7 +17,7 @@
     "dotenv": "^17.3.1",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.536.0",
-    "next": "16.0.7",
+    "next": "16.0.10",
     "pg": "^8.20.0",
     "react": "^19.2.0",
     "react-calendly": "^4.1.1",
@@ -31,6 +32,7 @@
     "react-select": "^5.5.2",
     "react-svg": "^16.1.7",
     "react-toastify": "^9.0.8",
+    "sharp": "^0.34.4",
     "swiper": "^8.4.7"
   },
   "devDependencies": {

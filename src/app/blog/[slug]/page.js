@@ -5,6 +5,7 @@ import MarkdownContent from '@/components/blog/MarkdownContent';
 import BlogTOC from '@/components/blog/BlogTOC';
 import { formatReadingTimeLabel } from '@/lib/blog/blogUtils';
 import { getPublishedBlogBySlug, listPublishedBlogs } from '@/lib/blog/blogService';
+import { getBlogImageUrls, normalizeImageUrl } from '@/lib/blog/blogImages.mjs';
 import Link from 'next/link';
 import {
   ArrowRight, BookOpen, CalendarDays, ChevronRight,
@@ -63,10 +64,9 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const canonical = post.canonicalUrl || `/blog/${post.slug}`;
-  // Use dedicated ogImage only — featuredImage is a portrait/square thumbnail,
-  // not 1200×630, so it renders incorrectly on social previews.
-  const ogImage = post.ogImage || '/og-image.png';
+  const canonical = post.canonicalUrl || `${SITE_URL}/blog/${post.slug}`;
+  const images = getBlogImageUrls(post);
+  const ogImage = images.og;
 
   return {
     title: post.metaTitle || post.title,
@@ -76,11 +76,11 @@ export async function generateMetadata({ params }) {
       type: 'article',
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
-      url: `/blog/${post.slug}`,
+      url: `${SITE_URL}/blog/${post.slug}`,
       images: [{ url: ogImage, width: 1200, height: 630, alt: `${post.title} — LSOE` }],
-      publishedTime: post.publishDate || undefined,
-      authors: [post.authorName],
-      tags: post.tags,
+      ...(post.publishDate ? { publishedTime: post.publishDate } : {}),
+      authors: [post.authorName || 'London School of Excellence'],
+      tags: post.tags || [],
     },
     twitter: {
       card: 'summary_large_image',
@@ -107,14 +107,15 @@ export default async function BlogArticlePage({ params }) {
   const hasTOC = headings.length >= 2;
   const tags = Array.isArray(post.tags) ? post.tags.filter(Boolean) : [];
   const updatedDiffersFromPublished = post.updatedAt && post.updatedAt !== post.publishDate;
+  const images = getBlogImageUrls(post);
 
-  const canonical = post.canonicalUrl || `${SITE_URL}/blog/${post.slug}`;
+  const canonical = normalizeImageUrl(post.canonicalUrl || `/blog/${post.slug}`, `${SITE_URL}/blog/${post.slug}`);
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.metaDescription || post.excerpt,
-    image: [post.ogImage || `${SITE_URL}/og-image.png`],
+    image: [images.og],
     author: { '@type': 'Person', name: post.authorName },
     publisher: {
       '@type': 'Organization',
@@ -210,13 +211,13 @@ export default async function BlogArticlePage({ params }) {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
 
           {/* Featured image */}
-          {post.featuredImage && (
+          <div className="aspect-[16/10] w-full overflow-hidden rounded-2xl border border-slate-100 bg-slate-50 shadow-md mb-12">
             <img
-              src={post.featuredImage}
+              src={images.featured}
               alt={post.title}
-              className="w-full h-auto rounded-2xl shadow-md mb-12 border border-slate-100"
+              className="h-full w-full object-contain"
             />
-          )}
+          </div>
 
           {/* Two-column layout when TOC available */}
           <div className={hasTOC ? 'lg:grid lg:grid-cols-[1fr_260px] lg:gap-14 xl:gap-16' : ''}>
@@ -324,27 +325,36 @@ export default async function BlogArticlePage({ params }) {
               <p className="text-xs font-bold uppercase tracking-widest text-brand-secondary mb-2">Keep Reading</p>
               <h2 className="text-2xl font-black text-slate-900 mb-8">More from the LSOE Blog</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {related.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={`/blog/${item.slug}`}
-                    className="group block bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
-                  >
-                    {item.featuredImage && (
-                      <img src={item.featuredImage} alt={item.title} className="w-full h-auto" loading="lazy" />
-                    )}
-                    <div className="p-5">
-                      <p className="text-[11px] text-brand-secondary font-bold uppercase tracking-wider mb-2">{item.category}</p>
-                      <h3 className="font-black text-slate-900 text-[15px] mb-2 leading-snug group-hover:text-brand-primary transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 mb-4 leading-relaxed line-clamp-2">{item.excerpt}</p>
-                      <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-secondary group-hover:underline">
-                        Read article <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                {related.map((item) => {
+                  const relatedImages = getBlogImageUrls(item);
+
+                  return (
+                    <Link
+                      key={item.id}
+                      href={`/blog/${item.slug}`}
+                      className="group block bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+                    >
+                      <div className="aspect-[16/9] w-full overflow-hidden bg-slate-100">
+                        <img
+                          src={relatedImages.thumbnail}
+                          alt={item.title}
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-5">
+                        <p className="text-[11px] text-brand-secondary font-bold uppercase tracking-wider mb-2">{item.category}</p>
+                        <h3 className="font-black text-slate-900 text-[15px] mb-2 leading-snug group-hover:text-brand-primary transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-slate-500 mb-4 leading-relaxed line-clamp-2">{item.excerpt}</p>
+                        <span className="inline-flex items-center gap-2 text-sm font-bold text-brand-secondary group-hover:underline">
+                          Read article <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </section>

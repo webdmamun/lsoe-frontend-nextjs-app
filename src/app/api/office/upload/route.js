@@ -1,9 +1,20 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
+import sharp from 'sharp';
 import { isAdminAuthenticated } from '@/lib/blog/adminAuth';
 
-const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+export const runtime = 'nodejs';
+
+const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+const OUTPUT_TYPE = 'image/jpeg';
+const OUTPUT_EXT = 'jpg';
+
+const IMAGE_VARIANTS = {
+  thumbnail: { directory: 'blog/thumb', width: 640, height: 360, fit: 'cover', quality: 78 },
+  featured: { directory: 'blog/featured', width: 1600, height: 1000, fit: 'inside', quality: 84 },
+  og: { directory: 'blog/og', width: 1200, height: 630, fit: 'cover', quality: 82 },
+};
 
 function getR2Config() {
   const accountId = String(process.env.R2_ACCOUNT_ID || '').trim();
@@ -123,11 +134,11 @@ async function uploadToR2(key, bodyBuffer, contentType) {
 
 function buildPublicUrl(key) {
   const { publicBase } = getR2Config();
-  return `${publicBase}/${key}`;
+  const base = publicBase || 'https://media.londonschoolofexcellence.com';
+  return `${base}/${key}`;
 }
 
-function sanitizeFilename(original) {
-  const ext  = (original.split('.').pop() || '').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+function sanitizeFileBase(original) {
   const base = original
     .replace(/\.[^.]+$/, '')
     .toLowerCase()
@@ -135,7 +146,36 @@ function sanitizeFilename(original) {
     .replace(/^-+|-+$/g, '')
     .slice(0, 60) || 'image';
   const unique = crypto.randomBytes(6).toString('hex');
-  return `${base}-${unique}.${ext}`;
+  return `${base}-${unique}`;
+}
+
+async function createImageVariants(buffer) {
+  const baseImage = sharp(buffer, { failOn: 'none' }).rotate();
+
+  const entries = await Promise.all(
+    Object.entries(IMAGE_VARIANTS).map(async ([name, config]) => {
+      const output = await baseImage
+        .clone()
+        .resize({
+          width: config.width,
+          height: config.height,
+          fit: config.fit,
+          position: sharp.strategy.attention,
+          withoutEnlargement: name === 'featured',
+          background: '#ffffff',
+        })
+        .flatten({ background: '#ffffff' })
+        .jpeg({
+          quality: config.quality,
+          mozjpeg: true,
+        })
+        .toBuffer();
+
+      return [name, output];
+    })
+  );
+
+  return Object.fromEntries(entries);
 }
 
 export async function POST(request) {
@@ -153,7 +193,7 @@ export async function POST(request) {
 
     if (!ALLOWED_TYPES.has(file.type)) {
       return NextResponse.json(
-        { success: false, error: 'Only JPEG, PNG, WebP, and GIF images are allowed' },
+        { success: false, error: 'Only JPEG, PNG, and WebP images are allowed' },
         { status: 400 }
       );
     }
@@ -168,13 +208,36 @@ export async function POST(request) {
       );
     }
 
-    const filename = sanitizeFilename(file.name || 'upload');
-    const key = `blog/featured/${filename}`;
+    const fileBase = sanitizeFileBase(file.name || 'upload');
+    const filename = `${fileBase}.${OUTPUT_EXT}`;
+    const processed = await createImageVariants(buffer);
 
-    await uploadToR2(key, buffer, file.type);
+    const keys = {
+      thumbnail: `${IMAGE_VARIANTS.thumbnail.directory}/${filename}`,
+      featured: `${IMAGE_VARIANTS.featured.directory}/${filename}`,
+      og: `${IMAGE_VARIANTS.og.directory}/${filename}`,
+    };
 
-    const url = buildPublicUrl(key);
-    return NextResponse.json({ success: true, url });
+    await Promise.all(
+      Object.entries(processed).map(([name, output]) => uploadToR2(keys[name], output, OUTPUT_TYPE))
+    );
+
+    const urls = {
+      thumbnailUrl: buildPublicUrl(keys.thumbnail),
+      featuredUrl: buildPublicUrl(keys.featured),
+      ogUrl: buildPublicUrl(keys.og),
+    };
+
+    return NextResponse.json({
+      success: true,
+      url: urls.featuredUrl,
+      ...urls,
+      variants: {
+        thumbnail: urls.thumbnailUrl,
+        featured: urls.featuredUrl,
+        og: urls.ogUrl,
+      },
+    });
   } catch (error) {
     console.error('[/api/office/upload] POST error:', error.message);
     return NextResponse.json(

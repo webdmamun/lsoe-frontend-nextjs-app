@@ -42,20 +42,20 @@ lsoe-nextjs/
 
 ### 1. Install Dependencies (If not already done)
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Start Development Server
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Visit: http://localhost:3000
 
 ### 3. Build for Production
 ```bash
-npm run build
-npm start
+pnpm build
+pnpm start
 ```
 
 ---

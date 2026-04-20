@@ -104,6 +104,17 @@ export default function BlogForm({
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
+  const setFeaturedImageFromUpload = (url, uploadResult = {}) => {
+    setApiError('');
+    setSuccessMessage('');
+    setErrors((prev) => ({ ...prev, featuredImage: '', ogImage: '' }));
+    setForm((prev) => ({
+      ...prev,
+      featuredImage: url,
+      ogImage: uploadResult.ogUrl || uploadResult.variants?.og || prev.ogImage,
+    }));
+  };
+
   const validate = () => {
     const nextErrors = {};
     const isDraft = form.status === 'draft';
@@ -288,15 +299,20 @@ export default function BlogForm({
               <p className="text-xs text-slate-500 mt-1">Metadata used for search engines and social previews.</p>
             </div>
 
+            <p className="text-xs text-slate-500 bg-slate-50 border border-slate-100 rounded-xl px-3 py-2">
+              Any uploaded image will be optimized automatically for blog cards, blog page, and social sharing.
+            </p>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <BlogImageUploader
                 label="Featured Image"
                 value={form.featuredImage}
-                onChange={(url) => setField('featuredImage', url)}
+                onChange={setFeaturedImageFromUpload}
               />
               <BlogImageUploader
                 label="OG Image — 1200×630px for social sharing"
                 value={form.ogImage}
+                uploadVariant="og"
                 onChange={(url) => setField('ogImage', url)}
               />
             </div>
