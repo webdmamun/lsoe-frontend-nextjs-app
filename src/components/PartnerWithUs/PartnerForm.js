@@ -49,7 +49,6 @@ const PartnerForm = () => {
         "fT45pkLA3fHPOXkH5"
       );
 
-      console.log("Partner partnership transmitted successfully!");
       setSuccess(true);
       form.current.reset();
       setPhone("");

@@ -38,8 +38,6 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, data: created }, { status: 201 });
   } catch (error) {
-    console.error('[/api/office/blogs] POST error:', error);
-
     if (error.code === 'VALIDATION_ERROR') {
       return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }
@@ -48,6 +46,7 @@ export async function POST(request) {
       return NextResponse.json({ success: false, error: 'Slug already exists' }, { status: 409 });
     }
 
+    console.error('[/api/office/blogs] POST error:', error);
     return NextResponse.json({ success: false, error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }

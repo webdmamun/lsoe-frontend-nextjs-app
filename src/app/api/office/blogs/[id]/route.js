@@ -46,8 +46,6 @@ export async function PATCH(request, { params }) {
 
     return NextResponse.json({ success: true, data: updated });
   } catch (error) {
-    console.error('[/api/office/blogs/[id]] PATCH error:', error);
-
     if (error.code === 'VALIDATION_ERROR') {
       return NextResponse.json({ success: false, error: error.message }, { status: 400 });
     }
@@ -56,6 +54,7 @@ export async function PATCH(request, { params }) {
       return NextResponse.json({ success: false, error: 'Slug already exists' }, { status: 409 });
     }
 
+    console.error('[/api/office/blogs/[id]] PATCH error:', error);
     return NextResponse.json({ success: false, error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }

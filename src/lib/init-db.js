@@ -12,7 +12,7 @@ async function createTable() {
 
   try {
     await client.connect();
-    console.log("Connected to PostgreSQL");
+    console.info("Connected to PostgreSQL");
 
     const query = `
       CREATE TABLE IF NOT EXISTS applications (
@@ -37,7 +37,7 @@ async function createTable() {
     `;
 
     await client.query(query);
-    console.log("Table 'applications' ready.");
+    console.info("Table 'applications' ready.");
   } catch (err) {
     console.error("Error executing query", err.stack);
   } finally {

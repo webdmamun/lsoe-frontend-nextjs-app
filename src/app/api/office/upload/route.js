@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
-import sharp from 'sharp';
 import { isAdminAuthenticated } from '@/lib/blog/adminAuth';
+import { createImageVariants, IMAGE_VARIANTS } from '@/lib/blog/blogImageVariants.mjs';
 
 export const runtime = 'nodejs';
 
@@ -9,12 +9,6 @@ const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
 const OUTPUT_TYPE = 'image/jpeg';
 const OUTPUT_EXT = 'jpg';
-
-const IMAGE_VARIANTS = {
-  thumbnail: { directory: 'blog/thumb', width: 640, height: 360, fit: 'cover', quality: 78 },
-  featured: { directory: 'blog/featured', width: 1600, height: 1000, fit: 'inside', quality: 84 },
-  og: { directory: 'blog/og', width: 1200, height: 630, fit: 'cover', quality: 82 },
-};
 
 function getR2Config() {
   const accountId = String(process.env.R2_ACCOUNT_ID || '').trim();
@@ -111,8 +105,6 @@ async function uploadToR2(key, bodyBuffer, contentType) {
     `AWS4-HMAC-SHA256 Credential=${accessKeyId}/${credentialScope}, ` +
     `SignedHeaders=${signedHeaders}, Signature=${signature}`;
 
-  console.info('[r2-upload] endpoint=%s bucket=%s key=%s size=%s', host, bucket, key, contentLength);
-
   const response = await fetch(uploadUrl, {
     method: 'PUT',
     headers: {
@@ -147,35 +139,6 @@ function sanitizeFileBase(original) {
     .slice(0, 60) || 'image';
   const unique = crypto.randomBytes(6).toString('hex');
   return `${base}-${unique}`;
-}
-
-async function createImageVariants(buffer) {
-  const baseImage = sharp(buffer, { failOn: 'none' }).rotate();
-
-  const entries = await Promise.all(
-    Object.entries(IMAGE_VARIANTS).map(async ([name, config]) => {
-      const output = await baseImage
-        .clone()
-        .resize({
-          width: config.width,
-          height: config.height,
-          fit: config.fit,
-          position: sharp.strategy.attention,
-          withoutEnlargement: name === 'featured',
-          background: '#ffffff',
-        })
-        .flatten({ background: '#ffffff' })
-        .jpeg({
-          quality: config.quality,
-          mozjpeg: true,
-        })
-        .toBuffer();
-
-      return [name, output];
-    })
-  );
-
-  return Object.fromEntries(entries);
 }
 
 export async function POST(request) {
