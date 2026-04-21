@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Briefcase, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen, Wallet } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/business' },
   title: 'Business & Management Courses at UK Universities',
   description:
     'Explore Business Administration, Accounting, Marketing, Finance, HRM, and Entrepreneurship undergraduate programmes at UK universities. Free admissions support from London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Undergraduate Business and Management courses at UK universities. Free admissions support for Home and international students from LSOE.',
     url: '/courses/business',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Business Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Business Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

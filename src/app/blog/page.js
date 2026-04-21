@@ -8,14 +8,15 @@ import Link from 'next/link';
 import { ArrowRight, BookOpenText, CalendarDays, MessageCircle, UserCircle2 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/blog' },
   title: 'LSOE Blog | UK Admissions, Student Finance and Study Advice',
   description:
-    'Read practical guidance on UK admissions, student finance, local student pathways, and international study planning from London School of Excellence.',
+    'Practical guides on UK university admissions, Student Finance England, UCAS applications, Student Route visas, and study pathways — from LSOE advisors.',
   openGraph: {
     title: 'LSOE Blog | UK Admissions and Student Finance Insights',
     description: 'Helpful guides for UK and international students covering admissions, funding, and course selection.',
     url: '/blog',
-    images: [{ url: DEFAULT_BLOG_IMAGE_URL, width: 1200, height: 630, alt: 'LSOE Blog' }],
+    images: [{ url: DEFAULT_BLOG_IMAGE_URL, width: 1024, height: 1024, alt: 'LSOE Blog' }],
   },
   twitter: {
     card: 'summary_large_image',

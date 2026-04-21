@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { BookOpen, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, Wallet, GraduationCap } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/foundation' },
   title: 'Foundation Year Courses at UK Universities',
   description:
     'Explore Foundation Year programmes at UK universities. One-year pathways for students without standard A-Level entry qualifications, including international and mature students. Free support from LSOE.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'One-year Foundation Year programmes that prepare you for undergraduate study at UK universities. Available for Home and international applicants. Free support from LSOE.',
     url: '/courses/foundation',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Foundation Year Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Foundation Year Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

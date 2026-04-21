@@ -13,10 +13,11 @@ const usefulLinksColumns = [
   {
     heading: "Student Resources",
     links: [
-      { name: "Student Finance UK",   href: "/student-finance-uk",   desc: "Loans, grants & funding explained" },
-      { name: "Am I Eligible?",       href: "/am-i-eligible",        desc: "Check your entry requirements" },
-      { name: "UCAS Guide",           href: "/ucas-guide",           desc: "Step-by-step application help" },
-      { name: "FAQ",                  href: "/faq",                  desc: "Common questions answered" },
+      { name: "Student Finance UK",        href: "/student-finance-uk",          desc: "Loans, grants & funding explained" },
+      { name: "UK Student Finance Courses", href: "/uk-student-finance-courses", desc: "Funded courses for eligible students" },
+      { name: "Am I Eligible?",            href: "/am-i-eligible",               desc: "Check your entry requirements" },
+      { name: "UCAS Guide",               href: "/ucas-guide",                  desc: "Step-by-step application help" },
+      { name: "FAQ",                      href: "/faq",                         desc: "Common questions answered" },
     ],
   },
   {

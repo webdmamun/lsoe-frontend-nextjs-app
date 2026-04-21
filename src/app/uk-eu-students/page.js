@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/uk-eu-students' },
   title: 'UK and EU Students — Free University Admissions Support',
   description:
     'London School of Excellence provides free UK university admissions support for Home and EU students. Expert guidance on UCAS applications, Student Finance England, and flexible study options since 2013.',
@@ -22,7 +23,7 @@ export const metadata = {
     description:
       'Free UCAS support, Student Finance England guidance, and local admissions help for UK Home and EU students. Expert support since 2013.',
     url: '/uk-eu-students',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'UK and EU Students — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'UK and EU Students — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

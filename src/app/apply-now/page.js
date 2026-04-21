@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { MapPin, Globe2, ArrowRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/apply-now' },
   title: 'Apply Now — Choose Your Application Path',
   description:
     'Start your UK university application with London School of Excellence. Choose the right path for UK / EU students or international applicants. Free expert support since 2013.',
@@ -12,7 +13,7 @@ export const metadata = {
     description:
       'Free UK university admissions support for Home, EU, and international students. Choose your application path and get started today.',
     url: '/apply-now',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Apply Now — London School of Excellence' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Apply Now — London School of Excellence' }],
   },
   twitter: {
     card: 'summary_large_image',

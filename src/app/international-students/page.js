@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/international-students' },
   title: 'International Students — UK University Admissions Support',
   description:
     'London School of Excellence helps international students apply to UK universities. Expert guidance on UK admissions, Student Route visa, accommodation, and pre-arrival support. Free service since 2013.',
@@ -22,7 +23,7 @@ export const metadata = {
     description:
       'Free UK university admissions support for international students. Visa guidance, UCAS applications, accommodation support, and pre-arrival help from LSOE.',
     url: '/international-students',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'International Students — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'International Students — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -8,15 +8,16 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Browse UK University Courses — Business, Computing, Health, Law & More',
+  alternates: { canonical: '/courses' },
+  title: 'UK University Courses — Business, Computing, Health & More | LSOE',
   description:
-    'Explore undergraduate and postgraduate courses at UK universities. Business, Computing, Health, Law, Engineering, Foundation Year, and Top-Up degrees. Free admissions support from London School of Excellence.',
+    'Explore UK university courses in Business, Computing, Health, Law, Engineering, Foundation Year, and Top-Up degrees. Free admissions support from LSOE.',
   openGraph: {
     title: 'UK University Courses — London School of Excellence',
     description:
       'Browse 8 subject areas at UK universities. Business, Computing, Health, Law, Engineering, Foundation, Top-Up, and Postgraduate. Free admissions support from LSOE.',
     url: '/courses',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'UK University Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'UK University Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

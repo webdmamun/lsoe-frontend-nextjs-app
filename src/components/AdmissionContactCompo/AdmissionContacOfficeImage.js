@@ -9,7 +9,7 @@ const AdmissionContacOfficeImage = () => {
           <img
             src="https://media.londonschoolofexcellence.com/lsoe-website-images/office%20image.jpg"
             className="max-w-lg w-[100%] rounded shadow-xl"
-            alt=""
+            alt="LSOE London Office — 5 Station Parade, Hornchurch, Romford"
           />
         </div>
         <div>

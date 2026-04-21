@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Building2, MapPin, Globe2, GraduationCap, MessageCircle } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/partner-institutions' },
   title: 'Partner Institutions — UK Universities in Our Network',
   description:
     'London School of Excellence works with a trusted network of UK universities and colleges. We connect Home and international students with the right institution for their qualifications and goals.',
@@ -12,7 +13,7 @@ export const metadata = {
     description:
       'UK universities and colleges in the LSOE admissions network. We connect students with the right institution for their profile and goals.',
     url: '/partner-institutions',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Partner Institutions — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Partner Institutions — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

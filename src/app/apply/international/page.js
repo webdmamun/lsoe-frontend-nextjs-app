@@ -4,6 +4,7 @@ import ApplyNowForm from '@/components/ApplyNowCompo/ApplyNowForm';
 import { Globe2 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/apply/international' },
   title: 'International Student Application — UK University Admissions',
   description:
     'Apply to a UK university from abroad with free expert support from London School of Excellence. Student Route visa guidance, UCAS admissions, accommodation support, and pre-arrival help for international students.',
@@ -12,7 +13,7 @@ export const metadata = {
     description:
       'Free UK university admissions support for international students. Visa guidance, UCAS, accommodation, and pre-arrival support from LSOE.',
     url: '/apply/international',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'International Student Application — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'International Student Application — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

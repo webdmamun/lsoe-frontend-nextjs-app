@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Monitor, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen, Wallet } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/computing' },
   title: 'IT & Computing Courses at UK Universities',
   description:
     'Explore Computer Science, Software Engineering, Cybersecurity, Data Science, and AI undergraduate programmes at UK universities. Free admissions support from London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Undergraduate IT and Computing courses at UK universities — Computer Science, Software Engineering, Cybersecurity, AI, and more. Free support from LSOE.',
     url: '/courses/computing',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'IT & Computing Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'IT & Computing Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

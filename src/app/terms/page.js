@@ -2,6 +2,7 @@ import AdmissionNav from "@/components/shared/header/AdmissionNav";
 import AdmissionFooter from "@/components/shared/Footer/AdmissionFooter";
 
 export const metadata = {
+  alternates: { canonical: '/terms' },
   title: 'Terms and Conditions',
   description:
     'Read the terms and conditions for using London School of Excellence services and website. Covers use of services, intellectual property, and limitation of liability.',
@@ -9,7 +10,7 @@ export const metadata = {
     title: 'Terms and Conditions — London School of Excellence',
     description: 'Official terms and conditions for using London School of Excellence services and website.',
     url: '/terms',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Terms and Conditions — London School of Excellence' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Terms and Conditions — London School of Excellence' }],
   },
   twitter: {
     card: 'summary_large_image',

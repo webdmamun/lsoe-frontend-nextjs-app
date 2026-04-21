@@ -6,13 +6,14 @@ import { ArrowRight, HelpCircle, MessageCircle, ChevronRight } from 'lucide-reac
 export const metadata = {
   title: 'FAQ — Frequently Asked Questions About LSOE & UK Admissions',
   description:
-    'Answers to common questions about London School of Excellence services, UCAS applications, Student Route visa, fees, and how our free admissions support works.',
+    'Answers to common questions about LSOE, UCAS applications, Student Route visa, fees, and how our free UK admissions support works.',
+  alternates: { canonical: '/faq' },
   openGraph: {
     title: 'FAQ — London School of Excellence',
     description:
       'Common questions about LSOE services, UK university admissions, Student Route visa, and how our free support works.',
     url: '/faq',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'FAQ — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'FAQ — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -103,8 +104,24 @@ const faqs = [
 ];
 
 export default function FaqPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.flatMap((section) =>
+      section.items.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.a.replace(/<[^>]+>/g, ''),
+        },
+      }))
+    ),
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <AdmissionNav isDark={true} />
 
       {/* Hero */}

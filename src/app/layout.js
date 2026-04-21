@@ -14,6 +14,7 @@ export const metadata = {
   },
   description:
     'London School of Excellence (LSOE) is a free UK university admissions consultancy based in London. Expert guidance for Home and international students on UCAS applications, Student Route visas, scholarships, and accommodation since 2013.',
+  alternates: { canonical: 'https://www.londonschoolofexcellence.com' },
   authors: [{ name: 'London School of Excellence Admissions Team' }],
   icons: {
     icon: 'https://media.londonschoolofexcellence.com/lsoe-website-images/favicon.jpg',
@@ -29,8 +30,8 @@ export const metadata = {
     images: [
       {
         url: '/og-image.png',
-        width: 1200,
-        height: 630,
+        width: 1024,
+        height: 1024,
         alt: 'London School of Excellence — Free UK University Admissions Consultancy',
       },
     ],

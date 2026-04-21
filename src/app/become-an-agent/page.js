@@ -20,7 +20,7 @@ export const metadata = {
     description:
       'Join our UK university admissions agent network. Earn commission, access 30+ partner universities, and receive dedicated support. Apply online today.',
     url: '/become-an-agent',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Become an Agent — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Become an Agent — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Wallet, AlertCircle, GraduationCap, MessageCircle } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/student-finance-uk' },
   title: 'Student Finance UK — Loans, Grants & Funding Explained',
   description:
-    'Understand Student Finance England for UK and EU students. Tuition fee loans, maintenance loans, grants, repayment rules, and how to apply — explained by London School of Excellence.',
+    'Understand Student Finance England for UK and EU students. Tuition fee loans, maintenance loans, grants, repayment rules, and how to apply — free guidance from LSOE.',
   openGraph: {
     title: 'Student Finance UK — London School of Excellence',
     description:
       'A clear guide to Student Finance England — tuition fee loans, maintenance loans, grants, repayment, and eligibility for UK Home students.',
     url: '/student-finance-uk',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Student Finance UK — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Student Finance UK — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

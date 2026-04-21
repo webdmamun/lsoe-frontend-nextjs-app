@@ -4,6 +4,7 @@ import ApplyNowForm from '@/components/ApplyNowCompo/ApplyNowForm';
 import { MapPin } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/apply/uk-eu' },
   title: 'UK and EU Student Application — Free UCAS Support',
   description:
     'Apply to a UK university as a Home or EU student with free support from London School of Excellence. UCAS guidance, Student Finance England, and personal statement help from our local London advisors.',
@@ -12,7 +13,7 @@ export const metadata = {
     description:
       'Free UCAS support, Student Finance guidance, and local admissions help for UK Home and EU students. Start your application today.',
     url: '/apply/uk-eu',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'UK and EU Student Application — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'UK and EU Student Application — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

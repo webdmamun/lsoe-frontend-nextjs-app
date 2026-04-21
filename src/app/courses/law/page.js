@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Scale, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen, Wallet } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/law' },
   title: 'Law Courses at UK Universities — LLB and Legal Programmes',
   description:
     'Explore LLB Law, Law with Business, Law with Criminology, and International Law undergraduate programmes at UK universities. Free admissions support from London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Undergraduate Law programmes at UK universities — LLB Law, Criminology, International Law, and more. Free admissions support from LSOE.',
     url: '/courses/law',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Law Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Law Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/useful-links' },
   title: 'Useful Links & Resources — Student Guides, Funding & Opportunities',
   description:
     'Everything in one place — Student Finance England, UCAS guide, eligibility checker, UK course browser, FAQ, agent opportunities, referral programme, and more from London School of Excellence.',
@@ -17,7 +18,7 @@ export const metadata = {
     description:
       'Student Finance, UCAS, eligibility, courses, and opportunities — all the key resources for UK university applicants and education agents in one place.',
     url: '/useful-links',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Useful Links — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Useful Links — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FlaskConical, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/postgraduate' },
   title: 'Postgraduate Courses at UK Universities — MSc, MBA, LLM',
   description:
     'Explore MSc, MBA, MA, and LLM postgraduate programmes at UK universities. Business, Computing, Law, and Health. Admissions guidance from London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'MSc, MBA, LLM, and MA programmes at UK universities. Admissions guidance and support for postgraduate applicants from LSOE.',
     url: '/courses/postgraduate',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Postgraduate Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Postgraduate Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

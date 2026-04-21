@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, ClipboardCheck, ListChecks, MessageCircle, ChevronRight } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/apply-uk-courses' },
   title: 'Apply for UK Courses | Step-by-Step Admissions Support',
   description:
     'Apply for UK university courses with confidence. Follow a simple step-by-step application process with free support from London School of Excellence, including eligibility and student finance guidance.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Simple UK course application steps with free expert support from LSOE, from eligibility checks to final submission.',
     url: '/apply-uk-courses',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Apply for UK Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Apply for UK Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

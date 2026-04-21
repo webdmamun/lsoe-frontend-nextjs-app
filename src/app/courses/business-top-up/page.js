@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Trophy, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen, Wallet, Globe2 } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/business-top-up' },
   title: 'Business Top-Up Degrees at UK Universities',
   description:
     'Explore one-year Business Top-Up degrees (Level 6) at UK universities. Convert your HND, Foundation Degree, or equivalent into a full Honours degree. Free admissions support from LSOE.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'One-year Level 6 Business Top-Up degrees for HND and Foundation Degree holders. Fast route to a full UK Honours degree. Free support from LSOE.',
     url: '/courses/business-top-up',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Business Top-Up Degrees — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Business Top-Up Degrees — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

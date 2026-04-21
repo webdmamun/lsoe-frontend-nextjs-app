@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, ShieldCheck, HandCoins, MessageCircle, ChevronRight } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/free-admission-support-uk' },
   title: 'Free Admission Support UK | No Hidden Fees Since 2013',
   description:
     'Get completely free UK university admission support from London School of Excellence. No hidden fees, no consultation charges, and trusted student guidance since 2013.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'No-fee university admission support in the UK. Trusted by students since 2013 with transparent guidance from LSOE.',
     url: '/free-admission-support-uk',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Free Admission Support UK — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Free Admission Support UK — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

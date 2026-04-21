@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, CheckCircle2, ChevronRight, MessageCircle } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/ucas-guide' },
   title: 'UCAS Guide — Step-by-Step UK University Application Help',
   description:
     'A plain-English guide to the UCAS application system for UK Home and international students. From creating your account to accepting your university offer, explained by London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Step-by-step walkthrough of the UCAS application process — from registration to accepting your offer — written in plain English by LSOE.',
     url: '/ucas-guide',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'UCAS Guide — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'UCAS Guide — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

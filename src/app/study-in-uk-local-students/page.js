@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle2, MapPin, Clock3, Users, MessageCircle, ChevronRight } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/study-in-uk-local-students' },
   title: 'Study in the UK for Local Students | Flexible University Pathways',
   description:
     'Already living in the UK? Explore flexible university pathways with free local admissions support from London School of Excellence. Compare part-time and full-time options, funding routes, and next steps.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'UK-based students can access flexible study routes, local guidance, and free admissions support from LSOE.',
     url: '/study-in-uk-local-students',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Study in the UK for Local Students — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Study in the UK for Local Students — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

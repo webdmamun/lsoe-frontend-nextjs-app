@@ -6,15 +6,16 @@ import AdmissionFooter from '@/components/shared/Footer/AdmissionFooter';
 import AdmissionNav from '@/components/shared/header/AdmissionNav';
 
 export const metadata = {
+  alternates: { canonical: '/contact-us' },
   title: 'Contact Us — London Office & Free Admissions Advice',
   description:
-    'Contact London School of Excellence at our London (Hornchurch, RM12), Leeds, or Birmingham offices. Call, WhatsApp, or email for free UK university admissions advice.',
+    'Contact London School of Excellence at our Hornchurch (London) or Leeds offices. Call, WhatsApp, or email for free UK university admissions advice.',
   openGraph: {
     title: 'Contact London School of Excellence',
     description:
       'Reach our admissions team by phone, WhatsApp, or email. London office at 5 Station Parade, Hornchurch, RM12 5AB. Free admissions guidance available.',
     url: '/contact-us',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Contact London School of Excellence' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Contact London School of Excellence' }],
   },
   twitter: {
     card: 'summary_large_image',

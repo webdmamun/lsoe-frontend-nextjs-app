@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { HeartPulse, ArrowRight, CheckCircle2, ChevronRight, MessageCircle, BookOpen, Wallet } from 'lucide-react';
 
 export const metadata = {
+  alternates: { canonical: '/courses/health' },
   title: 'Health & Social Care Courses at UK Universities',
   description:
     'Explore Nursing, Health Management, Public Health, Social Work, and Mental Health undergraduate programmes at UK universities. Free admissions support from London School of Excellence.',
@@ -13,7 +14,7 @@ export const metadata = {
     description:
       'Undergraduate Health and Social Care courses at UK universities — Nursing, Social Work, Public Health, and more. Free support from LSOE.',
     url: '/courses/health',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Health & Social Care Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Health & Social Care Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

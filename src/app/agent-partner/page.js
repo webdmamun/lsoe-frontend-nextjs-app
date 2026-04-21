@@ -24,6 +24,7 @@ import {
 const CRM_URL = 'https://app.londonschoolofexcellence.com/apply-for-agent';
 
 export const metadata = {
+  alternates: { canonical: '/agent-partner' },
   title: 'Become an Agent Partner — LSOE Recruitment Partnership Programme',
   description:
     'Join the London School of Excellence agent partner network. Earn commission placing students into UK universities. Fast approval, dedicated support, and access to 30+ UK partner institutions.',
@@ -32,7 +33,7 @@ export const metadata = {
     description:
       'Earn commission by placing Home and international students into UK universities through LSOE. Apply online — fast processing and dedicated relationship manager.',
     url: '/agent-partner',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Agent Partner — London School of Excellence' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'Agent Partner — London School of Excellence' }],
   },
   twitter: {
     card: 'summary_large_image',
