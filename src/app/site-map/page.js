@@ -11,7 +11,7 @@ export const metadata = {
     title: "Site Map — London School of Excellence",
     description: "A full index of all pages on the London School of Excellence website.",
     url: "/site-map",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "London School of Excellence Site Map" }],
+    images: [{ url: "/og-image.png", width: 1024, height: 1024, alt: "London School of Excellence Site Map" }],
   },
   twitter: {
     card: "summary_large_image",

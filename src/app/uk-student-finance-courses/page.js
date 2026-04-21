@@ -32,7 +32,7 @@ export const metadata = {
     description:
       'Funded UK university courses for home and eligible EU students. Check eligibility, tuition fee loan, maintenance loan, and how to study without paying fees UK upfront. Free LSOE support.',
     url: '/uk-student-finance-courses',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'UK Student Finance Courses — LSOE' }],
+    images: [{ url: '/og-image.png', width: 1024, height: 1024, alt: 'UK Student Finance Courses — LSOE' }],
   },
   twitter: {
     card: 'summary_large_image',

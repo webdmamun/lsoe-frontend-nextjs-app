@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
       title: post.metaTitle || post.title,
       description: post.metaDescription || post.excerpt,
       url: `${SITE_URL}/blog/${post.slug}`,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: `${post.title} — LSOE` }],
+      images: [{ url: ogImage, width: 1024, height: 1024, alt: `${post.title} — LSOE` }],
       ...(post.publishDate ? { publishedTime: post.publishDate } : {}),
       authors: [post.authorName || 'London School of Excellence'],
       tags: post.tags || [],
