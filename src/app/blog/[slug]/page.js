@@ -4,6 +4,7 @@ import BreadcrumbSchema from '@/components/common/BreadcrumbSchema';
 import MarkdownContent from '@/components/blog/MarkdownContent';
 import BlogTOC from '@/components/blog/BlogTOC';
 import { formatReadingTimeLabel } from '@/lib/blog/blogUtils';
+import { extractMarkdownHeadings } from '@/lib/blog/markdownHeadings.mjs';
 import { getPublishedBlogBySlug, listPublishedBlogs } from '@/lib/blog/blogService';
 import { getBlogImageUrls, normalizeImageUrl } from '@/lib/blog/blogImages.mjs';
 import Link from 'next/link';
@@ -30,19 +31,6 @@ function getRelevantCourseLinks(post) {
     .join(' ').toLowerCase();
   const matched = COURSE_LINKS.filter((item) => item.keywords.some((w) => haystack.includes(w)));
   return matched.length > 0 ? matched.slice(0, 2) : COURSE_LINKS.slice(0, 1);
-}
-
-function headingToId(text) {
-  return text.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, '-');
-}
-
-function extractHeadings(content) {
-  if (!content) return [];
-  return content.split('\n').reduce((acc, line) => {
-    const m = line.trim().match(/^(#{2,3})\s+(.+)$/);
-    if (m) acc.push({ level: m[1].length, text: m[2].trim(), id: headingToId(m[2].trim()) });
-    return acc;
-  }, []);
 }
 
 function fmtDate(value) {
@@ -103,7 +91,7 @@ export default async function BlogArticlePage({ params }) {
     .slice(0, 3);
 
   const courseLinks = getRelevantCourseLinks(post);
-  const headings = extractHeadings(post.content);
+  const headings = extractMarkdownHeadings(post.content);
   const hasTOC = headings.length >= 2;
   const tags = Array.isArray(post.tags) ? post.tags.filter(Boolean) : [];
   const updatedDiffersFromPublished = post.updatedAt && post.updatedAt !== post.publishDate;

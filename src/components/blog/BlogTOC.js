@@ -8,8 +8,8 @@ export default function BlogTOC({ headings, variant = 'sidebar' }) {
 
   if (!headings || headings.length < 2) return null;
 
-  const links = headings.map((h) => (
-    <li key={h.id} className={h.level === 3 ? 'pl-4' : ''}>
+  const links = headings.map((h, index) => (
+    <li key={`${h.id}-${index}`} className={h.level === 3 ? 'pl-4' : ''}>
       <a
         href={`#${h.id}`}
         onClick={() => setOpen(false)}
